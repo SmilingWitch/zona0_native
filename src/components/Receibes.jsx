@@ -19,17 +19,47 @@ const FirstRoute = () => {
                 </StyledText>
             </View>
  }
- 
+
+ const routesComponent1 = {
+    efectuados: FirstRoute ,
+    pendientes: SecondRoute
+  }
+
+
+ const ThirdRoute = () => {
+    return (
+        <View style = {styles.container}>
+            <TabViewComponent 
+                routesComponent ={routesComponent1}
+                />
+
+        </View>)
+
+ }
+
+ const Fourth = () => {
+
+    return (
+        <View style = {styles.container}>
+            <TabViewComponent 
+                routesComponent ={routesComponent1}
+                />
+        </View>
+            
+            )
+
+ }
 
 const Receibes = () => {
+
     const routesComponent = {
-        recibidos: FirstRoute,
-        pendientes: SecondRoute
+        recibidos: ThirdRoute,
+        envios: Fourth
       }
 
     return(
         <View style = {styles.container}>
-            <TabViewComponent routesComponent ={routesComponent} />
+            <TabViewComponent routesComponent ={routesComponent} styled/>
         </View>
        
     )
@@ -37,17 +67,15 @@ const Receibes = () => {
 
 const styles = StyleSheet.create({
     container: {
-        minHeight: 200,
-        backgroundColor: 'red',
+        minHeight: 300,
         padding:15,
         borderRadius: 15,
         backgroundColor: theme.colors.container,
     },
     tab_style: {
-
         alignItems: 'center',
         justifyContent: 'center',
-        height: '100%'
+        height: '100%',
     }
 })
 
