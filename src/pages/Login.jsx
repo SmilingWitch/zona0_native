@@ -1,8 +1,6 @@
-import { Text, View, StyleSheet, Dimensions, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, ScrollView, TouchableOpacity, KeyboardAvoidingViewComponent } from "react-native"
+import { StyleSheet, KeyboardAvoidingView, Platform } from "react-native"
 import theme from "../theme"
-import LoginForm from "../components/LoginForm";
-import StyledText from "../components/StyledText";
-import NotesFolderHeader from "../components/BackHeader";
+
 import LoginView from "../components/LoginView";
 
 
