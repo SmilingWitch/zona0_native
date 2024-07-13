@@ -8,6 +8,8 @@ import Receibe from "../pages/Receibe"
 import Login from "../pages/Login"
 import PrincipalPage from "../pages/PrincipalPage";
 import Send from "../pages/Send";
+import Redeem from "../pages/Redeem";
+import Banking from "../pages/Banking";
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +39,16 @@ const Main = () => {
                         name="Send" 
                         component={Send} 
                         options={{ headerShown: false }} // Mostrar el AppBar
+                    />
+                    <Stack.Screen
+                        name = "Redeem"
+                        component={Redeem}
+                        options={{headerShown: false}}
+                    />
+                    <Stack.Screen
+                        name = "Banking"
+                        component={Banking}
+                        options={{headerShown: false}}
                     />
                 </Stack.Navigator>
             </NavigationContainer>
