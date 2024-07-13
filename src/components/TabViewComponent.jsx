@@ -6,21 +6,32 @@ import { useState } from "react"
 import { SceneMap, TabBar, TabView } from "react-native-tab-view"
 
 
-  
-const renderTabBar = props => (
+
+const TabViewComponent = ({routesComponent, styled}) => {
+
+  const styledTab = [
+    styled && styles.tapbar,
+    !styled && styles.not_styled_tab
+  ]
+
+  const styledIndicator = [
+    styled && styles.indicator_visible,
+    !styled && styles.not_visible_indicator
+  ]
+
+  const renderTabBar = props => (
     <TabBar
       {...props}
-      indicatorStyle={{ backgroundColor: 'transparent' }}
-      style={styles.tapbar}
+      indicatorStyle={styledIndicator}
+      style={styledTab}
       renderLabel={({ route, focused }) => (
-        <ReceibeItemBtn route = {route} focused={focused}/>
+        <ReceibeItemBtn route = {route} focused={focused} styled = {styled}/>
       )}
     />
   );
 
-const TabViewComponent = ({routesComponent}) => {
-    const [index, setIndex] = useState(0);  
-    const [active, setActive] = useState("efectuados")  
+
+    const [index, setIndex] = useState(0);   
     const renderScene = SceneMap(
         routesComponent
       );
@@ -59,16 +70,30 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         height: 50,
         justifyContent: 'space-between',
-        backgroundColor: theme.colors.buttonColor,
+        
     },
     tapbar: {
         backgroundColor: theme.colors.buttonColor,
         borderRadius: 30,
-
+        marginBottom: 15,
     },
-    tab_style: {
-        backgroundColor: 'violet'
+
+    not_styled_tab: {
+      backgroundColor: 'transparent',
+      borderColor: 'transparent',
+      shadowColor: 'transparent',
+      borderBottomWidth: 1,
+      borderColor: theme.colors.buttonColor
+    },
+    indicator_visible: {
+      height: '100%',
+      borderRadius: 30,
+      backgroundColor: theme.colors.secundary
+    },
+    not_visible_indicator: {
+      backgroundColor: theme.colors.secundary
     }
+
     
 
 })
