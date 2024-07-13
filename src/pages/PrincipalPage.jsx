@@ -1,13 +1,13 @@
 
-import {ScrollView } from "react-native"
-import { View, StyleSheet,useWindowDimensions } from "react-native"
+import {ScrollView, TouchableOpacity } from "react-native"
+import { View, StyleSheet } from "react-native"
 import theme from "../theme"
 import ManageFolderHeader from "../components/PrincipalHeader"
 import StyledText from "../components/StyledText"
 import TotalBalance from "../components/TotalBalance"
 import Operations from "../components/Operations"
 import Receibes from "../components/Receibes"
-import Sends from "../components/Sends"
+import Icon from '@expo/vector-icons/EvilIcons'
 
 
 const PrincipalPage = ({navigation, route}) => {
@@ -20,18 +20,20 @@ const PrincipalPage = ({navigation, route}) => {
                 </View>
 
                 <View style = {styles.item}>
-                    <StyledText fontSize="h3">Operations</StyledText>
+                    <View style = {styles.header}>
+                        <StyledText fontSize="h3">Operations</StyledText>
+                    </View>
                     <Operations navigation={navigation}/>
                 </View>
 
                 <View style = {styles.item}>
-                    <StyledText fontSize="h3">Recibos</StyledText>
-                    <Receibes/>
+                <View style = {styles.header}>
+                    <StyledText fontSize="h3">Last Operations</StyledText>
+                    <TouchableOpacity>
+                        <Icon name = "undo" style = {styles.icon}></Icon>
+                    </TouchableOpacity>
                 </View>
-
-                <View style = {styles.item}>
-                    <StyledText fontSize="h3">Envios</StyledText>
-                    <Sends/>
+                    <Receibes/>
                 </View>
 
             </View>
@@ -53,6 +55,18 @@ const styles = StyleSheet.create({
     },
     item: {
         gap:25
+    },
+    header:{
+        borderStartWidth: 4,
+        borderColor: theme.colors.secundary,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingLeft: 5,
+        paddingVertical: 5,
+        alignItems: 'center'
+    },
+    icon: {
+        fontSize: theme.fontSize.h1
     }
 
 })
