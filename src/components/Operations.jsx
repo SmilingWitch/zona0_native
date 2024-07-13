@@ -22,11 +22,15 @@ const Operations = ({navigation}) => {
             <Operation 
                 navigation = {navigation} 
                 icon_name = "bank"  
-                operation_name="Bancarizar"/>
+                operation_name="Bancarizar"
+                url_name="Banking"
+                />
             <Operation 
                 navigation = {navigation} 
                 icon_name = "hearto"  
-                operation_name="Canjear Codigo"/>
+                operation_name="Canjear Codigo"
+                url_name="Redeem"
+                />
             <Operation 
                 navigation = {navigation} 
                 icon_name = "codepen"  
