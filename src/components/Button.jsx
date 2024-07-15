@@ -1,13 +1,20 @@
-import { TouchableOpacity, StyleSheet } from "react-native"
+import { TouchableOpacity, StyleSheet, ActivityIndicator } from "react-native"
 import StyledText from "./StyledText"
 import theme from "../theme"
+import { View } from "react-native"
 
 
-const Button = ({text, fnc, ...props}) => {
+const Button = ({text, fnc,loading, ...props}) => {
     return(
-        <TouchableOpacity style = {styles.container} onPress={() => fnc}>
+        loading ? 
+        <View style = {styles.container}>
+            <ActivityIndicator size="small" color="#ffff" /> 
+        </View>
+        :
+        <TouchableOpacity style = {styles.container} onPress={fnc}>
             <StyledText color = "secundary" fontSize='small'>{text.toUpperCase()}</StyledText>
-        </TouchableOpacity>
+        </TouchableOpacity> 
+        
     )
 }
 
