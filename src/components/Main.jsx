@@ -10,18 +10,24 @@ import PrincipalPage from "../pages/PrincipalPage";
 import Send from "../pages/Send";
 import Redeem from "../pages/Redeem";
 import Banking from "../pages/Banking";
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from '../store/store';
+import ReceiveDetails from "./ReceiveDetails";
 
 const Stack = createNativeStackNavigator();
 
 const Main = () => {
     return(
+
         <View style={styles.container}>
+        <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
             <NavigationContainer>
                 <Stack.Navigator>
                 <Stack.Screen 
                         name="Login" 
                         component={Login} 
-                        initialParams={{ name: 'All'}}
                         options={{ headerShown: false }} // Mostrar el AppBar
                     />
                     <Stack.Screen 
@@ -34,7 +40,12 @@ const Main = () => {
                         component={Receibe} 
                         options={{ headerShown: false }} // Mostrar el AppBar
                     />
-                    
+                    <Stack.Screen 
+                        name="ReceiveDetails"
+                        component={ReceiveDetails} 
+                        initialParams={{}}
+                        options={{ headerShown: false }} // Mostrar el AppBar
+                    />
                     <Stack.Screen 
                         name="Send" 
                         component={Send} 
@@ -52,6 +63,9 @@ const Main = () => {
                     />
                 </Stack.Navigator>
             </NavigationContainer>
+            </PersistGate>
+            </Provider>
+            
         </View>
     )
 }
