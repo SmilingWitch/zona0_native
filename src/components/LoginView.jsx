@@ -7,6 +7,8 @@ import theme from "../theme"
 
 
 const LoginView = ({navigation}) => {
+
+
     return(
         <ScrollView style = {styles.inner_scroll}  keyboardShouldPersistTaps="handled" contentContainerStyle={{ flexGrow: 1 }} >
 
@@ -15,7 +17,7 @@ const LoginView = ({navigation}) => {
                 <View style = {styles.header}>
                     <StyledText fontSize="h1" fontWeight="bold">Login</StyledText>
                 </View>
-                <LoginForm/>
+                <LoginForm navigation = {navigation}/>
                 <View style = {styles.register}>
                     <StyledText fontSize="small" fontWeight="bold">Don't you have an account? </StyledText>
                     <TouchableOpacity>
