@@ -4,7 +4,7 @@ import theme from "../theme"
 
 
 
-const StyledText = ({children, color, fontSize, fontWeight,style,...props}) => {
+const StyledText = ({children, color, fontSize, fontWeight,style,error,...props}) => {
 
     const textStyles = [
         styles.regular,
@@ -16,6 +16,7 @@ const StyledText = ({children, color, fontSize, fontWeight,style,...props}) => {
         fontSize === 'h3' && styles.h3,
         fontSize === 'small' && styles.small,
         fontWeight === 'bold' && styles.bold,
+        error && styles.error,
         style
     ]
 
@@ -57,6 +58,9 @@ const styles = StyleSheet.create({
     },
     bold: {
         fontWeight: theme.fontWeight.bold
+    },
+    error:{
+        color: 'red'
     }
 })
 
