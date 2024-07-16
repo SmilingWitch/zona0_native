@@ -1,4 +1,4 @@
-import { TouchableOpacity,StyleSheet, TouchableWithoutFeedback } from "react-native"
+import {StyleSheet, TouchableWithoutFeedback } from "react-native"
 import StyledText from "./StyledText"
 import theme from "../theme"
 
