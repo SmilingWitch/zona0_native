@@ -6,8 +6,9 @@ import ManageFolderHeader from "../components/PrincipalHeader"
 import StyledText from "../components/StyledText"
 import TotalBalance from "../components/TotalBalance"
 import Operations from "../components/Operations"
-import Receibes from "../components/Receibes"
+import Receibes from "../components/LastOperations"
 import Icon from '@expo/vector-icons/EvilIcons'
+import LastOperations from "../components/LastOperations"
 
 
 const PrincipalPage = ({navigation, route}) => {
@@ -33,7 +34,7 @@ const PrincipalPage = ({navigation, route}) => {
                         <Icon name = "undo" style = {styles.icon}></Icon>
                     </TouchableOpacity>
                 </View>
-                    <Receibes/>
+                    <LastOperations/>
                 </View>
 
             </View>
