@@ -3,9 +3,6 @@ import theme from "../theme"
 import OperationCont from "../components/OperationCont"
 import BackHeader from "../components/BackHeader"
 import { receiveValidationSchema } from "../validationSchemas/receive"
-import { useState } from "react"
-import ReceiveDetails from "../components/ReceiveDetails"
-
 
 
 const initialValues = {
