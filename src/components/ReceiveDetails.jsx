@@ -3,7 +3,7 @@ import StyledText from "./StyledText"
 import theme from "../theme"
 import BackHeader from "./BackHeader"
 import Button from "./Button"
-
+import QRCode, { QRCodeRef } from 'react-fancy-qrcode';
 
  const ReceiveDetails = ({navigation, route}) => {
 
@@ -17,10 +17,21 @@ import Button from "./Button"
 
     return(
         <View style = {styles.container}>
-            <BackHeader name="Receive Details"/>
+            <BackHeader name="Receive Details" navigation ={navigation}/>
             <ScrollView style = {styles.scroll}>
-                <View>
-                    <Image source={{uri: image}}  style = {styles.image}></Image>
+            <View style = {styles.bx_cont}>
+
+            <View style = {styles.qr_bx}>
+                    <QRCode
+                        value={"https://github.com/jgillick/react-fancy-qrcode"}
+                        size={250}
+                        color = {theme.colors.secundary}
+                        dotScale={0.8}
+                        dotRadius="50%"
+                        positionRadius={["5%", "1%"]}
+                        errorCorrection="H"
+                        logo={require("../../assets/images/logo.jpg")}
+                 />
                 </View>
                 <View style = {styles.bx}>
 
@@ -39,12 +50,15 @@ import Button from "./Button"
                             <StyledText fontSize='small'>{amount} OSP</StyledText>
                         </View>
                         <View style = {styles.detail_bx}>
-                            <StyledText>Date</StyledText>
+                            <StyledText fontSize='small' fontWeight="bold" >Date</StyledText>
                             <StyledText fontSize='small'>{date} OSP</StyledText>
                         </View>
                     </View>
                 </View>
                 <Button text = "cancel payment receipt"/>
+
+            </View>
+                
             </ScrollView>
             
             
@@ -65,6 +79,9 @@ import Button from "./Button"
         flex: 1,
         padding: theme.padding,
     },
+    qr_bx: {
+        alignItems: 'center'
+    },
     bx: {
         
     },
@@ -79,11 +96,10 @@ import Button from "./Button"
     detail_bx: {
         gap: 5
     },
-    image: {
-        width: 300,
-        height: 300,
-        alignSelf: 'center'
-    }
+    bx_cont: {
+        flex: 1,
+        gap: 30
+    },
  })
 
  export default ReceiveDetails
