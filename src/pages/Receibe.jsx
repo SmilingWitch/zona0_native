@@ -2,10 +2,17 @@ import { View,StyleSheet} from "react-native"
 import theme from "../theme"
 import OperationCont from "../components/OperationCont"
 import BackHeader from "../components/BackHeader"
+import { receiveValidationSchema } from "../validationSchemas/receive"
+import { useState } from "react"
+import ReceiveDetails from "../components/ReceiveDetails"
 
+
+
+const initialValues = {
+    amount: ""
+}
 
 const Receibe = ({navigation}) => {
-
 
     return(
         <View style = {styles.container}>
@@ -15,6 +22,12 @@ const Receibe = ({navigation}) => {
                 content="Introduzca la cantidad de OSP que desea recibir para generar un codigo de pago"
                 btn_text="Generar codigo"
                 placeholder="Monto a recibir"
+                name = "amount"
+                url = "/transfer/create-receive/"
+                validationScheme = {receiveValidationSchema}
+                initialValues={initialValues}
+                navigation = {navigation}
+                operation="receive"
                 />
         </View>
     )
