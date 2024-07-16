@@ -10,21 +10,22 @@ import PrincipalPage from "../pages/PrincipalPage";
 import Send from "../pages/Send";
 import Redeem from "../pages/Redeem";
 import Banking from "../pages/Banking";
-import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
-import { store, persistor } from '../store/store';
+import { useSelector } from 'react-redux';
 import ReceiveDetails from "./ReceiveDetails";
 
 const Stack = createNativeStackNavigator();
 
 const Main = () => {
+
+    const accessToken = useSelector(state => state.accessToken)
+    const initialRoute = accessToken ? "Dashboard" : "Login";
+
     return(
 
         <View style={styles.container}>
-        <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
+
             <NavigationContainer>
-                <Stack.Navigator>
+                <Stack.Navigator initialRouteName={initialRoute}>
                 <Stack.Screen 
                         name="Login" 
                         component={Login} 
@@ -63,8 +64,7 @@ const Main = () => {
                     />
                 </Stack.Navigator>
             </NavigationContainer>
-            </PersistGate>
-            </Provider>
+
             
         </View>
     )
@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: Constants.statusBarHeight,
       },
+
 
 })
 
