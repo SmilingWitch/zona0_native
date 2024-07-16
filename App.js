@@ -1,16 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import theme from './src/theme';
+import { StatusBar } from 'expo-status-bar';
 import Main from './src/components/Main';
-
+import { Provider, useSelector } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './src/store/store';
 
 export default function App() {
   return (
-
+    <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
         <View style = {styles.container}>
-         <Main/>
+          <Main/>
           <StatusBar style = 'dark' />
         </View>
+        </PersistGate>
+        </Provider>
 
     
   );
@@ -20,6 +25,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop:  10,
   },
 });
