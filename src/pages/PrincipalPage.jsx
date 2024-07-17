@@ -34,7 +34,7 @@ const PrincipalPage = ({navigation, route}) => {
                         <Icon name = "undo" style = {styles.icon}></Icon>
                     </TouchableOpacity>
                 </View>
-                    <LastOperations/>
+                    <LastOperations navigation = {navigation}/>
                 </View>
 
             </View>
