@@ -1,7 +1,7 @@
 import { StyleSheet, KeyboardAvoidingView, Platform } from "react-native"
 import theme from "../theme"
 
-import LoginView from "../components/LoginView";
+import LoginView from "../components/authentication/LoginView";
 
 
 const Login = ({route,navigation}) => {
