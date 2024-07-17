@@ -6,22 +6,28 @@ const userSlice = createSlice({
     initialState: {
         user: null,
         accessToken: null,
+        pendingList: [],
+        performedList: []
     },
     reducers: {
         setUser: (state, action) => {
             state.user = action.payload;
-            console.log('user',state.user)
         },
         setAccessToken: (state, action) => {
             state.accessToken = action.payload;
-            console.log('access',state.user)
         },
         logout: (state) => {
             state.user = null;
             state.accessToken = null;
         },
+        setpendingList: (state, action) => {
+            state.pendingList = action.payload
+        },
+        setPerformedList: (state, action) => {
+            state.performedList = action.payload
+        }
     },
 });
 
-export const { setUser, setAccessToken, logout } = userSlice.actions;
+export const { setUser, setAccessToken, logout, setpendingList, setPerformedList } = userSlice.actions;
 export default userSlice.reducer;
