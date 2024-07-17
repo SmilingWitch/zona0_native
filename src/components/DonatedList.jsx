@@ -23,12 +23,10 @@ const DonatedList = () => {
                     .catch(error => console.log(error))
     },[])
 
-    console.log(donatedList)
-
     return(
-        donatedList.message ? 
+        donatedList.message || !donatedList ? 
         <View style = {styles.empty_container}>
-            <StyledText fontSize='small'>{donatedList.message}</StyledText>
+            <StyledText fontSize='small'>{/*donatedList.message*/}Esta vacio</StyledText>
         </View>
          :
          <View style = {styles.container}>

@@ -6,7 +6,10 @@ import theme from "../theme"
 const ReceiptsLastOperationItemList = ({data, navigation, operation}) => {
     return(
         <View style = {styles.container}>
-           {data.slice(-10).map((item) => {
+        {data.length === 0 || !data ?
+        <StyledText>IS empty</StyledText> :
+       
+           data.slice(-10).map((item) => {
             return <TouchableOpacity    key = {item.id} 
                                         style = {styles.item} 
                                         onPress={ () => navigation.navigate("ReceiveDetails", 

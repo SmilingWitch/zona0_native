@@ -6,7 +6,9 @@ import theme from "../theme"
 const TransferLastOperationItemList = ({data, navigation}) => {
     return(
         <View style = {styles.container}>
-           {data.slice(-10).map((item) => {
+        {data.length === 0 || !data ? 
+            <StyledText>IS empty</StyledText> :
+            data.slice(-10).map((item) => {
             return <View key = {item.id} style = {styles.item}>
             <View style = {styles.details_bx}>
                 <StyledText fontSize='small' fontWeight='bold'>User: {item['receive user']}</StyledText>
@@ -21,7 +23,9 @@ const TransferLastOperationItemList = ({data, navigation}) => {
             </View>
 
             </View>
-           })} 
+           })}
+        
+            
 
         </View>
     )

@@ -13,7 +13,12 @@ const TotalBalance = () => {
         <Image source={require('../../assets/images/fondo.jpg')} style = {styles.img}></Image>
         <View style = {styles.balance_bx}>
             <StyledText fontSize="small" fontWeight="bold">Total Balance</StyledText>
-            <StyledText fontSize="h1" fontWeight="bold">{user.zona_point} OSP</StyledText>
+            {user  ?
+                <StyledText fontSize="h1" fontWeight="bold">{user.zona_point} OSP</StyledText>
+            
+            :
+            <StyledText fontSize="h1" fontWeight="bold">0.00 OSP</StyledText>   
+            }
         </View>
     </View>
     )
