@@ -1,9 +1,7 @@
 import { View, StyleSheet } from "react-native"
 import TabViewComponent from "./TabViewComponent"
-import StyledText from "./StyledText"
 import theme from "../theme"
 import PendingList from "./PendingList"
-import OutstandingList from "./OutstandingList"
 import Receives from "./Receives"
 import PerformedList from "./PerformedList"
 import TransferedList from "./TransferedList"
@@ -16,35 +14,27 @@ import DonatedList from "./DonatedList"
         performed: () => <PerformedList navigation = {navigation}/> ,
         pending: () => <PendingList navigation = {navigation} />
       }
-
-    return (
-        <Receives routesComponent = {routesComponent1} navigation = {navigation}/>
-    )
-
+    return <Receives routesComponent = {routesComponent1} navigation = {navigation}/>
  }
 
- const Fourth = () => {
-    const routesComponent1 = {
+ const TransferedComponents = () => {
+    const routesComponent2 = {
         transferred: TransferedList ,
         donated: DonatedList
       }
 
     return (
         <View style = {styles.container}>
-            <TabViewComponent 
-                routesComponent ={routesComponent1}
-                />
+            <TabViewComponent routesComponent ={routesComponent2}/>
         </View>
-            
             )
-
- }
+        }
 
 const LastOperations = ({navigation}) => {
 
     const routesComponent = {
         receipts: () => <ReceivesComponent navigation = {navigation}/>,
-        transfers: Fourth
+        transfers: TransferedComponents
       }
 
     return(
