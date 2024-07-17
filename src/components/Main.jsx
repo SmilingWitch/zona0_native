@@ -12,6 +12,7 @@ import Redeem from "../pages/Redeem";
 import Banking from "../pages/Banking";
 import { useSelector } from 'react-redux';
 import ReceiveDetails from "./ReceiveDetails";
+import Menu from "./settings/Menu";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,8 @@ const Main = () => {
 
     const accessToken = useSelector(state => state.accessToken)
     const initialRoute = accessToken ? "Dashboard" : "Login";
+
+    console.log(accessToken)
 
     return(
 
@@ -60,6 +63,11 @@ const Main = () => {
                     <Stack.Screen
                         name = "Banking"
                         component={Banking}
+                        options={{headerShown: false}}
+                    />
+                    <Stack.Screen
+                        name = "Settings"
+                        component={Menu}
                         options={{headerShown: false}}
                     />
                 </Stack.Navigator>
