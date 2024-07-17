@@ -5,10 +5,10 @@ import { fetchData } from "../api/authentication/fetchData"
 import { View, StyleSheet } from "react-native"
 import theme from "../theme"
 import { setPerformedList } from "../store/reducer"
-import LastOperationItemList from "./LastOperationItemList"
+import ReceiptsLastOperationItemList from "./ReceiptsLastOperationItemList"
 
 
-const PerformedList = () => {
+const PerformedList = ({navigation}) => {
 
     const accessToken = useSelector(state => state.accessToken) 
     const [error, setError] = useState(null)
@@ -26,18 +26,18 @@ const PerformedList = () => {
                 dispatch(setPerformedList(data))
             }
         })
-        .catch(error => setError(null))
+        .catch(error => setError(error))
     }, [])
 
 
     return(
         <>
-        {error !== null  ?
+        {performedList.message ?
         <View style = {styles.empty_container}>
             <StyledText fontSize='small'>No existen recibos pagados</StyledText>
         </View>
          :
-         <LastOperationItemList data = {performedList}/>
+         <ReceiptsLastOperationItemList data = {performedList} navigation = {navigation} operation='performed'/>
         }
        
         </>  
