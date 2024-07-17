@@ -10,7 +10,7 @@ import QRCode, { QRCodeRef } from 'react-fancy-qrcode';
     const {amount} = route.params
     const {code} = route.params
     const {date} = route.params
-    const {image} = route.params
+    const {operation} = route.params
     const {id} = route.params
     const {user} = route.params
 
@@ -55,7 +55,7 @@ import QRCode, { QRCodeRef } from 'react-fancy-qrcode';
                         </View>
                     </View>
                 </View>
-                <Button text = "cancel payment receipt"/>
+                {operation === 'pending' && <Button text = "cancel payment receipt"/>}
 
             </View>
                 
