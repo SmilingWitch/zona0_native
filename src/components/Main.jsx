@@ -13,6 +13,8 @@ import Banking from "../pages/Banking";
 import { useSelector } from 'react-redux';
 import ReceiveDetails from "./ReceiveDetails";
 import Menu from "./settings/Menu";
+import Register from "../pages/Register";
+import VerifyCode from "../pages/VerifyCode";
 
 const Stack = createNativeStackNavigator();
 
@@ -68,6 +70,16 @@ const Main = () => {
                     <Stack.Screen
                         name = "Settings"
                         component={Menu}
+                        options={{headerShown: false}}
+                    />
+                    <Stack.Screen
+                        name = "Register"
+                        component={Register}
+                        options={{headerShown: false}}
+                    />
+                    <Stack.Screen
+                        name = "VerifyCode"
+                        component={VerifyCode}
                         options={{headerShown: false}}
                     />
                 </Stack.Navigator>
