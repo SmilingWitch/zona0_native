@@ -1,6 +1,6 @@
 import { BASE_URL } from '../../../config';
 
-async function fetchData(endpoint, body = null, headers = null) {
+async function fetchData(endpoint, body = null, headers = null, logout) {
   let options = {
     method: 'GET', // Método predeterminado
     headers: {
@@ -11,7 +11,7 @@ async function fetchData(endpoint, body = null, headers = null) {
   };
 
   // Modificar el método y el cuerpo si se proporcionan
-  if (body !== null) {
+  if (body !== null || logout) {
     options.method = 'POST'; // Cambiar a POST u otro método según sea necesario
     options.body = JSON.stringify(body);
   }
