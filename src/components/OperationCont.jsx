@@ -40,12 +40,13 @@ const OperationCont = ({header,
                                         date: data.date,
                                         image: data.image,
                                         id: data.id,
-                                        user: data.user
+                                        user: data.user,
+                                        operation: 'pending'
                                         })
                 }
                 })
         .catch(error => {
-                console.log(error)
+                console.log("Error por aqui ",error)
                 setLoading(false)})
     }
 
