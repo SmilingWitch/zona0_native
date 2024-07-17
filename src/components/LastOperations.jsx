@@ -6,25 +6,27 @@ import PendingList from "./PendingList"
 import OutstandingList from "./OutstandingList"
 import Receives from "./Receives"
 import PerformedList from "./PerformedList"
+import TransferedList from "./TransferedList"
+import DonatedList from "./DonatedList"
 
 
- const ReceivesComponent = () => {
+ const ReceivesComponent = ({navigation}) => {
 
     const routesComponent1 = {
-        performed: PerformedList ,
-        pending: PendingList
+        performed: () => <PerformedList navigation = {navigation}/> ,
+        pending: () => <PendingList navigation = {navigation} />
       }
 
     return (
-        <Receives routesComponent = {routesComponent1}/>
+        <Receives routesComponent = {routesComponent1} navigation = {navigation}/>
     )
 
  }
 
  const Fourth = () => {
     const routesComponent1 = {
-        transferred: OutstandingList ,
-        donated: PerformedList
+        transferred: TransferedList ,
+        donated: DonatedList
       }
 
     return (
@@ -38,16 +40,16 @@ import PerformedList from "./PerformedList"
 
  }
 
-const LastOperations = () => {
+const LastOperations = ({navigation}) => {
 
     const routesComponent = {
-        receipts: ReceivesComponent,
-        shipping: Fourth
+        receipts: () => <ReceivesComponent navigation = {navigation}/>,
+        transfers: Fourth
       }
 
     return(
         <View style = {styles.container}>
-            <TabViewComponent routesComponent ={routesComponent} styled/>
+            <TabViewComponent routesComponent ={routesComponent} styled navigation = {navigation}/>
         </View>
        
     )
