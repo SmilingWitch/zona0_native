@@ -7,7 +7,9 @@ const userSlice = createSlice({
         user: null,
         accessToken: null,
         pendingList: [],
-        performedList: []
+        performedList: [],
+        transferedList: [],
+        donatedList: []
     },
     reducers: {
         setUser: (state, action) => {
@@ -25,9 +27,21 @@ const userSlice = createSlice({
         },
         setPerformedList: (state, action) => {
             state.performedList = action.payload
+        },
+        setTransferedList: (state, action) => {
+            state.transferedList = action.payload
+        },
+        setDonatedList: (state, action) => {
+            state.donatedList = action.payload
         }
     },
 });
 
-export const { setUser, setAccessToken, logout, setpendingList, setPerformedList } = userSlice.actions;
+export const {  setUser, 
+                setAccessToken, 
+                logout, 
+                setpendingList, 
+                setPerformedList, 
+                setTransferedList,
+                setDonatedList } = userSlice.actions;
 export default userSlice.reducer;
