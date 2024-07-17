@@ -2,42 +2,30 @@ import { View, StyleSheet } from "react-native"
 import TabViewComponent from "./TabViewComponent"
 import StyledText from "./StyledText"
 import theme from "../theme"
+import PendingList from "./PendingList"
+import OutstandingList from "./OutstandingList"
+import Receives from "./Receives"
+import PerformedList from "./PerformedList"
 
 
-const FirstRoute = () => {
-    return <View style={styles.tab_style}>
-                <StyledText fontSize='small'>
-                    No existen solicitudes de recibo efectuados
-                </StyledText>
-            </View>
- }
- 
- const SecondRoute = () => {
-    return <View style={styles.tab_style}>
-                <StyledText fontSize='small'>
-                    No existen solicitudes de recibo pendientes
-                </StyledText>
-            </View>
- }
+ const ReceivesComponent = () => {
 
- const routesComponent1 = {
-    efectuados: FirstRoute ,
-    pendientes: SecondRoute
-  }
+    const routesComponent1 = {
+        performed: PerformedList ,
+        pending: PendingList
+      }
 
-
- const ThirdRoute = () => {
     return (
-        <View style = {styles.container}>
-            <TabViewComponent 
-                routesComponent ={routesComponent1}
-                />
-
-        </View>)
+        <Receives routesComponent = {routesComponent1}/>
+    )
 
  }
 
  const Fourth = () => {
+    const routesComponent1 = {
+        transferred: OutstandingList ,
+        donated: PerformedList
+      }
 
     return (
         <View style = {styles.container}>
@@ -53,8 +41,8 @@ const FirstRoute = () => {
 const LastOperations = () => {
 
     const routesComponent = {
-        recibidos: ThirdRoute,
-        envios: Fourth
+        receipts: ReceivesComponent,
+        shipping: Fourth
       }
 
     return(
