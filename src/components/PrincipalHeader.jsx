@@ -12,10 +12,10 @@ const ManageFolderHeader = ({navigation}) => {
               <StyledText fontSize='h2' fontWeight="bold">Zona0</StyledText>
             </View>
             <View style = {styles.user_bx}>
-              <View style = {styles.user_details}>
+              <TouchableOpacity style = {styles.user_details} onPress={() => navigation.navigate("Settings")}>
                   <StyledText fontSize="small" fontWeight="bold">user name</StyledText>
                   <Image source={require('../../assets/images/user.jpg')} style = {styles.img_user}></Image>
-              </View>
+              </TouchableOpacity>
               <Icon name = 'bell' style = {styles.icon}></Icon>
 
             </View>
