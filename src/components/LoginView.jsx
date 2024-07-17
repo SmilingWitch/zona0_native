@@ -11,8 +11,6 @@ const LoginView = ({navigation}) => {
 
     return(
         <ScrollView style = {styles.inner_scroll}  keyboardShouldPersistTaps="handled" contentContainerStyle={{ flexGrow: 1 }} >
-
-            <BackHeader navigation = {navigation}/>
             <View style = {styles.form_cont}>
                 <View style = {styles.header}>
                     <StyledText fontSize="h1" fontWeight="bold">Login</StyledText>
