@@ -5,44 +5,40 @@ import { fetchData } from "../api/authentication/fetchData"
 import { useDispatch, useSelector } from "react-redux"
 import theme from "../theme"
 import { setpendingList } from '../store/reducer';
-import LastOperationItemList from "./LastOperationItemList"
+import ReceiptsLastOperationItemList from "./ReceiptsLastOperationItemList"
 
-const PendingList = () => {
+const PendingList = ({navigation}) => {
    
 const accessToken = useSelector(state => state.accessToken)
-const [data, setData] = useState([])
-const [loading, setLoading] = useState(false)
+const [error, setError] = useState(null)
 const dispatch = useDispatch();
 const pendingList = useSelector(state => state.pendingList)
 
 
 useEffect( () => {
-    setLoading(true)
     fetchData(
         "/transfer/list-unpaid-receive/", 
         null,
         {"access_token": accessToken} )
         .then(data => {
-            setData(data)
-            setLoading(false)
             if(data !== pendingList){
-            dispatch(setpendingList(data))
+                dispatch(setpendingList(data))
             }
+            setError(null)
             
         })
         .catch(error => {
-            console.log(error)
-            setLoading(false)
+            setError(error)
         })
 },[])
 
     return(
-        pendingList.length !== 0 ?
-        <LastOperationItemList data = {pendingList}/>
-         :
-        <View style = {styles.empty_container}>
-            <StyledText fontSize='small'>No hay recibos pendientes</StyledText>
-        </View>
+        pendingList.message  ?
+            <View style = {styles.empty_container}>
+                <StyledText fontSize='small'>{pendingList.message}</StyledText>
+            </View>
+             :
+            <ReceiptsLastOperationItemList data = {pendingList} navigation = {navigation} operation='pending'/> 
     )
 }
 
