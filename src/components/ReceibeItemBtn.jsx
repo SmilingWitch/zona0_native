@@ -8,7 +8,6 @@ const ReceibeItemBtn = ({route, focused, styled}) => {
         <TouchableWithoutFeedback
             onPress={() => console.log(route)} >
                 <StyledText  
-                    fontWeight={focused ? "bold"  : ''}
                     fontSize='small'
                     style={styled ? (focused ? styles.btn_active : styles.btn) : (focused ? styles.btn_not_focus : styles.btn)}  >
                         {route.title}
@@ -19,20 +18,25 @@ const ReceibeItemBtn = ({route, focused, styled}) => {
 
 const styles = StyleSheet.create({
     btn: {
-        borderRadius: 30,
         alignItems: 'center',
         justifyContent: 'center',
         color: theme.colors.textPrimary,
+        minWidth: 50,
+        alignItems: 'center',
+        textAlign: 'center'
     },
     btn_active: {
         color: theme.colors.textSecundary,
         height: '100%',
-        borderRadius: 30,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        fontWeight: theme.fontWeight.bold,
+        width: 50,
+        textAlign: 'center'
     },
     btn_not_focus: {
         color: theme.colors.textPrimary,
+        fontWeight: theme.fontWeight.bold,
     }
 })
 
