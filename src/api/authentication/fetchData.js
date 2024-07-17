@@ -18,10 +18,10 @@ async function fetchData(endpoint, body = null, headers = null) {
 
   try {
     const response = await fetch(`${BASE_URL}${endpoint}`, options);
-    if (!response.ok) {
+    /*if (!response.ok) {
       
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+      throw response.status;
+    }*/
     return await response.json(); // Utilizar await para obtener el resultado de json()
   
   } catch (error) {
