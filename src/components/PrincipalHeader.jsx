@@ -1,38 +1,46 @@
-import { TouchableOpacity, View, StyleSheet, Image } from "react-native"
+import { TouchableOpacity,Text, View, StyleSheet, Image } from "react-native"
 import StyledText from "./StyledText"
 import theme from "../theme"
 import Icon from '@expo/vector-icons/Feather'
+import Icon1 from '@expo/vector-icons/AntDesign'
 
 
-const ManageFolderHeader = ({navigation}) => {
+const PrincipalHeader = ({navigation}) => {
+
+
     return(
+        
         <View style = {styles.container}>
-            <View style = {styles.items_bx}>
+
+        <View style = {styles.items_bx}>
               <Image source={require('../../assets/images/logo.jpg')} style = {styles.img_logo}></Image>
               <StyledText fontSize='h2' fontWeight="bold">Zona0</StyledText>
             </View>
             <View style = {styles.user_bx}>
-              <TouchableOpacity style = {styles.user_details} onPress={() => navigation.navigate("Settings")}>
-                  <StyledText fontSize="small" fontWeight="bold">user name</StyledText>
+              <TouchableOpacity style = {styles.user_details} >
                   <Image source={require('../../assets/images/user.jpg')} style = {styles.img_user}></Image>
               </TouchableOpacity>
               <Icon name = 'bell' style = {styles.icon}></Icon>
+              <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+                    <Icon1 name = "setting" style = {styles.icon}></Icon1>
+                </TouchableOpacity>
 
             </View>
+
         </View>
+          
+
+
     )
 }
 
 
 const styles = StyleSheet.create({
-    container: {
-      paddingVertical: 20,
-      flexDirection: 'row', 
-      paddingHorizontal: theme.padding,
-      backgroundColor: theme.colors.primary,
-      alignItems: 'center',
-      justifyContent: 'space-between'
 
+    container: {
+      flexDirection: 'row',
+    padding: 16,
+    justifyContent: 'space-between',
     },
 
     icon: {
@@ -51,12 +59,13 @@ const styles = StyleSheet.create({
   items_bx: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 5
+    gap: 5,
+    flexDirection: 'row',
   },
   user_bx:{
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10
+    gap: 10,
   },
   user_details: {
     flexDirection: 'row',
@@ -67,10 +76,11 @@ const styles = StyleSheet.create({
     width: 30,
     height:30,
     borderRadius: 100000,
+  },
 
-  }
+
 })
 
 
 
-export default ManageFolderHeader
+export default PrincipalHeader
