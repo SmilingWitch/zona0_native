@@ -24,12 +24,17 @@ const OperationCont = ({header,
     const [error, setError ] = useState(null)
     const [loading, setLoading ] = useState(false)
     const accessToken = useSelector(state => state.accessToken)
+    
 
     const operationFetch = async (value, url) => {
         console.log(value)
-        console.log(url)
+        const url_token = url !== null ? url : `/accounts/email/verify/${value.token}/`
+        console.log(value)
+        console.log("URLTOKEN",url_token)
         setLoading(true)
-        fetchData(url, value, {"access_token": accessToken})
+        const token = operation === 'verify_token' ? null : {"access_token": accessToken}
+        const values = operation === 'verify_token' ? null : value
+        fetchData(url_token, values, token)
         .then(data => {
                 setLoading(false)
                 console.log(data)
@@ -43,6 +48,9 @@ const OperationCont = ({header,
                                         user: data.user,
                                         operation: 'pending'
                                         })
+                }
+                if(operation ==='verify_token'){
+                    navigation.navigate("Login")
                 }
                 })
         .catch(error => {
