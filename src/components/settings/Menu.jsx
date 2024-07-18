@@ -1,12 +1,12 @@
 import { View, StyleSheet, Image, DrawerLayoutAndroid,} from "react-native"
-import StyledText from "../StyledText"
+import StyledText from "../common/StyledText"
 import theme from "../../theme"
-import Button from "../Button"
+import Button from "../common/Button"
 import { fetchData } from "../../api/authentication/fetchData"
 import { useDispatch, useSelector } from "react-redux"
 import { useState } from "react"
 import { logout } from "../../store/reducer"
-import BackHeader from "../BackHeader"
+import BackHeader from "../common/BackHeader"
 
 
 const Menu = ({navigation}) => {
@@ -31,8 +31,6 @@ const Menu = ({navigation}) => {
                     setLoaging(false)
                 })
     }
-
-
 
     return(
         <View style = {styles.container}>

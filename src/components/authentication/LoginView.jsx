@@ -1,9 +1,6 @@
 import { ScrollView, TouchableOpacity, View, StyleSheet, Dimensions } from "react-native"
-import BackHeader from "../BackHeader"
-import StyledText from "../StyledText"
+import StyledText from "../common/StyledText"
 import LoginForm from "./LoginForm"
-import theme from "../../theme"
-
 
 
 const LoginView = ({navigation}) => {

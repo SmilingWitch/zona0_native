@@ -25,7 +25,7 @@ const DonatedList = () => {
     return(
         donatedList.message || !donatedList ? 
         <View style = {styles.empty_container}>
-            <StyledText fontSize='small'>{/*donatedList.message*/}Esta vacio</StyledText>
+            <StyledText fontSize='small'>No hay donaciones</StyledText>
         </View>
          :
          <View style = {styles.container}>

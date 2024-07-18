@@ -1,14 +1,13 @@
 import { Text, View, StyleSheet, Dimensions, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, ScrollView, TouchableOpacity } from "react-native"
 import theme from "../../theme"
-import StyledText from "../StyledText"
+import StyledText from "../common/StyledText"
 import { Formik, useField } from "formik"
 import { loginValidationSchema } from "../../validationSchemas/login"
-import FormikInputValue from "../FormikInputValue"
-import Button from "../Button"
+import FormikInputValue from "../common/FormikInputValue"
+import Button from "../common/Button"
 import { useState } from "react"
 import { fetchData } from "../../api/authentication/fetchData"
-import { storeData } from "../../api/asyncStorage/storeData"
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { setUser, setAccessToken } from '../../store/reducer';
 
 const initialValues = {

@@ -1,5 +1,5 @@
 import { ScrollView, TouchableOpacity, View, StyleSheet, Dimensions } from "react-native"
-import StyledText from "../StyledText"
+import StyledText from "../common/StyledText"
 import RegisterFormClient from "./RegisterFormClient"
 
 

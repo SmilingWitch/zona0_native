@@ -1,20 +1,19 @@
 
 import { View, StyleSheet} from "react-native"
 import Constants from 'expo-constants'
-import Note from "../pages/Send"
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Receibe from "../pages/Receibe"
 import Login from "../pages/Login"
 import PrincipalPage from "../pages/PrincipalPage";
 import Send from "../pages/Send";
 import Redeem from "../pages/Redeem";
 import Banking from "../pages/Banking";
 import { useSelector } from 'react-redux';
-import ReceiveDetails from "./ReceiveDetails";
+import ReceiveDetails from "./operations/ReceiveDetails.jsx";
 import Menu from "./settings/Menu";
 import Register from "../pages/Register";
 import VerifyCode from "../pages/VerifyCode";
+import Receive from "../pages/Receive.jsx";
 
 const Stack = createNativeStackNavigator();
 
@@ -43,7 +42,7 @@ const Main = () => {
                     />
                     <Stack.Screen 
                         name="Receibe"
-                        component={Receibe} 
+                        component={Receive} 
                         options={{ headerShown: false }} // Mostrar el AppBar
                     />
                     <Stack.Screen 

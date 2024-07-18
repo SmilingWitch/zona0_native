@@ -1,13 +1,12 @@
-import {TouchableOpacity, View, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import theme from "../../theme";
-import StyledText from "../StyledText"
+import StyledText from "../common/StyledText"
 import { Formik } from "formik";
-import FormikInputValue from "../FormikInputValue";
-import { loginValidationSchema } from "../../validationSchemas/login";
+import FormikInputValue from "../common/FormikInputValue";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { fetchData } from "../../api/authentication/fetchData";
-import Button from "../Button";
+import Button from "../common/Button";
 import { registerValidationSchema } from "../../validationSchemas/register";
 
 
