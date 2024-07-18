@@ -1,7 +1,7 @@
 import { View, StyleSheet } from "react-native"
 import theme from "../theme"
-import BackHeader from "../components/BackHeader"
-import OperationCont from "../components/OperationCont"
+import BackHeader from "../components/common/BackHeader"
+import OperationCont from "../components/common/OperationCont"
 import { sendValidationSchema } from "../validationSchemas/send"
 
 const initialValues = {

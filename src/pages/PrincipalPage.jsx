@@ -2,13 +2,12 @@
 import {ScrollView, TouchableOpacity } from "react-native"
 import { View, StyleSheet } from "react-native"
 import theme from "../theme"
-import ManageFolderHeader from "../components/PrincipalHeader"
-import StyledText from "../components/StyledText"
-import TotalBalance from "../components/TotalBalance"
-import Operations from "../components/Operations"
-import Receibes from "../components/LastOperations"
+import ManageFolderHeader from "../components/principal_page/PrincipalHeader"
+import StyledText from "../components/common/StyledText"
+import TotalBalance from "../components/principal_page/TotalBalance"
+import Operations from "../components/principal_page/Operations"
 import Icon from '@expo/vector-icons/EvilIcons'
-import LastOperations from "../components/LastOperations"
+import LastOperations from "../components/principal_page/LastOperations"
 
 
 const PrincipalPage = ({navigation, route}) => {

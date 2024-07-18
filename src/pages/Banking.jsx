@@ -1,6 +1,6 @@
 import { View, StyleSheet } from "react-native"
-import BankingCont from "../components/BankingCont"
-import BackHeader from "../components/BackHeader"
+import BankingCont from "../components/operations/BankingCont"
+import BackHeader from "../components/common/BackHeader"
 import theme from "../theme"
 
 

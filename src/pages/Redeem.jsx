@@ -1,11 +1,8 @@
 import { View,StyleSheet} from "react-native"
 import theme from "../theme"
-import OperationCont from "../components/OperationCont"
-import BackHeader from "../components/BackHeader"
+import OperationCont from "../components/common/OperationCont"
+import BackHeader from "../components/common/BackHeader"
 import { redeemValidationSchema } from "../validationSchemas/redeem"
-
-
-
 
 const Redeem = ({navigation}) => {
 

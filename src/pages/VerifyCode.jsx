@@ -1,6 +1,5 @@
 import { View, StyleSheet } from "react-native"
-import OperationCont from "../components/OperationCont"
-import { redeemValidationSchema } from "../validationSchemas/redeem"
+import OperationCont from "../components/common/OperationCont"
 import theme from "../theme"
 import { verifyTokenValidationSchema } from "../validationSchemas/verifyToken"
 
