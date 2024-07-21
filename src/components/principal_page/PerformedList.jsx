@@ -1,45 +1,23 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import StyledText from "../common/StyledText"
-import { useEffect, useState } from "react"
-import { fetchData } from "../../api/authentication/fetchData"
 import { View, StyleSheet } from "react-native"
 import theme from "../../theme"
-import { setPerformedList } from "../../store/reducer"
 import ReceiptsLastOperationItemList from "./ReceiptsLastOperationItemList"
 
 
 const PerformedList = ({navigation}) => {
-
-    const accessToken = useSelector(state => state.accessToken) 
-    const [error, setError] = useState(null)
     const performedList = useSelector(state => state.performedList)
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        fetchData("/transfer/list-paid-receive/", 
-                    null, 
-                    {"access_token": accessToken})
-        .then(data => {
-            console.log(data)
-            setError(null)
-            if(data !== performedList){
-                dispatch(setPerformedList(data))
-            }
-        })
-        .catch(error => setError(error))
-    }, [])
 
 
     return(
         <>
-        {performedList.message ?
+        {performedList.message || !performedList ? 
         <View style = {styles.empty_container}>
             <StyledText fontSize='small'>No existen recibos pagados</StyledText>
         </View>
          :
          <ReceiptsLastOperationItemList data = {performedList} navigation = {navigation} operation='performed'/>
         }
-       
         </>  
     )
 }
