@@ -1,7 +1,7 @@
 import { View, StyleSheet, Image, DrawerLayoutAndroid,} from "react-native"
 import StyledText from "../common/StyledText"
 import theme from "../../theme"
-import Button from "../common/Button"
+import Button from "../common/Button2"
 import { fetchData } from "../../api/authentication/fetchData"
 import { useDispatch, useSelector } from "react-redux"
 import { useState } from "react"
@@ -12,22 +12,22 @@ import BackHeader from "../common/BackHeader"
 const Menu = ({navigation}) => {
 
 
-    const accessToken = useSelector(state => state.accessToken)
+    const refreshToken = useSelector(state => state.refreshToken)
     const dispatch = useDispatch()
     const [loading, setLoaging] = useState(false)
     const user = useSelector(state => state.user)
 
     const logout_session = () => {
         setLoaging(true)
-        fetchData("/accounts/logout/", null, {"access_token": accessToken }, logout)
+        fetchData("/accounts/logout/", {"refresh": refreshToken }, logout)
                 .then(data => {
-                    console.log(data)
+                    console.log("DATA",data)
                     dispatch(logout())
                     setLoaging(false)
                     navigation.navigate("Login")
                     })
                 .catch(error => {
-                    console.log(error)
+                    console.log("MESSAGE",error)
                     setLoaging(false)
                 })
     }
@@ -35,9 +35,11 @@ const Menu = ({navigation}) => {
     return(
         <View style = {styles.container}>
             <BackHeader navigation = {navigation} name = "Settings"></BackHeader>
+            {!user ? <View></View>
+            :
             <View style = {styles.bx}>
                 <View style = {styles.header}>
-                    <StyledText fontSize="h3">Operations</StyledText>
+                    <StyledText fontSize="h3">My Profile</StyledText>
                 </View>
                 <View style = {styles.user_info}>
                     <Image 
@@ -50,15 +52,17 @@ const Menu = ({navigation}) => {
                     
                 </View>
                 <View style = {styles.btns_bx}>
-                    <Button text = "Ver Perfil"  loading={loading}/>
-                    <Button text = "Editar datos"   loading={loading}/>
-                    <Button text = "Gestionar Tarjeta"  loading={loading}/>
-                    <Button text = "Cambiar contrasena"  loading={loading}/>
-                    <Button text = "Cerrar Sesion" fnc = {logout_session}  loading={loading}/>
-                    <Button text = "Eliminar cuenta"  loading={loading}/>
+                    <Button text = "Cerrar Sesion" fnc = {logout_session} loading={loading} name = 'user'/>
+                    {/*<Button text = "Ver Perfil"  loading={loading} name = 'user'/>
+                    <Button text = "Editar datos"   loading={loading} name = 'user'/>
+                    <Button text = "Gestionar Tarjeta"  loading={loading} name = 'user'/>
+                    <Button text = "Cambiar contrasena"  loading={loading} name = 'user'/>
+                    
+                    <Button text = "Eliminar cuenta"  loading={loading} name = 'user'/>*/}
                 </View>
                 
-            </View>  
+            </View>}
+
 
   
         </View>
@@ -89,7 +93,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 20,
         gap: 20,
-        backgroundColor: theme.colors.buttonColor,
+        /*backgroundColor: theme.colors.buttonColor,*/
         borderRadius: 20
     },
     image: {
