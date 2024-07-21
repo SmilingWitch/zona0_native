@@ -8,7 +8,7 @@ import Button from "../common/Button"
 import { useState } from "react"
 import { fetchData } from "../../api/authentication/fetchData"
 import { useDispatch} from 'react-redux';
-import { setUser, setAccessToken } from '../../store/reducer';
+import { setUser, setAccessToken, setRefreshToken } from '../../store/reducer';
 
 const initialValues = {
     email: '',
@@ -18,39 +18,41 @@ const initialValues = {
 
 const LoginForm = ({navigation}) => {
 
-
-
-    
-    const [data, setData ] = useState(null)
     const [error, setError ] = useState(null)
     const [loading, setLoading ] = useState(false)
     const dispatch = useDispatch();
 
-    const login = async (values, result,error_result, navigation ) => {
+    const login = async (values,error_result, navigation ) => {
         setLoading(true)
         fetchData('/accounts/login/', values)
         .then(data => {
-            result(data)
-            error_result(null)
-            setLoading(false)
-            dispatch(setUser(data.user));
-            dispatch(setAccessToken(data.access));
-            navigation.navigate('Dashboard')
+            if(data.non_field_errors ){
+                console.log("ERROR")
+                setLoading(false)
+                error_result("Unable to log in with provided credentials.")
+            }else{
+                console.log(data)
+                error_result(null)
+                setLoading(false)
+                dispatch(setUser(data.user));
+                dispatch(setAccessToken(data.access));
+                dispatch(setRefreshToken(data.refresh));
+                console.log(data)
+                navigation.navigate('Welcome')
+            } 
         })
         .catch(error => {
             error_result("Unable to log in with provided credentials.")
             console.log(error)
             setLoading(false)});
-
-
     }
-
-
+         
+      
     return(
 
         <View style={styles.container}>
             <Formik initialValues={initialValues} 
-            onSubmit={values => login(values, setData, setError, navigation  )} 
+            onSubmit={values => login(values, setError, navigation  )} 
             validationSchema ={loginValidationSchema}>
             {({handleSubmit}) => (
                 <View style = {styles.form}>
@@ -72,9 +74,6 @@ const LoginForm = ({navigation}) => {
                 </View>
                 )}
             </Formik>
-
-            
-
             <TouchableOpacity style = {styles.forgot_pass}>
                 <StyledText fontSize="small" fontWeight="bold" color = "resalt" >
                     Forgot Password?
@@ -91,7 +90,6 @@ const styles = StyleSheet.create({
     container: {
      backgroundColor: theme.colors.primary,
      alignItems: 'center',
-      /*paddingTop: 100,*/
       paddingHorizontal: 20
     } ,
     form: {
