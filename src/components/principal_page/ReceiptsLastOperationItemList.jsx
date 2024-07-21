@@ -4,37 +4,44 @@ import theme from "../../theme"
 
 
 const ReceiptsLastOperationItemList = ({data, navigation, operation}) => {
+
+
+    console.log(data)
+
+    const isValidArray = Array.isArray(data) && data.length > 0
+
     return(
         <View style = {styles.container}>
-        {data.length === 0 || !data ?
-        <StyledText>IS empty</StyledText> :
-       
-           data.slice(-10).map((item) => {
-            return <TouchableOpacity    key = {item.id} 
-                                        style = {styles.item} 
-                                        onPress={ () => navigation.navigate("ReceiveDetails", 
-                                        {amount: item.amount,
-                                        code: item.code,
-                                        date: item.date,
-                                        image: item.image,
-                                        id: item.id,
-                                        user: item.user ,
-                                        operation: operation            
-                                        })}>
-            <View style = {styles.details_bx}>
-                <StyledText fontSize='small' fontWeight='bold'>{item.code}</StyledText>
-                <View style = {styles.date_details}>
-                    <StyledText fontSize='small'>{item.date}</StyledText>
-                    <StyledText fontSize='small'>{item.time}</StyledText>
-                </View>
-                
+        {!isValidArray ?
+            <View style = {styles.empty_container}>
+                <StyledText fontSize="small">No existen recibos de pago efectuados</StyledText>
             </View>
-            <View style = {styles.amount_bx}>
-                <StyledText fontSize='small'>{item.amount} OSP</StyledText>
-            </View>
-
-            </TouchableOpacity>
-           })} 
+        :
+        data.slice(-10).map((item) => {
+         return <TouchableOpacity    key = {item.id} 
+                                     style = {styles.item} 
+                                     onPress={ () => navigation.navigate("ReceiveDetails", 
+                                     {amount: item.amount,
+                                     code: item.code,
+                                     date: item.date,
+                                     image: item.image,
+                                     id: item.id,
+                                     user: item.user ,
+                                     operation: operation            
+                                     })}>
+         <View style = {styles.details_bx}>
+             <StyledText fontSize='small' fontWeight='bold'>{item.code}</StyledText>
+             <View style = {styles.date_details}>
+                 <StyledText fontSize='small'>{item.date}</StyledText>
+                 <StyledText fontSize='small'>{item.time}</StyledText>
+             </View>
+             
+         </View>
+         <View style = {styles.amount_bx}>
+             <StyledText fontSize='small'>{item.amount} OSP</StyledText>
+         </View>
+         </TouchableOpacity>
+        })} 
 
         </View>
     )
@@ -64,7 +71,11 @@ const styles = StyleSheet.create({
         width: 100,
         alignItems: 'center',
         borderRadius: 20
-    }
+    },
+    empty_container: {
+        alignItems: 'center',
+        marginTop: 20
+    },
 })
 
 export default ReceiptsLastOperationItemList
