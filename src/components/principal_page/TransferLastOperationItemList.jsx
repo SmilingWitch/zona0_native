@@ -4,10 +4,16 @@ import theme from "../../theme"
 
 
 const TransferLastOperationItemList = ({data, navigation}) => {
+
+    const isValidArray = Array.isArray(data) && data.length > 0
+
+
     return(
         <View style = {styles.container}>
-        {data.length === 0 || !data ? 
-            <StyledText>IS empty</StyledText> :
+        {!isValidArray ? 
+            <View style = {styles.empty_container}>
+                <StyledText fontSize="small">No existen recibos de pago efectuados</StyledText>
+            </View> :
             data.slice(-10).map((item) => {
             return <View key = {item.id} style = {styles.item}>
             <View style = {styles.details_bx}>
@@ -55,7 +61,11 @@ const styles = StyleSheet.create({
         width: 100,
         alignItems: 'center',
         borderRadius: 20
-    }
+    },
+    empty_container: {
+        alignItems: 'center',
+        marginTop: 20
+    },
 })
 
 export default TransferLastOperationItemList
