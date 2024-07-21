@@ -1,11 +1,13 @@
 // reducers.js
 import { createSlice } from '@reduxjs/toolkit';
 
+
 const userSlice = createSlice({
     name: 'user',
     initialState: {
         user: null,
         accessToken: null,
+        refreshToken: null,
         pendingList: [],
         performedList: [],
         transferedList: [],
@@ -18,9 +20,13 @@ const userSlice = createSlice({
         setAccessToken: (state, action) => {
             state.accessToken = action.payload;
         },
+        setRefreshToken: (state, action) => {
+            state.refreshToken = action.payload;
+        },
         logout: (state) => {
             state.user = null;
             state.accessToken = null;
+            state.refreshToken = null;
         },
         setpendingList: (state, action) => {
             state.pendingList = action.payload
@@ -43,5 +49,6 @@ export const {  setUser,
                 setpendingList, 
                 setPerformedList, 
                 setTransferedList,
-                setDonatedList } = userSlice.actions;
+                setDonatedList,
+                setRefreshToken} = userSlice.actions;
 export default userSlice.reducer;
