@@ -1,5 +1,5 @@
 
-import {ScrollView, TouchableOpacity } from "react-native"
+import {ActivityIndicator, ScrollView, TouchableOpacity } from "react-native"
 import { View, StyleSheet } from "react-native"
 import theme from "../theme"
 import ManageFolderHeader from "../components/principal_page/PrincipalHeader"
@@ -8,9 +8,36 @@ import TotalBalance from "../components/principal_page/TotalBalance"
 import Operations from "../components/principal_page/Operations"
 import Icon from '@expo/vector-icons/EvilIcons'
 import LastOperations from "../components/principal_page/LastOperations"
+import { operations } from "../api/authentication/operations"
+import { useDispatch, useSelector } from "react-redux"
+import { setDonatedList, setpendingList, setPerformedList, setTransferedList } from "../store/reducer";
+import { useState } from "react"
 
 
 const PrincipalPage = ({navigation, route}) => {
+
+    const dispatch = useDispatch()
+    const accessToken = useSelector(state => state.accessToken)
+    const [loading, setLoading] = useState(false)
+
+
+        const refreshData = async () => {
+          try {
+            setLoading(true)
+            await Promise.all([
+                operations(accessToken, dispatch, "/transfer/list-unpaid-receive/", setpendingList), 
+                operations(accessToken, dispatch, "/transfer/list-paid-receive/", setPerformedList), 
+                operations(accessToken, dispatch, "/institutions/donations/", setDonatedList), 
+                operations(accessToken, dispatch, "/transfer/list-sendTransfer/", setTransferedList) ]);
+                setLoading(false)
+            }catch (error) {
+            console.error(error)
+            setLoading(false)
+          }
+        };
+
+
+
     return(
         <ScrollView style = {styles.container}>
             <ManageFolderHeader navigation = {navigation}  route = {route}/>
@@ -29,9 +56,13 @@ const PrincipalPage = ({navigation, route}) => {
                 <View style = {styles.item}>
                 <View style = {styles.header}>
                     <StyledText fontSize="h3">Last Operations</StyledText>
-                    <TouchableOpacity>
+                    {loading ? 
+                    <View>
+                        <ActivityIndicator size="small" color={theme.colors.secundary} /> 
+                    </View>
+                    : <TouchableOpacity onPress={() => refreshData() }>
                         <Icon name = "undo" style = {styles.icon}></Icon>
-                    </TouchableOpacity>
+                    </TouchableOpacity>}
                 </View>
                     <LastOperations navigation = {navigation}/>
                 </View>
