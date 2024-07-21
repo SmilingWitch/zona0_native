@@ -14,6 +14,7 @@ import Menu from "./settings/Menu";
 import Register from "../pages/Register";
 import VerifyCode from "../pages/VerifyCode";
 import Receive from "../pages/Receive.jsx";
+import Welcome from "../pages/Welcome.jsx";
 
 const Stack = createNativeStackNavigator();
 
@@ -79,6 +80,11 @@ const Main = () => {
                     <Stack.Screen
                         name = "VerifyCode"
                         component={VerifyCode}
+                        options={{headerShown: false}}
+                    />
+                    <Stack.Screen
+                        name = "Welcome"
+                        component={Welcome}
                         options={{headerShown: false}}
                     />
                 </Stack.Navigator>
