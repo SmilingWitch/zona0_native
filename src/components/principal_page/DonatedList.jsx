@@ -1,29 +1,16 @@
 import { useDispatch, useSelector } from "react-redux"
 import StyledText from "../common/StyledText"
-import { useEffect } from "react"
-import { fetchData } from "../../api/authentication/fetchData"
-import { setDonatedList } from "../../store/reducer"
 import { View, StyleSheet } from "react-native"
 import theme from "../../theme"
 
 
-const DonatedList = () => {
+const DonatedList = ({navigation}) => {
 
-    const dispatch = useDispatch()
-    const accessToken = useSelector(state => state.accessToken)
     const donatedList = useSelector(state => state.donatedList)
-
-
-    useEffect(() => {
-        fetchData("/institutions/donations/",
-                    null,
-                    {"access_token": accessToken})
-                    .then(data => dispatch(setDonatedList(data)))
-                    .catch(error => console.log(error))
-    },[])
+    const isValidArray = Array.isArray(donatedList) && donatedList.length > 0
 
     return(
-        donatedList.message || !donatedList ? 
+        !isValidArray ? 
         <View style = {styles.empty_container}>
             <StyledText fontSize='small'>No hay donaciones</StyledText>
         </View>
@@ -40,6 +27,7 @@ const DonatedList = () => {
 
           </View>
          })} 
+         <StyledText fontSize='small'>No hay donaciones</StyledText>
 
       </View>
     )
