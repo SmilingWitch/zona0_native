@@ -9,38 +9,8 @@ import TransferLastOperationItemList from "./TransferLastOperationItemList"
 
 
 const TransferedList = () => {
-
-    const dispatch = useDispatch()
     const transferedList = useSelector(state => state.transferedList)
-    const accessToken = useSelector(state => state.accessToken)
-    const [error, setError] = useState(null)
-
-    useEffect(() => {
-
-        fetchData("/transfer/list-sendTransfer/",
-             null, 
-             {"access_token": accessToken} )
-             .then(data => {
-                console.log(data)
-                setError(null)
-                if(data !== transferedList){
-                    dispatch(setTransferedList(data))
-                }
-            })
-             .catch(error => {
-                console.log("ERROR",error)
-                setError(error)
-            })
-
-
-    },[])
-    console.log(transferedList)
-
     return(
-        transferedList.message ?
-        <View style = {styles.empty_container}>
-            <StyledText fontSize='small'>{transferedList.message }</StyledText>
-        </View> :
         <View>
             <TransferLastOperationItemList data = {transferedList} />
         </View>
