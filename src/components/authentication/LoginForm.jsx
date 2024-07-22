@@ -8,7 +8,7 @@ import Button from "../common/Button"
 import { useState } from "react"
 import { fetchData } from "../../api/authentication/fetchData"
 import { useDispatch} from 'react-redux';
-import { setUser, setAccessToken, setRefreshToken } from '../../store/reducer';
+import { setUser, setAccessToken, setRefreshToken, setZonaPoint } from '../../store/reducer';
 import { BASE_URL } from '../../../config';
 
 const initialValues = {
@@ -36,6 +36,7 @@ const LoginForm = ({navigation}) => {
                 dispatch(setUser(data.user));
                 dispatch(setAccessToken(data.access));
                 dispatch(setRefreshToken(data.refresh));
+                dispatch(setZonaPoint(data.user.zona_point))
                 navigation.navigate('Welcome') 
             } 
         })
