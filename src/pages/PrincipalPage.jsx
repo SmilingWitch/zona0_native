@@ -10,7 +10,7 @@ import Icon from '@expo/vector-icons/EvilIcons'
 import LastOperations from "../components/principal_page/LastOperations"
 import { operations } from "../api/authentication/operations"
 import { useDispatch, useSelector } from "react-redux"
-import { setDonatedList, setpendingList, setPerformedList, setTransferedList } from "../store/reducer";
+import { setDonatedList, setpendingList, setPerformedList, setTransferedList, setUser, setZonaPoint } from "../store/reducer";
 import { useState } from "react"
 
 
@@ -19,8 +19,8 @@ const PrincipalPage = ({navigation, route}) => {
     const dispatch = useDispatch()
     const accessToken = useSelector(state => state.accessToken)
     const [loading, setLoading] = useState(false)
-
-
+    const user = useSelector(state => state.user)
+    console.log('USER',user)
         const refreshData = async () => {
           try {
             setLoading(true)
@@ -28,7 +28,9 @@ const PrincipalPage = ({navigation, route}) => {
                 operations(accessToken, dispatch, "/transfer/list-unpaid-receive/", setpendingList), 
                 operations(accessToken, dispatch, "/transfer/list-paid-receive/", setPerformedList), 
                 operations(accessToken, dispatch, "/institutions/donations/", setDonatedList), 
-                operations(accessToken, dispatch, "/transfer/list-sendTransfer/", setTransferedList) ]);
+                operations(accessToken, dispatch, "/transfer/list-sendTransfer/", setTransferedList),
+                operations(accessToken, dispatch, "/accounts/osp_points/", setZonaPoint, "total_balance") 
+            ]);
                 setLoading(false)
             }catch (error) {
             console.error(error)
