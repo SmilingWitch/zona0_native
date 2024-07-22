@@ -1,9 +1,9 @@
+
 import { TouchableOpacity, StyleSheet, ActivityIndicator, Image } from "react-native"
 import StyledText from "./StyledText"
 import theme from "../../theme"
 import { View } from "react-native"
 import Icon from '@expo/vector-icons/AntDesign'
-import images from "../../images/images"
 
 
 const Button2 = ({text, fnc,loading,name, ...props}) => {
