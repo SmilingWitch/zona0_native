@@ -22,6 +22,7 @@ const Redeem = ({navigation}) => {
                 name= "code"
                 validationScheme= {redeemValidationSchema}
                 url= "/redeem-code/code/redeem/"
+                operation="redeem"
                 />
         </View>
     )
