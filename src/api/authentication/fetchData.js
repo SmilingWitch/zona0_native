@@ -1,6 +1,10 @@
+import { useEffect, useState } from 'react';
 import { BASE_URL } from '../../../config';
 
+
+
 async function fetchData(endpoint, body = null, headers = null, logout) {
+
   let options = {
     method: 'GET', // Método predeterminado
     headers: {
@@ -17,13 +21,23 @@ async function fetchData(endpoint, body = null, headers = null, logout) {
   }
   try {
     const response = await fetch(`${BASE_URL}${endpoint}`, options);
-    return await response.json(); // Utilizar await para obtener el resultado de json()
-  
+    if (!response.ok) {
+      const data = await response.json();
+      return {"error": data};
+    }else{
+      const data = await response.json();
+      return data;
+    }
+
+    
   } catch (error) {
-    console.error('Error:' ,error);
+    console.error('Error:', error);
     throw error; // Re-lanza el error para que pueda ser capturado por el llamador
   }
 }
+
+
+
 
 export { fetchData };
 
