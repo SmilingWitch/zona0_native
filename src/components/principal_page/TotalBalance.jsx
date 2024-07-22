@@ -4,16 +4,15 @@ import { useSelector } from "react-redux";
 
 const TotalBalance = () => {
 
-    const user = useSelector((state) => state.user);
+    const zona = useSelector((state) => state.zonaPoint);
 
     return(
     <View style = {styles.container}>
         <Image source={require('../../../assets/images/fondo.jpg')} style = {styles.img}></Image>
         <View style = {styles.balance_bx}>
             <StyledText fontSize="small" fontWeight="bold">Total Balance</StyledText>
-            {user  ?
-                <StyledText fontSize="h1" fontWeight="bold">{user.zona_point} OSP</StyledText>
-            
+            {zona  ?
+            <StyledText fontSize="h1" fontWeight="bold">{zona} OSP</StyledText>
             :
             <StyledText fontSize="h1" fontWeight="bold">0.00 OSP</StyledText>   
             }
