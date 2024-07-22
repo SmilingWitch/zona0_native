@@ -2,6 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 
+
 const userSlice = createSlice({
     name: 'user',
     initialState: {
@@ -11,11 +12,15 @@ const userSlice = createSlice({
         pendingList: [],
         performedList: [],
         transferedList: [],
-        donatedList: []
+        donatedList: [],
+        zonaPoint: 0
     },
     reducers: {
         setUser: (state, action) => {
             state.user = action.payload;
+        },
+        setZonaPoint: (state, action) => {
+            state.zonaPoint = action.payload;
         },
         setAccessToken: (state, action) => {
             state.accessToken = action.payload;
@@ -50,5 +55,6 @@ export const {  setUser,
                 setPerformedList, 
                 setTransferedList,
                 setDonatedList,
-                setRefreshToken} = userSlice.actions;
+                setRefreshToken,
+                setZonaPoint} = userSlice.actions;
 export default userSlice.reducer;
