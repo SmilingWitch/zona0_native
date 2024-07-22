@@ -47,7 +47,7 @@ const LastOperations = ({navigation}) => {
 
 const styles = StyleSheet.create({
     container: {
-        minHeight: 300,
+        height: 630,
         padding:15,
         borderRadius: 15,
         backgroundColor: theme.colors.container,
