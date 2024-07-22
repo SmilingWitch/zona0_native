@@ -15,6 +15,7 @@ import Register from "../pages/Register";
 import VerifyCode from "../pages/VerifyCode";
 import Receive from "../pages/Receive.jsx";
 import Welcome from "../pages/Welcome.jsx";
+import Toast from 'react-native-toast-message';
 
 const Stack = createNativeStackNavigator();
 
@@ -89,6 +90,7 @@ const Main = () => {
                     />
                 </Stack.Navigator>
             </NavigationContainer>
+            <Toast ref={(ref) => Toast.setRef(ref)} />
 
             
         </View>
