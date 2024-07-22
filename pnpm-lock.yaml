@@ -42,8 +42,8 @@ dependencies:
     specifier: 0.74.2
     version: 0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7)(react@18.2.0)
   react-native-pager-view:
-    specifier: ^6.3.3
-    version: 6.3.3(react-native@0.74.2)(react@18.2.0)
+    specifier: ^6.3.0
+    version: 6.3.0(react-native@0.74.2)(react@18.2.0)
   react-native-safe-area-context:
     specifier: ^4.10.1
     version: 4.10.1(react-native@0.74.2)(react@18.2.0)
@@ -52,7 +52,7 @@ dependencies:
     version: 3.31.1(react-native@0.74.2)(react@18.2.0)
   react-native-tab-view:
     specifier: ^3.5.2
-    version: 3.5.2(react-native-pager-view@6.3.3)(react-native@0.74.2)(react@18.2.0)
+    version: 3.5.2(react-native-pager-view@6.3.0)(react-native@0.74.2)(react@18.2.0)
   react-native-vector-icons:
     specifier: ^10.1.0
     version: 10.1.0
@@ -6457,8 +6457,8 @@ packages:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
     dev: false
 
-  /react-native-pager-view@6.3.3(react-native@0.74.2)(react@18.2.0):
-    resolution: {integrity: sha512-HViKBlfN/kBJUSu5mRL/V9Bkf1j7uDZozGAjbzh4o9XYo11qVcIK7IwvfzqrkNerVSDy/cAmZcXbcyWnII8xMA==}
+  /react-native-pager-view@6.3.0(react-native@0.74.2)(react@18.2.0):
+    resolution: {integrity: sha512-ufJOoVa9pFL1J/yb4hpsCqp8n1qTlcF5VvwqvCacHX//D7hSeRscsiIXg1u1pXNWwllvACb+mqxec/3Uj2mxrA==}
     peerDependencies:
       react: '*'
       react-native: '*'
@@ -6502,7 +6502,7 @@ packages:
       warn-once: 0.1.1
     dev: false
 
-  /react-native-tab-view@3.5.2(react-native-pager-view@6.3.3)(react-native@0.74.2)(react@18.2.0):
+  /react-native-tab-view@3.5.2(react-native-pager-view@6.3.0)(react-native@0.74.2)(react@18.2.0):
     resolution: {integrity: sha512-nE5WqjbeEPsWQx4mtz81QGVvgHRhujTNIIZiMCx3Bj6CBFDafbk7XZp9ocmtzXUQaZ4bhtVS43R4FIiR4LboJw==}
     peerDependencies:
       react: '*'
@@ -6511,7 +6511,7 @@ packages:
     dependencies:
       react: 18.2.0
       react-native: 0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7)(react@18.2.0)
-      react-native-pager-view: 6.3.3(react-native@0.74.2)(react@18.2.0)
+      react-native-pager-view: 6.3.0(react-native@0.74.2)(react@18.2.0)
       use-latest-callback: 0.1.9(react@18.2.0)
     dev: false
 
