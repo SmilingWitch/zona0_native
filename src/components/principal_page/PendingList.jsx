@@ -14,7 +14,10 @@ const PendingList = ({navigation}) => {
                 <StyledText fontSize='small'>{pendingList.message}</StyledText>
             </View>
              :
-            <ReceiptsLastOperationItemList data = {pendingList} navigation = {navigation} operation='pending'/> 
+             <View style = {styles.container}>
+                <ReceiptsLastOperationItemList data = {pendingList} navigation = {navigation} operation='pending'/> 
+             </View>
+            
     )
 }
 
@@ -23,6 +26,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 20
     },
+    container: {
+        height: 600,
+    }
     
 })
 
