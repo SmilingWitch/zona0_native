@@ -15,7 +15,7 @@ const Receives = ({routesComponent}) => {
 
 const styles = StyleSheet.create({
     container: {
-        minHeight: 300,
+        minHeight: 700,
         padding:15,
         borderRadius: 15,
         backgroundColor: theme.colors.container,
