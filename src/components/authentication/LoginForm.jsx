@@ -9,6 +9,7 @@ import { useState } from "react"
 import { fetchData } from "../../api/authentication/fetchData"
 import { useDispatch} from 'react-redux';
 import { setUser, setAccessToken, setRefreshToken } from '../../store/reducer';
+import { BASE_URL } from '../../../config';
 
 const initialValues = {
     email: '',
@@ -26,28 +27,24 @@ const LoginForm = ({navigation}) => {
         setLoading(true)
         fetchData('/accounts/login/', values)
         .then(data => {
-            if(data.non_field_errors ){
-                console.log("ERROR")
+            if(data.error){
                 setLoading(false)
-                error_result("Unable to log in with provided credentials.")
+                error_result(data.error.non_field_errors)
             }else{
-                console.log(data)
                 error_result(null)
                 setLoading(false)
                 dispatch(setUser(data.user));
                 dispatch(setAccessToken(data.access));
                 dispatch(setRefreshToken(data.refresh));
-                console.log(data)
-                navigation.navigate('Welcome')
+                navigation.navigate('Welcome') 
             } 
         })
         .catch(error => {
             error_result("Unable to log in with provided credentials.")
-            console.log(error)
+            console.log("Error en el componente",error)
             setLoading(false)});
     }
-         
-      
+
     return(
 
         <View style={styles.container}>
