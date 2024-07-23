@@ -12,7 +12,8 @@ const theme = {
         cardColor: '#BA9985',
         buttonColor: '#F2CFC2',
         deseableColor: 'rgb(190, 187, 187)',
-        container:'#F5F0EE'
+        container:'#F5F0EE',
+        dialogColor: "white"
 
     },
     fontSize: {
