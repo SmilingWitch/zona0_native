@@ -15,6 +15,14 @@ const Menu = ({navigation}) => {
     const dispatch = useDispatch()
     const styles = getStyles(theme1 ? theme : darkTheme );
    
+    {user.image !== null ?
+        <Image source={{uri: user.image}} style = {styles.image}></Image>
+        :
+        <Image source={require('../../../assets/images/default_user.png')} style = {styles.image}></Image>
+        
+         }
+
+
     return(
         <View style = {styles.container}>
             <BackHeader navigation = {navigation} name = "Settings"></BackHeader>
@@ -23,9 +31,12 @@ const Menu = ({navigation}) => {
             <View style = {styles.bx}>
                 <View style = {styles.user_info}>
                     <View style = {styles.details}>
-                        <Image 
-                            source={require('../../../assets/images/fondo.jpg')}
-                            style = {styles.image}></Image>
+                    {user.image !== null ?
+        <Image source={{uri: user.image}} style = {styles.image}></Image>
+        :
+        <Image source={require('../../../assets/images/default_user.png')} style = {styles.image}></Image>
+        
+         }
                         <View style = {styles.user_details}>
                             <StyledText fontWeight='bold'>{user.username}</StyledText>
                             <StyledText fontWeight='bold'>{`${user.name} ${user.last_name}`}</StyledText>
