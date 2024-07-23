@@ -33,11 +33,15 @@ const Operations = ({navigation}) => {
             <Operation 
                 navigation = {navigation} 
                 icon_name = "codepen"  
-                operation_name="Donar"/>
+                operation_name="Donar"
+                url_name="Dashboard"
+                />
             <Operation 
                 navigation = {navigation} 
                 icon_name = "playcircleo"  
-                operation_name="Jugar"/>
+                operation_name="Jugar"
+                url_name="Dashboard"
+                />
         </View>
     )
 }
