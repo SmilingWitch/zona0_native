@@ -24,8 +24,6 @@ const Main = () => {
     const accessToken = useSelector(state => state.accessToken)
     const initialRoute = accessToken ? "Dashboard" : "Login";
 
-    console.log(accessToken)
-
     return(
 
         <View style={styles.container}>
@@ -90,7 +88,7 @@ const Main = () => {
                     />
                 </Stack.Navigator>
             </NavigationContainer>
-            <Toast ref={(ref) => Toast.setRef(ref)} />
+            <Toast />
 
             
         </View>
