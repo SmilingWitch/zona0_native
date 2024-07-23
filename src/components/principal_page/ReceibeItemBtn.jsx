@@ -1,9 +1,16 @@
 import {StyleSheet, TouchableWithoutFeedback } from "react-native"
 import StyledText from "../common/StyledText"
 import theme from "../../theme"
+import { useSelector } from "react-redux"
+import darkTheme from "../../darkTheme"
 
 
 const ReceibeItemBtn = ({route, focused, styled}) => {
+
+
+    const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme )
+
     return(
         <TouchableWithoutFeedback
             onPress={() => console.log(route)} >
@@ -16,7 +23,7 @@ const ReceibeItemBtn = ({route, focused, styled}) => {
     )
 }
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
     btn: {
         alignItems: 'center',
         justifyContent: 'center',

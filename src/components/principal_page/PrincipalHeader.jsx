@@ -3,10 +3,14 @@ import StyledText from "../common/StyledText"
 import theme from "../../theme"
 import Icon from '@expo/vector-icons/Feather'
 import Icon1 from '@expo/vector-icons/AntDesign'
+import { useSelector } from "react-redux"
+import darkTheme from "../../darkTheme"
 
 
 const PrincipalHeader = ({navigation}) => {
 
+  const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme )
 
     return(
         
@@ -35,7 +39,7 @@ const PrincipalHeader = ({navigation}) => {
 }
 
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
 
     container: {
       flexDirection: 'row',

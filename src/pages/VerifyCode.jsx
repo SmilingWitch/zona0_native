@@ -2,6 +2,8 @@ import { View, StyleSheet } from "react-native"
 import OperationCont from "../components/common/OperationCont"
 import theme from "../theme"
 import { verifyTokenValidationSchema } from "../validationSchemas/verifyToken"
+import { useSelector } from "react-redux"
+import darkTheme from "../darkTheme"
 
 const VerifyCode = ({navigation}) => {
 
@@ -10,7 +12,8 @@ const VerifyCode = ({navigation}) => {
     }
 
 
-
+    const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme)
 
     return( 
     <View style = {styles.container}>
@@ -32,7 +35,7 @@ const VerifyCode = ({navigation}) => {
 )
 }
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
     container: {
         flex: 1,
         padding: theme.padding,

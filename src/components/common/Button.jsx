@@ -2,9 +2,15 @@ import { TouchableOpacity, StyleSheet, ActivityIndicator } from "react-native"
 import StyledText from "./StyledText"
 import theme from "../../theme"
 import { View } from "react-native"
+import { useSelector } from "react-redux"
+import darkTheme from "../../darkTheme"
 
 
 const Button = ({text, fnc,loading, ...props}) => {
+
+    const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme )
+
     return(
         loading ? 
         <View style = {styles.container}>
@@ -18,9 +24,9 @@ const Button = ({text, fnc,loading, ...props}) => {
     )
 }
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
     container: {
-        backgroundColor: theme.colors.secundary,
+    backgroundColor: theme.colors.secundary,
     width: '100%',
     padding: 15,
     paddingHorizontal: 20,

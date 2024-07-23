@@ -1,11 +1,14 @@
 import { TextInput, StyleSheet, View } from "react-native"
 import theme from "../../theme"
+import { useSelector } from "react-redux"
+import darkTheme from "../../darkTheme"
 
 
 
 const StyledTextInput = ({style = {}, error,color, fontSize, fontWeight, ...props}) => {
 
-
+    const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme )
 
 
     const inputStyles = [
@@ -27,23 +30,21 @@ const StyledTextInput = ({style = {}, error,color, fontSize, fontWeight, ...prop
                   editable 
                   multiline 
                   inputMode="text"
-                  textAlignVertical="top"></TextInput>
-
-        </View>
-            
-        
+                  textAlignVertical="top"
+                  placeholderTextColor={theme.colors.primary}></TextInput>
+        </View> 
     )
 }
 
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
     input_bx: {
         position: 'relative',
         borderColor: theme.colors.primary,
         fontSize: theme.fontSize.regular,
         color: theme.colors.textPrimary,
         width: `${100}%`,
-        backgroundColor: theme.colors.primary,
+        backgroundColor: /*theme.colors.primary*/ 'transparent',
    
         borderColor: theme.colors.secundary,
         borderWidth: 1,
@@ -54,9 +55,10 @@ const styles = StyleSheet.create({
         borderColor: theme.colors.primary,
         fontSize: theme.fontSize.regular,
         color: theme.colors.textPrimary,
-        paddingTop: 5
-
-
+        paddingTop: 5,
+     },
+     placeholder: {
+        color: theme.colors.textPrimary
      },
      notHeader: {
         borderColor: theme.colors.primary,

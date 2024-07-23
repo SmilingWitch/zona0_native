@@ -6,9 +6,12 @@ import Receives from "./Receives"
 import PerformedList from "./PerformedList"
 import TransferedList from "./TransferedList"
 import DonatedList from "./DonatedList"
+import { useSelector } from "react-redux"
+import darkTheme from "../../darkTheme"
 
 
  const ReceivesComponent = ({navigation}) => {
+    
 
     const routesComponent1 = {
         performed: () => <PerformedList navigation = {navigation}/> ,
@@ -22,7 +25,8 @@ import DonatedList from "./DonatedList"
         transferred: TransferedList ,
         donated: DonatedList
       }
-
+      const theme1 = useSelector(state => state.darkTheme)
+        const styles = getStyles(theme1 ? theme : darkTheme );
     return (
         <View style = {styles.container}>
             <TabViewComponent routesComponent ={routesComponent2}/>
@@ -36,6 +40,8 @@ const LastOperations = ({navigation}) => {
         receipts: () => <ReceivesComponent navigation = {navigation}/>,
         transfers: TransferedComponents
       }
+    const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme );
 
     return(
         <View style = {styles.container}>
@@ -45,7 +51,7 @@ const LastOperations = ({navigation}) => {
     )
 }
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
     container: {
         height: 630,
         padding:15,

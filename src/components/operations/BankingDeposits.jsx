@@ -2,8 +2,14 @@ import { TouchableOpacity, View, StyleSheet } from "react-native"
 import StyledText from "../common/StyledText"
 import Icon from '@expo/vector-icons/EvilIcons'
 import theme from "../../theme"
+import { useSelector } from "react-redux"
+import darkTheme from "../../darkTheme"
 
 const BankingDeposits = () => {
+
+    const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme )
+
     return(
         <View style = {styles.container}>
             <View style = {styles.header}>
@@ -20,7 +26,7 @@ const BankingDeposits = () => {
     )
 }
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
     container: {
         padding: theme.padding,
         gap: 15

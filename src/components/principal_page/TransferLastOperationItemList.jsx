@@ -1,12 +1,15 @@
 import { View, StyleSheet, TouchableOpacity } from "react-native"
 import StyledText from "../common/StyledText"
 import theme from "../../theme"
+import { useSelector } from "react-redux"
+import darkTheme from "../../darkTheme"
 
 
 const TransferLastOperationItemList = ({data, navigation}) => {
 
     const isValidArray = Array.isArray(data) && data.length > 0
-
+    const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme )
 
     return(
         <View style = {styles.container}>
@@ -37,7 +40,7 @@ const TransferLastOperationItemList = ({data, navigation}) => {
     )
 }
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
     container: {
         gap: 10,
         marginTop: 10

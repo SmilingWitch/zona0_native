@@ -4,10 +4,11 @@ import StyledText from "../common/StyledText"
 import { Formik } from "formik";
 import FormikInputValue from "../common/FormikInputValue";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "../../api/authentication/fetchData";
 import Button from "../common/Button";
 import { registerValidationSchema } from "../../validationSchemas/register";
+import darkTheme from "../../darkTheme";
 
 
 const initialValues = {
@@ -28,7 +29,9 @@ const RegisterFormClient = ({navigation}) => {
     const [data, setData ] = useState(null)
     const [error, setError ] = useState(null)
     const [loading, setLoading ] = useState(false)
-    const dispatch = useDispatch();
+
+    const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme )
 
     const register = async (values, result,error_result, navigation ) => {
         setLoading(true)
@@ -107,7 +110,7 @@ const RegisterFormClient = ({navigation}) => {
     )
 }
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
     container: {
      backgroundColor: theme.colors.primary,
      alignItems: 'center',

@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchData } from "../../api/authentication/fetchData"
 import { showToast } from "../../api/showToast"
 import { setZonaPoint } from "../../store/reducer"
+import darkTheme from "../../darkTheme"
 
 
 const handleNavigation = (operation, data, navigation) => {
@@ -36,6 +37,8 @@ const handleNavigation = (operation, data, navigation) => {
     }
   };
 
+  
+
 
 const OperationCont = ({header, 
                         content,
@@ -53,7 +56,8 @@ const OperationCont = ({header,
     const [loading, setLoading ] = useState(false)
     const accessToken = useSelector(state => state.accessToken)
     const dispatch = useDispatch()
-     
+    const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme ) 
 
     const operationFetch = async (value, url) => {
         
@@ -108,7 +112,7 @@ const OperationCont = ({header,
     )
 }
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
     container: {
         padding: theme.padding,
         gap: 30,

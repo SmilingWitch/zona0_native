@@ -2,6 +2,8 @@ import { View, StyleSheet, ActivityIndicator } from "react-native"
 import Dialog from "react-native-dialog";
 import theme from "../../theme";
 import StyledText from "./StyledText";
+import { useSelector } from "react-redux";
+import darkTheme from "../../darkTheme";
 
 const DialogComponent = ({title, description, fnc, visible, setVisible, loading}) => {
 
@@ -9,7 +11,8 @@ const DialogComponent = ({title, description, fnc, visible, setVisible, loading}
         setVisible(false);
       };
     
-
+    const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme )
 
 
     return(
@@ -21,7 +24,7 @@ const DialogComponent = ({title, description, fnc, visible, setVisible, loading}
                 </Dialog.Description>
                 {loading ? 
                 <View style = {styles.button_cont}>
-                    <ActivityIndicator size="small" color={theme.colors.secundary} />
+                    <ActivityIndicator size="small" color={styles.loader} />
                     <StyledText>Please, wait...</StyledText>
                 </View>:
                 <View style = {styles.button_cont}>
@@ -36,12 +39,16 @@ const DialogComponent = ({title, description, fnc, visible, setVisible, loading}
     )
 }
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
     container: {
         borderRadius: 20,
+        backgroundColor: theme.colors.dialogColor
     },
+    loader: 
+        theme.colors.secundary,
     text: {
-        fontSize: theme.fontSize.regular
+        fontSize: theme.fontSize.regular,
+        color: theme.colors.textPrimary
     },
     button_function: {
         borderRadius: 20,

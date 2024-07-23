@@ -1,9 +1,15 @@
 import { View, StyleSheet } from "react-native"
 import TabViewComponent from "./TabViewComponent"
 import theme from "../../theme"
+import { useSelector } from "react-redux"
+import darkTheme from "../../darkTheme"
 
 
 const Receives = ({routesComponent}) => {
+
+    const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme )
+
     return (
         <View style = {styles.container}>
             <TabViewComponent 
@@ -13,7 +19,7 @@ const Receives = ({routesComponent}) => {
         </View>)
 }
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
     container: {
         minHeight: 700,
         padding:15,

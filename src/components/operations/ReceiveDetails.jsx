@@ -4,6 +4,8 @@ import theme from "../../theme"
 import BackHeader from "../common/BackHeader"
 import Button from "../common/Button"
 import QRCode, { QRCodeRef } from 'react-fancy-qrcode';
+import { useSelector } from "react-redux"
+import darkTheme from "../../darkTheme"
 
  const ReceiveDetails = ({navigation, route}) => {
 
@@ -14,6 +16,8 @@ import QRCode, { QRCodeRef } from 'react-fancy-qrcode';
     const {id} = route.params
     const {user} = route.params
 
+    const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme )
 
     return(
         <View style = {styles.container}>
@@ -67,7 +71,7 @@ import QRCode, { QRCodeRef } from 'react-fancy-qrcode';
     )
  }
 
- const styles = StyleSheet.create({
+ const getStyles = (theme) => StyleSheet.create({
     container: {
         position: 'absolute',
         width: '100%',

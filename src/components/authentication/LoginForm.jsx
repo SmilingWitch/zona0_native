@@ -7,9 +7,10 @@ import FormikInputValue from "../common/FormikInputValue"
 import Button from "../common/Button"
 import { useState } from "react"
 import { fetchData } from "../../api/authentication/fetchData"
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { setUser, setAccessToken, setRefreshToken, setZonaPoint } from '../../store/reducer';
 import { BASE_URL } from '../../../config';
+import darkTheme from "../../darkTheme"
 
 const initialValues = {
     email: '',
@@ -22,6 +23,9 @@ const LoginForm = ({navigation}) => {
     const [error, setError ] = useState(null)
     const [loading, setLoading ] = useState(false)
     const dispatch = useDispatch();
+
+    const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme )
 
     const login = async (values,error_result, navigation ) => {
         setLoading(true)
@@ -84,7 +88,7 @@ const LoginForm = ({navigation}) => {
 }
 
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
     container: {
      backgroundColor: theme.colors.primary,
      alignItems: 'center',

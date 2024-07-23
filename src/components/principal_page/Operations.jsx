@@ -1,9 +1,14 @@
 import { View, StyleSheet } from "react-native"
 import theme from "../../theme"
 import Operation from "./Operation"
+import { useSelector } from "react-redux"
+import darkTheme from "../../darkTheme"
 
 
 const Operations = ({navigation}) => {
+    const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme );
+
     return(
         <View style = {styles.container}>
             <Operation 
@@ -46,7 +51,7 @@ const Operations = ({navigation}) => {
     )
 }
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
     container: {
         width: '100%',
         height: 250,

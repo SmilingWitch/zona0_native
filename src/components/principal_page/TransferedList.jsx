@@ -6,10 +6,14 @@ import { fetchData } from "../../api/authentication/fetchData"
 import { setTransferedList } from "../../store/reducer"
 import theme from "../../theme"
 import TransferLastOperationItemList from "./TransferLastOperationItemList"
+import darkTheme from "../../darkTheme"
 
 
 const TransferedList = () => {
     const transferedList = useSelector(state => state.transferedList)
+    const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme )
+
     return(
         <View>
             <TransferLastOperationItemList data = {transferedList} />
@@ -18,7 +22,7 @@ const TransferedList = () => {
 }
 
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
     empty_container: {
         alignItems: 'center',
         marginTop: 20

@@ -3,10 +3,15 @@ import theme from "../../theme"
 import ReceibeItemBtn from "./ReceibeItemBtn"
 import { useState } from "react"
 import { SceneMap, TabBar, TabView } from "react-native-tab-view"
+import darkTheme from "../../darkTheme"
+import { useSelector } from "react-redux"
 
 
 
 const TabViewComponent = ({routesComponent, styled}) => {
+
+  const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme )
 
   const styledTab = [
     styled && styles.tapbar,
@@ -17,6 +22,8 @@ const TabViewComponent = ({routesComponent, styled}) => {
     styled && styles.indicator_visible,
     !styled && styles.not_visible_indicator
   ]
+
+  
 
   const renderTabBar = props => (
     <TabBar
@@ -55,7 +62,7 @@ const TabViewComponent = ({routesComponent, styled}) => {
     )
 }
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
     container: {
         width: '100%',
         height: 200,

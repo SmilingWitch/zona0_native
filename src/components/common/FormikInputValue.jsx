@@ -12,7 +12,7 @@ const FormikInputValue = ({name, ...props}) => {
         <View style = {styles.input_container}>
             <StyledTextInput
                 error = {meta.touched && meta.error ? meta.error : ''}
-                value={field.value} 
+                value={field.value}
                 onChangeText={value => helpers.setValue(value)} 
                 onBlur={() => helpers.setTouched(true)}
                 {...props}/>

@@ -12,6 +12,7 @@ import { operations } from "../api/authentication/operations"
 import { useDispatch, useSelector } from "react-redux"
 import { setDonatedList, setpendingList, setPerformedList, setTransferedList, setUser, setZonaPoint } from "../store/reducer";
 import { useState } from "react"
+import darkTheme from "../darkTheme"
 
 
 const PrincipalPage = ({navigation, route}) => {
@@ -20,7 +21,9 @@ const PrincipalPage = ({navigation, route}) => {
     const accessToken = useSelector(state => state.accessToken)
     const [loading, setLoading] = useState(false)
     const user = useSelector(state => state.user)
-    console.log('USER',user)
+    const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme );
+
         const refreshData = async () => {
           try {
             setLoading(true)
@@ -77,7 +80,7 @@ const PrincipalPage = ({navigation, route}) => {
 }
 
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
     container:{
         flex: 1,
         backgroundColor: theme.colors.primary
@@ -99,7 +102,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     icon: {
-        fontSize: theme.fontSize.h1
+        fontSize: theme.fontSize.h1,
+        color: theme.colors.textPrimary
     }
 
 })

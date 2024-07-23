@@ -3,12 +3,17 @@ import theme from "../theme"
 import OperationCont from "../components/common/OperationCont"
 import BackHeader from "../components/common/BackHeader"
 import { redeemValidationSchema } from "../validationSchemas/redeem"
+import { useSelector } from "react-redux"
+import darkTheme from "../darkTheme"
 
 const Redeem = ({navigation}) => {
 
     const initialValues = {
         code: ''
     }
+
+    const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme )
 
     return(
         <View style = {styles.container}>
@@ -28,10 +33,10 @@ const Redeem = ({navigation}) => {
     )
 }
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: theme.colors.primary,
+        backgroundColor: theme.colors.white,
     },
 
     

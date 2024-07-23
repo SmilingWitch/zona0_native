@@ -2,8 +2,13 @@ import { View, StyleSheet, TouchableOpacity } from "react-native"
 import Icon from '@expo/vector-icons/AntDesign'
 import theme from "../../theme"
 import StyledText from "./StyledText"
+import { useSelector } from "react-redux"
+import darkTheme from "../../darkTheme"
 
 const BackHeader = ({navigation, name}) => {
+
+  const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme );
 
     return (
         <View style = {styles.container}>
@@ -16,12 +21,12 @@ const BackHeader = ({navigation, name}) => {
     )
 }
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
       container: {
         alignItems: 'center',
         flexDirection: 'row', 
         paddingHorizontal: theme.padding,
-        backgroundColor: theme.colors.primary,
+        backgroundColor: theme.colors.white,
         flexDirection: 'row',
         alignItems: 'center',
         height: 50,

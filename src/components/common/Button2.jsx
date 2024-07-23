@@ -1,12 +1,16 @@
 
-import { TouchableOpacity, StyleSheet, ActivityIndicator, Image } from "react-native"
+import { TouchableOpacity, StyleSheet, ActivityIndicator } from "react-native"
 import StyledText from "./StyledText"
 import theme from "../../theme"
 import { View } from "react-native"
 import Icon from '@expo/vector-icons/AntDesign'
-
+import { useSelector } from "react-redux"
+import darkTheme from "../../darkTheme"
 
 const Button2 = ({text, fnc,loading,name, ...props}) => {
+
+    const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme );
 
     return(
         loading ? 
@@ -28,7 +32,7 @@ const Button2 = ({text, fnc,loading,name, ...props}) => {
     )
 }
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
     container: {
     backgroundColor: theme.colors.container,
     width: '100%',

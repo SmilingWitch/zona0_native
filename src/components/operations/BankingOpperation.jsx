@@ -4,8 +4,14 @@ import StyledTextInput from "../common/StyleTextInput"
 import Button from "../common/Button"
 import theme from "../../theme"
 import Icon from '@expo/vector-icons/EvilIcons'
+import { useSelector } from "react-redux"
+import darkTheme from "../../darkTheme"
 
 const BankingOpperation = () => {
+
+    const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme )
+
     return(
         <View style = {styles.container}>
             <View style = {styles.bx}>
@@ -30,7 +36,7 @@ const BankingOpperation = () => {
     )
 }
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
     container: {
         padding: theme.padding,
         gap: 30,

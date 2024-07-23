@@ -1,10 +1,15 @@
 import {Text, StyleSheet} from "react-native"
 import theme from "../../theme"
+import { useSelector } from "react-redux";
+import darkTheme from "../../darkTheme";
 
 
 
 
 const StyledText = ({children, color, fontSize, fontWeight,style,error,...props}) => {
+
+    const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme );
 
     const textStyles = [
         styles.regular,
@@ -20,6 +25,8 @@ const StyledText = ({children, color, fontSize, fontWeight,style,error,...props}
         style
     ]
 
+    
+
 
    return (
             <Text style = {textStyles} {...props}> 
@@ -28,7 +35,7 @@ const StyledText = ({children, color, fontSize, fontWeight,style,error,...props}
 }
 
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
     colorPrimary: {
         color: theme.colors.textPrimary,
         

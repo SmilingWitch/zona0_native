@@ -2,12 +2,15 @@ import { useDispatch, useSelector } from "react-redux"
 import StyledText from "../common/StyledText"
 import { View, StyleSheet } from "react-native"
 import theme from "../../theme"
+import darkTheme from "../../darkTheme"
 
 
 const DonatedList = ({navigation}) => {
 
     const donatedList = useSelector(state => state.donatedList)
     const isValidArray = Array.isArray(donatedList) && donatedList.length > 0
+    const theme1 = useSelector(state => state.darkTheme)
+    const styles = getStyles(theme1 ? theme : darkTheme );
 
     return(
         !isValidArray ? 
@@ -34,7 +37,7 @@ const DonatedList = ({navigation}) => {
 }
 
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
     empty_container: {
         alignItems: 'center',
         marginTop: 20

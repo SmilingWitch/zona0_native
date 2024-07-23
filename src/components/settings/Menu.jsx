@@ -1,6 +1,7 @@
 import { View, StyleSheet, Image, TouchableOpacity} from "react-native"
 import StyledText from "../common/StyledText"
 import theme from "../../theme"
+import darkTheme from "../../darkTheme"
 import {  useDispatch, useSelector } from "react-redux"
 import BackHeader from "../common/BackHeader"
 import MenuButtons from "./MenuButtons"
@@ -10,9 +11,9 @@ import { setDarkTheme } from "../../store/reducer"
 const Menu = ({navigation}) => {
 
     const user = useSelector(state => state.user)
-    const darkTheme = useSelector(state => state.darkTheme)
+    const theme1 = useSelector(state => state.darkTheme)
     const dispatch = useDispatch()
-    const themes = darkTheme ? darkTheme : theme
+    const styles = getStyles(theme1 ? theme : darkTheme );
    
     return(
         <View style = {styles.container}>
@@ -31,7 +32,7 @@ const Menu = ({navigation}) => {
                         </View>
                     </View>
                     <View style = {styles.icon_bx}>
-                        {darkTheme ?
+                        {theme1 ?
                             <TouchableOpacity onPress={() => dispatch(setDarkTheme(false))}>
                                 <Icon name = "sunny" style = {styles.icon}></Icon>
                             </TouchableOpacity> :
@@ -52,7 +53,7 @@ const Menu = ({navigation}) => {
     )
 }
 
-const styles = StyleSheet.create({
+const getStyles = (theme) => StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: theme.colors.white
