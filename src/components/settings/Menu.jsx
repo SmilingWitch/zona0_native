@@ -1,70 +1,52 @@
-import { View, StyleSheet, Image, DrawerLayoutAndroid,} from "react-native"
+import { View, StyleSheet, Image, TouchableOpacity} from "react-native"
 import StyledText from "../common/StyledText"
 import theme from "../../theme"
-import Button from "../common/Button2"
-import { fetchData } from "../../api/authentication/fetchData"
-import { useDispatch, useSelector } from "react-redux"
-import { useState } from "react"
-import { logout } from "../../store/reducer"
+import {  useDispatch, useSelector } from "react-redux"
 import BackHeader from "../common/BackHeader"
-
+import MenuButtons from "./MenuButtons"
+import Icon from '@expo/vector-icons/Ionicons'
+import { setDarkTheme } from "../../store/reducer"
 
 const Menu = ({navigation}) => {
 
-
-    const refreshToken = useSelector(state => state.refreshToken)
-    const dispatch = useDispatch()
-    const [loading, setLoaging] = useState(false)
     const user = useSelector(state => state.user)
-
-    const logout_session = () => {
-        setLoaging(true)
-        fetchData("/accounts/logout/", {"refresh": refreshToken }, logout)
-                .then(data => {
-                    console.log("DATA",data)
-                    dispatch(logout())
-                    setLoaging(false)
-                    navigation.navigate("Login")
-                    })
-                .catch(error => {
-                    console.log("MESSAGE",error)
-                    setLoaging(false)
-                })
-    }
-
+    const darkTheme = useSelector(state => state.darkTheme)
+    const dispatch = useDispatch()
+    const themes = darkTheme ? darkTheme : theme
+   
     return(
         <View style = {styles.container}>
             <BackHeader navigation = {navigation} name = "Settings"></BackHeader>
             {!user ? <View></View>
             :
             <View style = {styles.bx}>
-                <View style = {styles.header}>
-                    <StyledText fontSize="h3">My Profile</StyledText>
-                </View>
                 <View style = {styles.user_info}>
-                    <Image 
-                        source={require('../../../assets/images/fondo.jpg')}
-                        style = {styles.image}></Image>
+                    <View style = {styles.details}>
+                        <Image 
+                            source={require('../../../assets/images/fondo.jpg')}
+                            style = {styles.image}></Image>
                         <View style = {styles.user_details}>
-                            <StyledText fontWeight='bold'>{`${user.name} ${user.last_name}`}</StyledText>
                             <StyledText fontWeight='bold'>{user.username}</StyledText>
+                            <StyledText fontWeight='bold'>{`${user.name} ${user.last_name}`}</StyledText>
                         </View>
-                    
+                    </View>
+                    <View style = {styles.icon_bx}>
+                        {darkTheme ?
+                            <TouchableOpacity onPress={() => dispatch(setDarkTheme(false))}>
+                                <Icon name = "sunny" style = {styles.icon}></Icon>
+                            </TouchableOpacity> :
+                            <TouchableOpacity onPress={() => dispatch(setDarkTheme(true))}>
+                                <Icon name = "moon" style = {styles.icon}></Icon>
+                            </TouchableOpacity>
+                            }
+                    </View>
+                     
                 </View>
                 <View style = {styles.btns_bx}>
-                    <Button text = "Cerrar Sesion" fnc = {logout_session} loading={loading} name = 'user'/>
-                    {/*<Button text = "Ver Perfil"  loading={loading} name = 'user'/>
-                    <Button text = "Editar datos"   loading={loading} name = 'user'/>
-                    <Button text = "Gestionar Tarjeta"  loading={loading} name = 'user'/>
-                    <Button text = "Cambiar contrasena"  loading={loading} name = 'user'/>
-                    
-                    <Button text = "Eliminar cuenta"  loading={loading} name = 'user'/>*/}
+                    <MenuButtons navigation={navigation}/>
                 </View>
                 
             </View>}
-
-
-  
         </View>
         
     )
@@ -94,7 +76,8 @@ const styles = StyleSheet.create({
         padding: 20,
         gap: 20,
         /*backgroundColor: theme.colors.buttonColor,*/
-        borderRadius: 20
+        borderRadius: 20,
+        justifyContent: 'space-between'
     },
     image: {
         width: 80,
@@ -106,6 +89,16 @@ const styles = StyleSheet.create({
     },
     btns_bx: {
         gap: 5
+    },
+    details: {
+        gap: 10
+    },
+    icon_bx: {
+        alignSelf: 'flex-start'
+    },
+    icon: {
+        color: theme.colors.textPrimary,
+        fontSize: theme.fontSize.h2,        
     }
 })
 
