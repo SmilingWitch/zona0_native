@@ -17,7 +17,7 @@ const Button2 = ({text, fnc,loading,name, ...props}) => {
         <TouchableOpacity style = {styles.container } onPress={fnc}>
             <View style = {styles.details}>
 
-                <Icon  name = {name} style = {styles.image} ></Icon>
+                {/*<Icon  name = {name} style = {styles.image} ></Icon>*/}
                 
                 <StyledText fontSize='small' fontWeight='bold' style = {styles.text}>{text}</StyledText>
             </View>
