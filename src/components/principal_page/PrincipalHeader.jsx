@@ -6,11 +6,11 @@ import Icon1 from '@expo/vector-icons/AntDesign'
 import { useSelector } from "react-redux"
 import darkTheme from "../../darkTheme"
 
-
 const PrincipalHeader = ({navigation}) => {
 
   const theme1 = useSelector(state => state.darkTheme)
     const styles = getStyles(theme1 ? theme : darkTheme )
+    const user = useSelector(state => state.user)
 
     return(
         
@@ -21,9 +21,14 @@ const PrincipalHeader = ({navigation}) => {
               <StyledText fontSize='h2' fontWeight="bold">Zona0</StyledText>
             </View>
             <View style = {styles.user_bx}>
+              {user.image !== null ?
               <TouchableOpacity style = {styles.user_details} >
-                  <Image source={require('../../../assets/images/user.jpg')} style = {styles.img_user}></Image>
+                  <Image source={{uri: user.image}} style = {styles.img_user}></Image>
+              </TouchableOpacity> :
+              <TouchableOpacity style = {styles.user_details} >
+                <Image source={require('../../../assets/images/default_user.png')} style = {styles.img_user}></Image>
               </TouchableOpacity>
+               }
               <Icon name = 'bell' style = {styles.icon}></Icon>
               <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
                     <Icon1 name = "setting" style = {styles.icon}></Icon1>
