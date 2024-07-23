@@ -1,5 +1,6 @@
 // reducers.js
 import { createSlice } from '@reduxjs/toolkit';
+import { darkTheme } from '../theme';
 
 
 
@@ -13,7 +14,8 @@ const userSlice = createSlice({
         performedList: [],
         transferedList: [],
         donatedList: [],
-        zonaPoint: 0
+        zonaPoint: 0,
+        darkTheme: false
     },
     reducers: {
         setUser: (state, action) => {
@@ -44,6 +46,9 @@ const userSlice = createSlice({
         },
         setDonatedList: (state, action) => {
             state.donatedList = action.payload
+        },
+        setDarkTheme: (state, action) => {
+            state.darkTheme = action.payload
         }
     },
 });
@@ -56,5 +61,6 @@ export const {  setUser,
                 setTransferedList,
                 setDonatedList,
                 setRefreshToken,
-                setZonaPoint} = userSlice.actions;
+                setZonaPoint,
+                setDarkTheme} = userSlice.actions;
 export default userSlice.reducer;
