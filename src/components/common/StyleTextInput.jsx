@@ -31,7 +31,7 @@ const StyledTextInput = ({style = {}, error,color, fontSize, fontWeight, ...prop
                   multiline 
                   inputMode="text"
                   textAlignVertical="top"
-                  placeholderTextColor={theme.colors.primary}></TextInput>
+                  placeholderTextColor={styles.placeholder.color}></TextInput>
         </View> 
     )
 }
