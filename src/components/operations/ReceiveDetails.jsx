@@ -13,6 +13,7 @@ import darkTheme from "../../darkTheme"
     const {code} = route.params
     const {date} = route.params
     const {operation} = route.params
+    const {state} = route.params
     const {id} = route.params
     const {user} = route.params
 
@@ -51,7 +52,7 @@ import darkTheme from "../../darkTheme"
                         </View>
                         <View style = {styles.detail_bx}>
                             <StyledText fontSize='small' fontWeight="bold" >State</StyledText>
-                            <StyledText fontSize='small'>{amount} OSP</StyledText>
+                            <StyledText fontSize='small'>{state} </StyledText>
                         </View>
                         <View style = {styles.detail_bx}>
                             <StyledText fontSize='small' fontWeight="bold" >Date</StyledText>
