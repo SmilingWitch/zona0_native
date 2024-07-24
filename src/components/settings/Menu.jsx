@@ -32,11 +32,10 @@ const Menu = ({navigation}) => {
                 <View style = {styles.user_info}>
                     <View style = {styles.details}>
                     {user.image !== null ?
-        <Image source={{uri: user.image}} style = {styles.image}></Image>
-        :
-        <Image source={require('../../../assets/images/default_user.png')} style = {styles.image}></Image>
-        
-         }
+                        <Image source={{uri: user.image}} style = {styles.image}></Image>
+                        :
+                        <Image source={require('../../../assets/images/default_user.png')} style = {styles.image}></Image>
+                    }
                         <View style = {styles.user_details}>
                             <StyledText fontWeight='bold'>{user.username}</StyledText>
                             <StyledText fontWeight='bold'>{`${user.name} ${user.last_name}`}</StyledText>
@@ -87,7 +86,6 @@ const getStyles = (theme) => StyleSheet.create({
         alignItems: 'center',
         padding: 20,
         gap: 20,
-        /*backgroundColor: theme.colors.buttonColor,*/
         borderRadius: 20,
         justifyContent: 'space-between'
     },
