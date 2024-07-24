@@ -12,6 +12,7 @@ const ReceiptsLastOperationItemList = ({data, navigation, operation}) => {
     const theme1 = useSelector(state => state.darkTheme)
     const styles = getStyles(theme1 ? theme : darkTheme )
 
+
     return(
         <View style = {styles.container}>
         {!isValidArray ?
@@ -24,6 +25,7 @@ const ReceiptsLastOperationItemList = ({data, navigation, operation}) => {
                                      style = {styles.item} 
                                      onPress={ () => navigation.navigate("ReceiveDetails", 
                                      {amount: item.amount,
+                                     state: item.state,
                                      code: item.code,
                                      date: item.date,
                                      image: item.image,
