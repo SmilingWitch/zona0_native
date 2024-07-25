@@ -1,26 +1,59 @@
-import { TouchableOpacity, View, StyleSheet } from "react-native"
+import { TouchableOpacity, View, StyleSheet, ActivityIndicator } from "react-native"
 import StyledText from "../common/StyledText"
 import Icon from '@expo/vector-icons/EvilIcons'
 import theme from "../../theme"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import darkTheme from "../../darkTheme"
+import BankedListItem from "./BankedListItem"
+import { setBankedList } from "../../store/reducer"
+import { operations } from "../../api/authentication/operations";
+import { useState } from "react"
 
 const BankingDeposits = () => {
 
     const theme1 = useSelector(state => state.darkTheme)
     const styles = getStyles(theme1 ? theme : darkTheme )
+    const bankedList = useSelector(state => state.bankedList)
+    const dispatch = useDispatch()
+    const accessToken = useSelector(state => state.accessToken)
+    const isValidArray = Array.isArray(bankedList) && bankedList.length > 0
+    const [loading, setLoading] = useState(false)
+
+    const fetchData = async () => {
+        setLoading(true)
+        try {
+          await operations(accessToken, dispatch, "/banking/account/", setBankedList) ;   
+          setLoading(false)
+        } catch (error) {
+          console.error(error);
+          setLoading(false)
+        }
+      };
+
+    console.log(bankedList)
 
     return(
         <View style = {styles.container}>
             <View style = {styles.header}>
-                <StyledText fontSize="h3">Last Operations</StyledText>
-                <TouchableOpacity>
+                <StyledText fontSize="h3">Deposits</StyledText>
+                {loading ? 
+                    <View>
+                        <ActivityIndicator size="small" color={styles.colorLoader} /> 
+                    </View>
+                    : <TouchableOpacity onPress={fetchData}>
                     <Icon name = "undo" style = {styles.icon}></Icon>
-                </TouchableOpacity>
+                </TouchableOpacity>}
             </View>
             <View style = {styles.deposits}>
-                <StyledText fontSize='small'>No hay depositos aun</StyledText>
+                {isValidArray ? 
+                    bankedList.slice().reverse().map((item) => {
+                        return <BankedListItem key = {item.id} data = {item}></BankedListItem>
+                    })
+                    : <StyledText fontSize='small'>No hay depositos aun</StyledText>
+                }
+                
             </View>
+
 
         </View>
     )
@@ -40,6 +73,7 @@ const getStyles = (theme) => StyleSheet.create({
         paddingVertical: 5,
         alignItems: 'center'
     },
+    colorLoader: theme.colors.secundary,
     icon: {
         fontSize: theme.fontSize.h1
     },
@@ -50,7 +84,8 @@ const getStyles = (theme) => StyleSheet.create({
         borderRadius: 20,
         padding: 20,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        gap: 10
     }
 })
 export default BankingDeposits
