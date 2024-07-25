@@ -15,10 +15,10 @@ const Menu = ({navigation}) => {
     const dispatch = useDispatch()
     const styles = getStyles(theme1 ? theme : darkTheme );
    
-    {user.image !== null ?
-        <Image source={{uri: user.image}} style = {styles.image}></Image>
-        :
+    {user === null || user.image === null ?
         <Image source={require('../../../assets/images/default_user.png')} style = {styles.image}></Image>
+        :
+        <Image source={{uri: user.image}} style = {styles.image}></Image>
         
          }
 
