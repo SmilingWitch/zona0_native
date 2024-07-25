@@ -22,14 +22,27 @@ const Stack = createNativeStackNavigator();
 const Main = () => {
 
     const accessToken = useSelector(state => state.accessToken)
-    const initialRoute = accessToken ? "Dashboard" : "Login";
+    const initialRoute = accessToken !== null ? "Dashboard" : "Login";
+
+    console.log("accessToken", accessToken)
+
+
 
     return(
 
         <View style={styles.container}>
 
             <NavigationContainer>
-                <Stack.Navigator initialRouteName={initialRoute}>
+                {accessToken === null ? 
+                    <Stack.Navigator>
+                    <Stack.Screen 
+                        name="Login" 
+                        component={Login} 
+                        options={{ headerShown: false }} // Mostrar el AppBar
+                    />
+
+                    </Stack.Navigator> :
+                    <Stack.Navigator initialRouteName={initialRoute}>
                 <Stack.Screen 
                         name="Login" 
                         component={Login} 
@@ -87,6 +100,8 @@ const Main = () => {
                         options={{headerShown: false}}
                     />
                 </Stack.Navigator>
+                }
+                
             </NavigationContainer>
             <Toast />
 
