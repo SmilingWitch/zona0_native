@@ -41,7 +41,7 @@ const RegisterView = ({navigation}) => {
         form_cont:{
             flex: 1,
             justifyContent: 'space-around',
-            height: Dimensions.get("screen").height*1.5 - 250,
+            height: Dimensions.get("screen").height*1 - 150,
         }
        });
 
