@@ -1,5 +1,5 @@
 
-import {ActivityIndicator, ScrollView, TouchableOpacity } from "react-native"
+import {ActivityIndicator, Alert, BackHandler, ScrollView, TouchableOpacity } from "react-native"
 import { View, StyleSheet } from "react-native"
 import theme from "../theme"
 import ManageFolderHeader from "../components/principal_page/PrincipalHeader"
@@ -11,8 +11,10 @@ import LastOperations from "../components/principal_page/LastOperations"
 import { operations } from "../api/authentication/operations"
 import { useDispatch, useSelector } from "react-redux"
 import { setDonatedList, setpendingList, setPerformedList, setTransferedList, setUser, setZonaPoint } from "../store/reducer";
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import darkTheme from "../darkTheme"
+import { useFocusEffect } from "@react-navigation/native"
+import DialogComponent from "../components/common/Dialog"
 
 
 const PrincipalPage = ({navigation, route}) => {
@@ -23,25 +25,45 @@ const PrincipalPage = ({navigation, route}) => {
     const user = useSelector(state => state.user)
     const theme1 = useSelector(state => state.darkTheme)
     const styles = getStyles(theme1 ? theme : darkTheme );
+    const [visible, setVisible] = useState(false)
+ 
 
-    
-
-        const refreshData = async () => {
-          try {
-            setLoading(true)
-            await Promise.all([
-                operations(accessToken, dispatch, "/transfer/list-unpaid-receive/", setpendingList), 
-                operations(accessToken, dispatch, "/transfer/list-paid-receive/", setPerformedList), 
-                operations(accessToken, dispatch, "/institutions/donations/", setDonatedList), 
-                operations(accessToken, dispatch, "/transfer/list-sendTransfer/", setTransferedList),
-                operations(accessToken, dispatch, "/accounts/osp_points/", setZonaPoint, "total_balance") 
-            ]);
-                setLoading(false)
-            }catch (error) {
-            console.error(error)
+    const refreshData = async () => {
+      try {
+        setLoading(true)
+        await Promise.all([
+            operations(accessToken, dispatch, "/transfer/list-unpaid-receive/", setpendingList), 
+            operations(accessToken, dispatch, "/transfer/list-paid-receive/", setPerformedList), 
+            operations(accessToken, dispatch, "/institutions/donations/", setDonatedList), 
+            operations(accessToken, dispatch, "/transfer/list-sendTransfer/", setTransferedList),
+            operations(accessToken, dispatch, "/accounts/osp_points/", setZonaPoint, "total_balance") 
+        ]);
             setLoading(false)
-          }
-        };
+        }catch (error) {
+        console.error(error)
+        setLoading(false)
+      }
+    };
+
+
+    useFocusEffect(
+        useCallback(() => {
+          const onBackPress = () => {
+            // Muestra una alerta cuando el botón de retroceso es presionado
+            BackHandler.exitApp()
+            // Retorna true para prevenir el comportamiento predeterminado de retroceso
+            return true;
+          };
+    
+          // Agregar el listener para el evento de retroceso del hardware
+          BackHandler.addEventListener('hardwareBackPress', onBackPress);
+    
+          return () => {
+            // Remover el listener cuando el componente se desenfoca
+            BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+          };
+        }, [])
+      );
 
 
 
@@ -75,6 +97,7 @@ const PrincipalPage = ({navigation, route}) => {
                 </View>
 
             </View>
+            
             
         </ScrollView>
         
