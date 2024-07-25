@@ -30,16 +30,17 @@ const MenuButtons = ({navigation}) => {
                 .catch(error => {
                     console.log("MESSAGE",error)
                     setLoaging(false)
+
                 })
     }
 
     return(
         <View style = {styles.container}>
             
-            <Button2 text = "My Profile"  loading={loading} name = 'user'/>
-            <Button2 text = "Editar datos"   loading={loading} name = 'user'/>
-            <Button2 text = "Gestionar Tarjeta"  loading={loading} name = 'user'/>
-            <Button2 text = "Cambiar contrasena"  loading={loading} name = 'user'/>
+            <Button2 text = "My Profile" name = 'user'/>
+            <Button2 text = "Editar datos" name = 'user'/>
+            <Button2 text = "Gestionar Tarjeta" name = 'user'/>
+            <Button2 text = "Cambiar contrasena" name = 'user'/>
             <Button2 text = "Cerrar Sesion" fnc = {() => setVisible(true)} /*loading={loading}*/ name = 'user'/>
 
             <DialogComponent 
