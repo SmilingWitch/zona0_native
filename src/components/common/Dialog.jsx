@@ -29,7 +29,7 @@ const DialogComponent = ({title, description, fnc, visible, setVisible, loading}
                 </View>:
                 <View style = {styles.button_cont}>
                     <Dialog.Button label="Cancel" onPress={handleCancel} style = {styles.button_cancel}/>
-                    <Dialog.Button label="Delete" onPress={fnc} style = {styles.button_function}/>
+                    <Dialog.Button label="Accept" onPress={fnc} style = {styles.button_function}/>
                 </View>
                 
                 }
