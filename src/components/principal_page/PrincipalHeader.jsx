@@ -21,12 +21,13 @@ const PrincipalHeader = ({navigation}) => {
               <StyledText fontSize='h2' fontWeight="bold">Zona0</StyledText>
             </View>
             <View style = {styles.user_bx}>
-              {user.image !== null ?
-              <TouchableOpacity style = {styles.user_details} >
-                  <Image source={{uri: user.image}} style = {styles.img_user}></Image>
-              </TouchableOpacity> :
+              {user === null || user.image === null  ?
               <TouchableOpacity style = {styles.user_details} >
                 <Image source={require('../../../assets/images/default_user.png')} style = {styles.img_user}></Image>
+              </TouchableOpacity>
+               :
+              <TouchableOpacity style = {styles.user_details} >
+                  <Image source={{uri: user.image}} style = {styles.img_user}></Image>
               </TouchableOpacity>
                }
               <Icon name = 'bell' style = {styles.icon}></Icon>
