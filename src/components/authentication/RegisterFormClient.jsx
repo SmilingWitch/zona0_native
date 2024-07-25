@@ -9,19 +9,22 @@ import { fetchData } from "../../api/authentication/fetchData";
 import Button from "../common/Button";
 import { registerValidationSchema } from "../../validationSchemas/register";
 import darkTheme from "../../darkTheme";
+import { generateRandomPhoneNumber } from "../../api/generateRandomPhoneNumber";
 
 
+
+const phoneNumber = generateRandomPhoneNumber("5", 7)
+const ciNumber = generateRandomPhoneNumber("9", 11)
 const initialValues = {
     name : '',
     last_name: '',
     email: '',
     username: '',
-    movil: '',
+    movil: phoneNumber,
     password: '',
-    ci: '',
+    ci: ciNumber,
     image: null
 }
-
 
 const RegisterFormClient = ({navigation}) => {
 
@@ -67,17 +70,6 @@ const RegisterFormClient = ({navigation}) => {
                                 name = "last_name"
                                 secureTextEntry
                             />
-                            <FormikInputValue
-                                placeholder="Movil" 
-                                name = "movil"
-                                secureTextEntry
-                            />
-                            <FormikInputValue
-                                placeholder="Id number" 
-                                name = "ci"
-                                secureTextEntry
-                            />
-
                         </View>
                     <View style = {styles.input_bx}>
                         <StyledText fontSize='h3' fontWeight="bold">User Information</StyledText>
@@ -85,8 +77,6 @@ const RegisterFormClient = ({navigation}) => {
                                 placeholder="Username" 
                                 name = "username"
                             />
-
-
                             <FormikInputValue
                                 placeholder="Email" 
                                 name = "email"
@@ -114,8 +104,7 @@ const getStyles = (theme) => StyleSheet.create({
     container: {
      backgroundColor: theme.colors.primary,
      alignItems: 'center',
-      /*paddingTop: 100,*/
-      paddingHorizontal: 20
+      paddingHorizontal: 20,
     } ,
     form: {
         width: `${100}%`,
