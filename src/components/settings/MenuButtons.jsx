@@ -51,8 +51,8 @@ const MenuButtons = ({navigation}) => {
                 fnc ={logout_session}
                 loading={loading}
                 />
-        </View>
-    )
+        </View>)
+
 }
 
 const styles = StyleSheet.create({
