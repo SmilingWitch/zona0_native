@@ -30,7 +30,9 @@ const handleNavigation = (operation, data, navigation) => {
           break;
         case "redeem":
             showToast('success', 'Congratulation!!', data.message)
-            
+            break;
+        case "banking":
+            showToast('success', 'Successful!!', "The operation has been performed successfully")
           break;
         default:
         break;
