@@ -24,6 +24,8 @@ const PrincipalPage = ({navigation, route}) => {
     const theme1 = useSelector(state => state.darkTheme)
     const styles = getStyles(theme1 ? theme : darkTheme );
 
+    
+
         const refreshData = async () => {
           try {
             setLoading(true)
@@ -63,7 +65,7 @@ const PrincipalPage = ({navigation, route}) => {
                     <StyledText fontSize="h3">Last Operations</StyledText>
                     {loading ? 
                     <View>
-                        <ActivityIndicator size="small" color={theme.colors.secundary} /> 
+                        <ActivityIndicator size="small" color={styles.loaderColor} /> 
                     </View>
                     : <TouchableOpacity onPress={() => refreshData() }>
                         <Icon name = "undo" style = {styles.icon}></Icon>
@@ -89,6 +91,7 @@ const getStyles = (theme) => StyleSheet.create({
         padding: theme.padding,
         gap: 50
     },
+    loaderColor: theme.colors.secundary,
     item: {
         gap:25
     },
