@@ -11,11 +11,13 @@ const userSlice = createSlice({
         accessToken: null,
         refreshToken: null,
         pendingList: [],
+        bankedList: [],
         performedList: [],
         transferedList: [],
         donatedList: [],
         zonaPoint: 0,
-        darkTheme: false
+        darkTheme: false,
+
     },
     reducers: {
         setUser: (state, action) => {
@@ -44,6 +46,9 @@ const userSlice = createSlice({
         setTransferedList: (state, action) => {
             state.transferedList = action.payload
         },
+        setBankedList: (state, action) => {
+            state.bankedList = action.payload
+        },
         setDonatedList: (state, action) => {
             state.donatedList = action.payload
         },
@@ -62,5 +67,6 @@ export const {  setUser,
                 setDonatedList,
                 setRefreshToken,
                 setZonaPoint,
-                setDarkTheme} = userSlice.actions;
+                setDarkTheme,
+                setBankedList} = userSlice.actions;
 export default userSlice.reducer;
