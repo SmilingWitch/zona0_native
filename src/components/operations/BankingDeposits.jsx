@@ -37,9 +37,7 @@ const BankingDeposits = () => {
             <View style = {styles.header}>
                 <StyledText fontSize="h3">Deposits</StyledText>
                 {loading ? 
-                    <View>
-                        <ActivityIndicator size="small" color={styles.colorLoader} /> 
-                    </View>
+                    <ActivityIndicator size="small" color={styles.loaderColor} /> 
                     : <TouchableOpacity onPress={fetchData}>
                     <Icon name = "undo" style = {styles.icon}></Icon>
                 </TouchableOpacity>}
@@ -73,9 +71,10 @@ const getStyles = (theme) => StyleSheet.create({
         paddingVertical: 5,
         alignItems: 'center'
     },
-    colorLoader: theme.colors.secundary,
+    loaderColor: theme.colors.secundary,
     icon: {
-        fontSize: theme.fontSize.h1
+        fontSize: theme.fontSize.h1,
+        color: theme.colors.textPrimary
     },
     deposits: {
         width: '100%',
