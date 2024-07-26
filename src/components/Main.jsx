@@ -17,6 +17,7 @@ import Welcome from "../pages/Welcome.jsx";
 import Toast from 'react-native-toast-message';
 import EditData from "../pages/EditData.jsx";
 import Settings from "../pages/Settings.jsx"
+import ChangePassword from "../pages/ChangePassword.jsx";
 
 const Stack = createNativeStackNavigator();
 
@@ -113,6 +114,11 @@ const Main = () => {
                     <Stack.Screen
                         name = "EditData"
                         component={EditData}
+                        options={{headerShown: false}}
+                    />
+                    <Stack.Screen
+                        name = "ChangePassword"
+                        component={ChangePassword}
                         options={{headerShown: false}}
                     />
                 </Stack.Navigator>
