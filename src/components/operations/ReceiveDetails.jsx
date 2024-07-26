@@ -3,11 +3,14 @@ import StyledText from "../common/StyledText"
 import theme from "../../theme"
 import BackHeader from "../common/BackHeader"
 import Button from "../common/Button"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import darkTheme from "../../darkTheme"
 import { useState } from "react"
 import Icon from '@expo/vector-icons/FontAwesome'
 import * as Clipboard from 'expo-clipboard';
+import { fetchData } from "../../api/authentication/fetchData"
+import { showToast } from "../../api/showToast"
+import { setpendingList } from "../../store/reducer"
 
  const ReceiveDetails = ({navigation, route}) => {
 
@@ -18,18 +21,49 @@ import * as Clipboard from 'expo-clipboard';
     const {state} = route.params
     const {id} = route.params
     const {user} = route.params
-    const [loading, setLoading] = useState(true);
-    const [copiedText, setCopiedText] = useState('');
-
+    const [loading, setLoading] = useState(false);
+    const accessToken = useSelector(state => state.accessToken)
+    const deleteReceive = "delete"
     const theme1 = useSelector(state => state.darkTheme)
     const styles = getStyles(theme1 ? theme : darkTheme )
-        
+    const dispatch = useDispatch() 
 
     const copyToClipboard = async () => {
       await Clipboard.setStringAsync(code);
     };
 
+    const updateData = async () => {
+         await fetchData("/transfer/list-unpaid-receive/", null, { "access_token": accessToken })
+         .then(data => {
+            dispatch(setpendingList(data))
+            setLoading(false)
+            navigation.navigate("Dashboard")
+            showToast('success', 'Deleted Payment Receive', "The payment receipt has been deleted correctly.")
+         })
+        
+    }
 
+    const cancelReceipt = async () => {
+        setLoading(true)
+        fetchData(`/transfer/list-delete-unpaid-receive/${id}`, null ,{"access_token" : accessToken}, deleteReceive)
+        .then(data => {
+            
+            console.log(data);
+            if(data.error){
+                showToast('error', 'Failed', "An error has occurred.")
+                
+                setLoading(false)
+            }else{
+                updateData() 
+            }
+            
+        })
+        .catch(error => {
+            console.log(error)
+            showToast('error', 'Failed', "An error has occurred.")
+            setLoading(false)});
+    
+    }
 
     return(
         <View style = {styles.container}>
@@ -65,7 +99,12 @@ import * as Clipboard from 'expo-clipboard';
                             <StyledText fontSize='small' fontWeight="bold" >Date</StyledText>
                             <StyledText fontSize='small'>{date} OSP</StyledText>
                         </View>
-                        {operation === 'pending' && <Button text = "cancel payment receipt"/>}
+                        {operation === 'pending' && 
+                            <Button 
+                            text = "cancel payment receipt"
+                            fnc={cancelReceipt}
+                            loading={loading}
+                            />}
                     </View>
                    
                 </View>
