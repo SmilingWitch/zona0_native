@@ -38,7 +38,7 @@ const MenuButtons = ({navigation}) => {
         <View style = {styles.container}>
             
             <Button2 text = "My Profile" name = 'user'/>
-            <Button2 text = "Editar datos" name = 'user'/>
+            <Button2 text = "Editar datos" name = 'user' fnc = {() => navigation.navigate("EditData")} navigation = {navigation}/>
             <Button2 text = "Gestionar Tarjeta" name = 'user'/>
             <Button2 text = "Cambiar contrasena" name = 'user'/>
             <Button2 text = "Cerrar Sesion" fnc = {() => setVisible(true)} /*loading={loading}*/ name = 'user'/>
