@@ -12,7 +12,7 @@ const BackHeader = ({navigation, name}) => {
 
     return (
         <View style = {styles.container}>
-            <TouchableOpacity onPress = {() => navigation.navigate("Dashboard")} style = {styles.arrow}>
+            <TouchableOpacity onPress = {() => navigation.goBack()} style = {styles.arrow}>
               <Icon name = 'arrowleft' style = {styles.icon}></Icon>
             </TouchableOpacity>
             <StyledText fontSize="h3">{name}</StyledText>
