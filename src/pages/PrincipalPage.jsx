@@ -10,8 +10,8 @@ import Icon from '@expo/vector-icons/EvilIcons'
 import LastOperations from "../components/principal_page/LastOperations"
 import { operations } from "../api/authentication/operations"
 import { useDispatch, useSelector } from "react-redux"
-import { setDonatedList, setpendingList, setPerformedList, setTransferedList, setUser, setZonaPoint } from "../store/reducer";
-import { useCallback, useState } from "react"
+import { setBankedList, setDonatedList, setEffectedOperation, setpendingList, setPerformedList, setTransferedList, setZonaPoint } from "../store/reducer";
+import { useCallback, useEffect, useState } from "react"
 import darkTheme from "../darkTheme"
 import { useFocusEffect } from "@react-navigation/native"
 import DialogComponent from "../components/common/Dialog"
@@ -25,8 +25,7 @@ const PrincipalPage = ({navigation, route}) => {
     const user = useSelector(state => state.user)
     const theme1 = useSelector(state => state.darkTheme)
     const styles = getStyles(theme1 ? theme : darkTheme );
-    const [visible, setVisible] = useState(false)
- 
+    const effectedOperation = useSelector(state => state.effectedOperation)
 
     const refreshData = async () => {
       try {
@@ -63,7 +62,36 @@ const PrincipalPage = ({navigation, route}) => {
             BackHandler.removeEventListener('hardwareBackPress', onBackPress);
           };
         }, [])
-      );
+    );
+
+    useFocusEffect(
+        useCallback(() => {
+            if(effectedOperation){
+                const fetchData = async () => {
+                    setLoading(true);
+                    try {
+                        await Promise.all([
+                            operations(accessToken, dispatch, "/transfer/list-unpaid-receive/", setpendingList), 
+                            operations(accessToken, dispatch, "/transfer/list-paid-receive/", setPerformedList), 
+                            operations(accessToken, dispatch, "/institutions/donations/", setDonatedList), 
+                            operations(accessToken, dispatch, "/transfer/list-sendTransfer/", setTransferedList),
+                            operations(accessToken, dispatch, "/banking/account/", setBankedList)
+                        ]);
+                        dispatch(setEffectedOperation(false))
+                    } catch (error) {
+                        console.error(error);
+                        dispatch(setEffectedOperation(false))
+                    } finally {
+                        setLoading(false);
+                    }
+                };
+                fetchData();
+            }
+
+
+            
+        }, [])
+    );
 
 
 
