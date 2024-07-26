@@ -18,7 +18,11 @@ async function fetchData(endpoint, body = null, headers = null, operation = null
  if (operation === "update"){
     options.method = 'PUT'; // Cambiar a POST u otro método según sea necesario
     options.body = JSON.stringify(body);
-  } else  if ( body !== null || operation === 'logout') {
+  } else if(operation === "delete"){
+    options.method = 'DELETE'; // Cambiar a POST u otro método según sea necesario
+    options.body = JSON.stringify(body);
+
+  }else  if ( body !== null || operation === 'logout') {
     options.method = 'POST'; // Cambiar a POST u otro método según sea necesario
     options.body = JSON.stringify(body);
   } 
