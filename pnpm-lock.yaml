@@ -23,6 +23,9 @@ dependencies:
   expo:
     specifier: ~51.0.22
     version: 51.0.22(@babel/core@7.24.7)(@babel/preset-env@7.24.7)
+  expo-clipboard:
+    specifier: ^6.0.3
+    version: 6.0.3(expo@51.0.22)
   expo-status-bar:
     specifier: ~1.12.1
     version: 1.12.1
@@ -4077,6 +4080,14 @@ packages:
       md5-file: 3.2.3
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /expo-clipboard@6.0.3(expo@51.0.22):
+    resolution: {integrity: sha512-RIKDsuHkYfaspifbFpVC8sBVFKR05L7Pj7mU2/XkbrW9m01OBNvdpGraXEMsTFCx97xMGsZpEw9pPquL4j4xVg==}
+    peerDependencies:
+      expo: '*'
+    dependencies:
+      expo: 51.0.22(@babel/core@7.24.7)(@babel/preset-env@7.24.7)
     dev: false
 
   /expo-constants@16.0.2(expo@51.0.22):
