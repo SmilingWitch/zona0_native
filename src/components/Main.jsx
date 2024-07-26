@@ -10,12 +10,13 @@ import Redeem from "../pages/Redeem";
 import Banking from "../pages/Banking";
 import { useSelector } from 'react-redux';
 import ReceiveDetails from "./operations/ReceiveDetails.jsx";
-import Menu from "./settings/Menu";
 import Register from "../pages/Register";
 import VerifyCode from "../pages/VerifyCode";
 import Receive from "../pages/Receive.jsx";
 import Welcome from "../pages/Welcome.jsx";
 import Toast from 'react-native-toast-message';
+import EditData from "../pages/EditData.jsx";
+import Settings from "../pages/Settings.jsx"
 
 const Stack = createNativeStackNavigator();
 
@@ -91,7 +92,7 @@ const Main = () => {
                     />
                     <Stack.Screen
                         name = "Settings"
-                        component={Menu}
+                        component={Settings}
                         options={{headerShown: false}}
                     />
                     <Stack.Screen
@@ -107,6 +108,11 @@ const Main = () => {
                     <Stack.Screen
                         name = "Welcome"
                         component={Welcome}
+                        options={{headerShown: false}}
+                    />
+                    <Stack.Screen
+                        name = "EditData"
+                        component={EditData}
                         options={{headerShown: false}}
                     />
                 </Stack.Navigator>
