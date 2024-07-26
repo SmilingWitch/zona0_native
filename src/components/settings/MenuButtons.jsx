@@ -10,11 +10,9 @@ import { logout } from "../../store/reducer"
 const MenuButtons = ({navigation}) => {
 
     const [visible, setVisible] = useState(false)
-
     const refreshToken = useSelector(state => state.refreshToken)
     const dispatch = useDispatch()
     const [loading, setLoaging] = useState(false)
-    const user = useSelector(state => state.user)
     
     const logout_session = () => {
         setLoaging(true)
@@ -36,16 +34,14 @@ const MenuButtons = ({navigation}) => {
 
     return(
         <View style = {styles.container}>
-            
-            <Button2 text = "My Profile" name = 'user'/>
-            <Button2 text = "Editar datos" name = 'user' fnc = {() => navigation.navigate("EditData")} navigation = {navigation}/>
-            <Button2 text = "Gestionar Tarjeta" name = 'user'/>
-            <Button2 text = "Cambiar contrasena" name = 'user'/>
-            <Button2 text = "Cerrar Sesion" fnc = {() => setVisible(true)} /*loading={loading}*/ name = 'user'/>
+            <Button2 text = "Edit Data" name = 'user' fnc = {() => navigation.navigate("EditData")} navigation = {navigation}/>
+            <Button2 text = "Manage Card" name = 'user'/>
+            <Button2 text = "Change Password" name = 'user' fnc = {() => navigation.navigate("ChangePassword")} navigation = {navigation}/>
+            <Button2 text = "Logout" fnc = {() => setVisible(true)} /*loading={loading}*/ name = 'user'/>
 
             <DialogComponent 
-                title="Cerrar Sesion" 
-                description="Estas seguro que quieres cerrar la sesion?" 
+                title="Logout" 
+                description="Are you sure you want to close the session?" 
                 visible = {visible}
                 setVisible={setVisible}
                 fnc ={logout_session}
