@@ -1,11 +1,13 @@
-import { View, StyleSheet, ScrollView } from "react-native"
+import { View, StyleSheet, ScrollView, TouchableOpacity} from "react-native"
 import StyledText from "../common/StyledText"
 import theme from "../../theme"
 import BackHeader from "../common/BackHeader"
 import Button from "../common/Button"
-import QRCode, { QRCodeRef } from 'react-fancy-qrcode';
 import { useSelector } from "react-redux"
 import darkTheme from "../../darkTheme"
+import { useState } from "react"
+import Icon from '@expo/vector-icons/FontAwesome'
+import * as Clipboard from 'expo-clipboard';
 
  const ReceiveDetails = ({navigation, route}) => {
 
@@ -16,9 +18,18 @@ import darkTheme from "../../darkTheme"
     const {state} = route.params
     const {id} = route.params
     const {user} = route.params
+    const [loading, setLoading] = useState(true);
+    const [copiedText, setCopiedText] = useState('');
 
     const theme1 = useSelector(state => state.darkTheme)
     const styles = getStyles(theme1 ? theme : darkTheme )
+        
+
+    const copyToClipboard = async () => {
+      await Clipboard.setStringAsync(code);
+    };
+
+
 
     return(
         <View style = {styles.container}>
@@ -27,24 +38,20 @@ import darkTheme from "../../darkTheme"
             <View style = {styles.bx_cont}>
 
             <View style = {styles.qr_bx}>
-                    <QRCode
-                        value={"https://github.com/jgillick/react-fancy-qrcode"}
-                        size={250}
-                        color = {theme.colors.secundary}
-                        dotScale={0.8}
-                        dotRadius="50%"
-                        positionRadius={["5%", "1%"]}
-                        errorCorrection="H"
-                        logo={require("../../../assets/images/logo.jpg")}
-                 />
+            
                 </View>
                 <View style = {styles.bx}>
 
-                    <View style = {styles.details_container}>
-                        <StyledText fontSize='small'>Details</StyledText>
-                        <View style = {styles.detail_bx}>
-                            <StyledText fontSize='small' fontWeight="bold" >Payment code</StyledText>
-                            <StyledText fontSize='small' >{code}</StyledText>
+                    <View style = {styles.details_container }>
+                        <StyledText fontSize='small' fontWeight="bold">Details</StyledText>
+                        <View style = {styles.detail_bx1}>
+                            <View>
+                                <StyledText fontSize='small' fontWeight="bold" >Payment code</StyledText>
+                                <StyledText fontSize='small' >{code}</StyledText>
+                            </View>
+                            <TouchableOpacity onPress={copyToClipboard}>
+                                <Icon name = "copy" style = {styles.icon}/>
+                            </TouchableOpacity>
                         </View>
                         <View style = {styles.detail_bx}>
                             <StyledText fontSize='small' fontWeight="bold" >Amount payable</StyledText>
@@ -58,9 +65,11 @@ import darkTheme from "../../darkTheme"
                             <StyledText fontSize='small' fontWeight="bold" >Date</StyledText>
                             <StyledText fontSize='small'>{date} OSP</StyledText>
                         </View>
+                        {operation === 'pending' && <Button text = "cancel payment receipt"/>}
                     </View>
+                   
                 </View>
-                {operation === 'pending' && <Button text = "cancel payment receipt"/>}
+                
 
             </View>
                 
@@ -96,15 +105,28 @@ import darkTheme from "../../darkTheme"
         backgroundColor: theme.colors.container,
         borderRadius: 20,
         padding: 20,
-        gap: 25
+        gap: 25,
+        alignItems: 'center'
     },
     detail_bx: {
-        gap: 5
+        gap: 5,
+        width: '100%'
+    },
+    detail_bx1: {
+        gap: 5,
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
     bx_cont: {
         flex: 1,
         gap: 30
     },
+    icon: {
+        color: theme.colors.textPrimary,
+        fontSize: theme.fontSize.regular,        
+      },
  })
 
  export default ReceiveDetails
