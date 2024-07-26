@@ -6,12 +6,11 @@ import darkTheme from "../../darkTheme";
 import { Formik } from "formik";
 import FormikInputValue from "../common/FormikInputValue";
 import Button from "../common/Button";
-import { registerValidationSchema } from "../../validationSchemas/register";
-import { generateRandomPhoneNumber } from "../../api/generateRandomPhoneNumber";
 import { useState } from "react";
 import { fetchData } from "../../api/authentication/fetchData";
 import { editDataValidationSchema } from "../../validationSchemas/editData";
 import { updateUserInfo } from "../../store/reducer";
+import { showToast } from "../../api/showToast";
 
 
 const EditDataContent = () => {
@@ -42,17 +41,24 @@ const updateData = async (values,id ) => {
     .then(data => {
         setLoading(false)
         console.log(data)
-        dispatch(updateUserInfo({
-          image: null,
-          last_name: values.last_name,
-          name: values.name,
-          username: values.username
-        }));
+
+        if(data.error){
+            showToast('error', 'Failed', "An error has occurred")
+        }else{
+            showToast('success', 'Updated Data', "Data has been updated correctly.")
+            dispatch(updateUserInfo({
+                image: null,
+                last_name: values.last_name,
+                name: values.name,
+                username: values.username
+              }))
+        }
+        
     })
     .catch(error => {
         console.log(error)
         setLoading(false)});
-
+        showToast('error', 'Failed', "An error has occurred")
 }
 
 
