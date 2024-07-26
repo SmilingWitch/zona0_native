@@ -3,7 +3,8 @@ import { BASE_URL } from '../../../config';
 
 
 
-async function fetchData(endpoint, body = null, headers = null, logout) {
+async function fetchData(endpoint, body = null, headers = null, operation = null) {
+
 
   let options = {
     method: 'GET', // Método predeterminado
@@ -13,12 +14,15 @@ async function fetchData(endpoint, body = null, headers = null, logout) {
       headers
     }
   };
-
   // Modificar el método y el cuerpo si se proporcionan
-  if (body !== null || logout) {
+ if (operation === "update"){
+    options.method = 'PUT'; // Cambiar a POST u otro método según sea necesario
+    options.body = JSON.stringify(body);
+  } else  if ( body !== null || operation === 'logout') {
     options.method = 'POST'; // Cambiar a POST u otro método según sea necesario
     options.body = JSON.stringify(body);
-  }
+  } 
+
   try {
     const response = await fetch(`${BASE_URL}${endpoint}`, options);
     if (!response.ok) {
