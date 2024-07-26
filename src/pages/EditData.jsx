@@ -12,7 +12,7 @@ const EditData = ({navigation}) => {
 
     return(
         <View style = {styles.container}>
-            <BackHeader name = "Edita Data" navigation = {navigation}/>
+            <BackHeader name = "Edit Data" navigation = {navigation}/>
             <EditDataContent/>
         </View>
     )
