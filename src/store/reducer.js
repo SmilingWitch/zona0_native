@@ -54,7 +54,20 @@ const userSlice = createSlice({
         },
         setDarkTheme: (state, action) => {
             state.darkTheme = action.payload
-        }
+        },
+        updateUserInfo: (state, action) => {
+            const { image, last_name, name, username } = action.payload;
+            if (state.user) {
+                state.user = {
+                    ...state.user,
+                    image,
+                    last_name,
+                    name,
+                    username
+                };}
+                console.log(state.user)
+            }
+            
     },
 });
 
@@ -68,5 +81,6 @@ export const {  setUser,
                 setRefreshToken,
                 setZonaPoint,
                 setDarkTheme,
-                setBankedList} = userSlice.actions;
+                setBankedList,
+                updateUserInfo} = userSlice.actions;
 export default userSlice.reducer;
