@@ -1,14 +1,14 @@
 import { View, StyleSheet, Image, TouchableOpacity} from "react-native"
-import StyledText from "../common/StyledText"
-import theme from "../../theme"
-import darkTheme from "../../darkTheme"
+import StyledText from "../components/common/StyledText"
+import theme from "../theme"
+import darkTheme from "../darkTheme"
 import {  useDispatch, useSelector } from "react-redux"
-import BackHeader from "../common/BackHeader"
-import MenuButtons from "./MenuButtons"
+import BackHeader from "../components/common/BackHeader"
+import MenuButtons from "../components/settings/MenuButtons"
 import Icon from '@expo/vector-icons/Ionicons'
-import { setDarkTheme } from "../../store/reducer"
+import { setDarkTheme } from "../store/reducer"
 
-const Menu = ({navigation}) => {
+const Settings = ({navigation}) => {
 
     const user = useSelector(state => state.user)
     const theme1 = useSelector(state => state.darkTheme)
@@ -16,7 +16,7 @@ const Menu = ({navigation}) => {
     const styles = getStyles(theme1 ? theme : darkTheme );
    
     {user === null || user.image === null ?
-        <Image source={require('../../../assets/images/default_user.png')} style = {styles.image}></Image>
+        <Image source={require('../../assets/images/default_user.png')} style = {styles.image}></Image>
         :
         <Image source={{uri: user.image}} style = {styles.image}></Image>
         
@@ -34,7 +34,7 @@ const Menu = ({navigation}) => {
                     {user.image !== null ?
                         <Image source={{uri: user.image}} style = {styles.image}></Image>
                         :
-                        <Image source={require('../../../assets/images/default_user.png')} style = {styles.image}></Image>
+                        <Image source={require('../../assets/images/default_user.png')} style = {styles.image}></Image>
                     }
                         <View style = {styles.user_details}>
                             <StyledText fontWeight='bold'>{user.username}</StyledText>
@@ -112,4 +112,4 @@ const getStyles = (theme) => StyleSheet.create({
     }
 })
 
-export default Menu
+export default Settings
