@@ -17,6 +17,7 @@ const userSlice = createSlice({
         donatedList: [],
         zonaPoint: 0,
         darkTheme: false,
+        effectedOperation: false
 
     },
     reducers: {
@@ -66,7 +67,10 @@ const userSlice = createSlice({
                     username
                 };}
                 console.log(state.user)
-            }
+            },
+        setEffectedOperation: (state, action) => {
+            state.effectedOperation = action.payload
+        }
             
     },
 });
@@ -82,5 +86,6 @@ export const {  setUser,
                 setZonaPoint,
                 setDarkTheme,
                 setBankedList,
-                updateUserInfo} = userSlice.actions;
+                updateUserInfo,
+                setEffectedOperation} = userSlice.actions;
 export default userSlice.reducer;
