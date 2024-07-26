@@ -8,8 +8,8 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchData } from "../../api/authentication/fetchData"
 import { showToast } from "../../api/showToast"
-import { setZonaPoint } from "../../store/reducer"
 import darkTheme from "../../darkTheme"
+import { setEffectedOperation } from "../../store/reducer"
 
 
 const handleNavigation = (operation, data, navigation) => {
@@ -39,7 +39,6 @@ const handleNavigation = (operation, data, navigation) => {
     }
   };
 
-  
 
 
 const OperationCont = ({header, 
@@ -76,6 +75,7 @@ const OperationCont = ({header,
                 showToast('error', 'Failed', data.error.error);
               } else {
                 handleNavigation(operation, data, navigation);
+                dispatch(setEffectedOperation(true))
               }
             })
         .catch(error => {
