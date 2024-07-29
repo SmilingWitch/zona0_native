@@ -90,9 +90,10 @@ const LoginForm = ({navigation}) => {
 
 const getStyles = (theme) => StyleSheet.create({
     container: {
-     backgroundColor: theme.colors.primary,
+     backgroundColor: theme.colors.container,
      alignItems: 'center',
-      paddingHorizontal: 20
+      padding: 20,
+      borderRadius: 20
     } ,
     form: {
         width: `${100}%`,
