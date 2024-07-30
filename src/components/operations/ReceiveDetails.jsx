@@ -11,6 +11,7 @@ import * as Clipboard from 'expo-clipboard';
 import { fetchData } from "../../api/authentication/fetchData"
 import { showToast } from "../../api/showToast"
 import { setpendingList } from "../../store/reducer"
+import DialogComponent from "../common/Dialog"
 
  const ReceiveDetails = ({navigation, route}) => {
 
@@ -23,10 +24,12 @@ import { setpendingList } from "../../store/reducer"
     const {user} = route.params
     const [loading, setLoading] = useState(false);
     const accessToken = useSelector(state => state.accessToken)
+    const [visible, setVisible] = useState(false)
     const deleteReceive = "delete"
     const theme1 = useSelector(state => state.darkTheme)
     const styles = getStyles(theme1 ? theme : darkTheme )
     const dispatch = useDispatch() 
+
 
     const copyToClipboard = async () => {
       await Clipboard.setStringAsync(code);
@@ -45,7 +48,7 @@ import { setpendingList } from "../../store/reducer"
 
     const cancelReceipt = async () => {
         setLoading(true)
-        fetchData(`/transfer/list-delete-unpaid-receive/${id}`, null ,{"access_token" : accessToken}, deleteReceive)
+        fetchData(`/transfer/list-delete-unpaid-receive/${id}`, null ,{"access_token" : accessToken}, "delete")
         .then(data => {
             
             console.log(data);
@@ -102,13 +105,21 @@ import { setpendingList } from "../../store/reducer"
                         {operation === 'pending' && 
                             <Button 
                             text = "cancel payment receipt"
-                            fnc={cancelReceipt}
-                            loading={loading}
+                            fnc={() => setVisible(true)}
                             />}
+                        
                     </View>
                    
                 </View>
-                
+                <DialogComponent 
+                    title = "Delete Receipt" 
+                    description="Are you sure you want to delete the receipt?"
+                    fnc = {cancelReceipt}
+                    loading={loading}
+                    visible={visible}
+                    setVisible={setVisible}
+                    />
+                    
 
             </View>
                 
