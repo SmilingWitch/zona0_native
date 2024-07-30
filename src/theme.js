@@ -7,7 +7,7 @@ const theme = {
         secundary: '#f6632d',
         white: "#fefefe",
         light: '80A0B5',
-        grey: '#F6E2D9',
+        grey: 'rgba(0,0,0,0.3)',
         lightGrey: '#D2D2D2',
         cardColor: '#BA9985',
         buttonColor: '#F2CFC2',
