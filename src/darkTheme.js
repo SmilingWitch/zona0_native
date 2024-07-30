@@ -6,12 +6,12 @@ const darkTheme = {
         secundary: '#E3C0B0',
         white: "#0B0A09",
         light: '#80A0B5',
-        grey: '#333',
+        grey: 'rgba(255,255,255,0.5)',
         lightGrey: '#444',
         cardColor: '#555',
         buttonColor: '#6C4F44',
         desirableColor: 'rgb(80, 80, 80)',
-        container: "rgba(40,20,3, 0.7)"/*"#1F2328"*/,
+        container: "rgb(40,20,3)"/*"#1F2328"*/,
         dialogColor: "#6C4F44"
     },
     fontSize: {
