@@ -66,7 +66,7 @@ const LoginForm = ({navigation}) => {
                         <FormikInputValue
                             placeholder="Password" 
                             name = "password"
-                            secureTextEntry
+                            icon
                         />
                     </View>
                     <View style = {styles.error}>
