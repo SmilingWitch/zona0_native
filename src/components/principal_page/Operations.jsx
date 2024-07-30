@@ -14,37 +14,37 @@ const Operations = ({navigation}) => {
             <Operation 
                 navigation = {navigation} 
                 icon_name = "download" 
-                operation_name="Recibir SOP"
+                operation_name="Receive SOP"
                 url_name="Receibe"
                 />
             <Operation 
                 navigation = {navigation} 
                 icon_name = "upload"  
-                operation_name="Eviar SOP"
+                operation_name="Send SOP"
                 url_name="Send"
                 />
             <Operation 
                 navigation = {navigation} 
                 icon_name = "bank"  
-                operation_name="Bancarizar"
+                operation_name="Banking"
                 url_name="Banking"
                 />
             <Operation 
                 navigation = {navigation} 
                 icon_name = "hearto"  
-                operation_name="Canjear Codigo"
+                operation_name="Redeem"
                 url_name="Redeem"
                 />
             <Operation 
                 navigation = {navigation} 
                 icon_name = "codepen"  
-                operation_name="Donar"
+                operation_name="Donate"
                 url_name="Dashboard"
                 />
             <Operation 
                 navigation = {navigation} 
                 icon_name = "playcircleo"  
-                operation_name="Jugar"
+                operation_name="Play"
                 url_name="Dashboard"
                 />
         </View>
