@@ -63,9 +63,9 @@ const StyledTextInput = ({style = {}, error,color, fontSize, fontWeight,icon, ..
                   inputMode="text"
                   textAlignVertical="top"
                   placeholderTextColor={styles.placeholder.color}
-                  selectionColor={'rgba(58, 109,200, 0.3)'}
+                  selectionColor={theme.colors.grey}
                   autoCapitalize="none" 
-                  secureTextEntry= {icon && visible}
+                  secureTextEntry= {icon && !visible}
                   onFocus={() => setFocus(true)}
                   onBlur={() => setFocus(false)}
                   
@@ -81,7 +81,7 @@ const StyledTextInput = ({style = {}, error,color, fontSize, fontWeight,icon, ..
                 
             }
             <Animated.View style = {[styles.title_box, animatedStyle]} pointerEvents="none">
-                <StyledText style = {[styles.placeholder_text , focus || props.value !== '' ? styles.focus_placeholder : 'rgba(58, 109,200, 0.3)' ]}>{props.placeholder}</StyledText>
+                <StyledText style = {[styles.placeholder_text , focus || props.value !== '' ? styles.focus_placeholder : styles.placeholer_text ]}>{props.placeholder}</StyledText>
             </Animated.View>
             
         </View> 
@@ -107,7 +107,7 @@ const getStyles = (theme) => StyleSheet.create({
         justifyContent: 'space-between'
     },
     placeholer_text: {
-
+       color: theme.colors.grey
     },
     icon: {
         color: theme.colors.textPrimary,
