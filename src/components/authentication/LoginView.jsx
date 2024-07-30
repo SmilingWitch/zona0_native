@@ -1,6 +1,7 @@
 import { ScrollView, TouchableOpacity, View, StyleSheet, Dimensions } from "react-native"
 import StyledText from "../common/StyledText"
 import LoginForm from "./LoginForm"
+import theme from "../../theme"
 
 
 const LoginView = ({navigation}) => {
@@ -43,7 +44,9 @@ const styles = StyleSheet.create({
     form_cont:{
         flex: 1,
         justifyContent: 'space-around',
-        height: Dimensions.get("screen").height - 250
+        height: Dimensions.get("screen").height - 250,
+        padding: theme.padding,
+        
     }
    });
 
