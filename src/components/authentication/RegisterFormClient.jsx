@@ -84,7 +84,7 @@ const RegisterFormClient = ({navigation}) => {
                             <FormikInputValue
                                 placeholder="Password" 
                                 name = "password"
-                                secureTextEntry
+                                icon
                             />
 
                     </View>
