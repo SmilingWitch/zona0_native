@@ -33,7 +33,8 @@ const Operation = ({icon_name, url_name, operation_name, navigation}) => {
 const getStyles = (theme) => StyleSheet.create({
     container: {
         gap: 10,
-        alignItems: 'center'
+        alignItems: 'center',
+        width: 70
     },
     btn: {
         width: 60,
