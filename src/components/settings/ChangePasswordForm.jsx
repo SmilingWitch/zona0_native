@@ -18,7 +18,6 @@ const ChangePasswordForm = () => {
     const user = useSelector(state => state.user)
     const [loading, setLoading] = useState(false)
     const accessToken = useSelector(state => state.accessToken)
-    const update = "update"
     console.log(user)
 
 const initialValues = {
@@ -65,10 +64,12 @@ const changePassword = async (values ) => {
                         <FormikInputValue
                             placeholder="New Password" 
                             name = "new_password1"
+                            icon
                         />
                         <FormikInputValue
                             placeholder="Confirm Password" 
                             name = "new_password2"
+                            icon
                         />
                     </View>
                     <Button  text = "Change Password" fnc = {handleSubmit} loading={loading}></Button>
