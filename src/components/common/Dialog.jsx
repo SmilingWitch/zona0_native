@@ -5,7 +5,7 @@ import StyledText from "./StyledText";
 import { useSelector } from "react-redux";
 import darkTheme from "../../darkTheme";
 
-const DialogComponent = ({title, description, fnc, visible, setVisible, loading}) => {
+const DialogComponent = ({title, description, fnc, visible, setVisible, loading, alert}) => {
 
     const handleCancel = () => {
         setVisible(false);
@@ -27,10 +27,12 @@ const DialogComponent = ({title, description, fnc, visible, setVisible, loading}
                     <ActivityIndicator size="small" color={styles.loader} />
                     <StyledText>Please, wait...</StyledText>
                 </View>:
+                !alert ? 
                 <View style = {styles.button_cont}>
                     <Dialog.Button label="Cancel" onPress={handleCancel} style = {styles.button_cancel}/>
                     <Dialog.Button label="Accept" onPress={fnc} style = {styles.button_function}/>
-                </View>
+                </View>:
+                <Dialog.Button label="Ok" onPress={handleCancel} style = {styles.button_cancel}/>
                 
                 }
                 
