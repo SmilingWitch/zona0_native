@@ -8,11 +8,11 @@ export const operations = (accessToken, dispatch, url, reducer, operation) => fe
     .then(data => {
         if(operation === 'total_balance'){
             dispatch(reducer(data.orcaStore_point))
+            return data
         }else{
             dispatch(reducer(data))
+            return data
         }
-        
-        console.log("OPERATION",operation)
         
     })
     .catch(error => {
