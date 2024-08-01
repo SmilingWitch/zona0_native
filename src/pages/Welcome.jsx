@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "../api/authentication/fetchData";
 import StyledText from "../components/common/StyledText"
-import { setDonatedList, setpendingList, setPerformedList, setTransferedList,setBankedList } from "../store/reducer";
+import { setDonatedList, setpendingList, setPerformedList, setTransferedList,setBankedList, setInstitutionsList } from "../store/reducer";
 import { useCallback, useEffect, useState } from "react";
 import { View, StyleSheet, BackHandler } from "react-native";
 import theme from "../theme";
@@ -42,9 +42,8 @@ const Welcome = ({navigation}) => {
                 operations(accessToken, dispatch, "/transfer/list-paid-receive/", setPerformedList), 
                 operations(accessToken, dispatch, "/institutions/donations/", setDonatedList), 
                 operations(accessToken, dispatch, "/transfer/list-sendTransfer/", setTransferedList),
+                operations(accessToken, dispatch, "/institutions/list-institution/", setInstitutionsList),
                 operations(accessToken, dispatch, "/banking/account/", setBankedList)  ]);
-                
-                
             navigation.navigate('Dashboard'); // Redirigir a otra página después de completar las peticiones
           } catch (error) {
             console.error(error);
