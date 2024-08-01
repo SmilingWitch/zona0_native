@@ -17,8 +17,8 @@ const userSlice = createSlice({
         donatedList: [],
         zonaPoint: 0,
         darkTheme: false,
-        effectedOperation: false
-
+        effectedOperation: false,
+        institutionsList: [],
     },
     reducers: {
         setUser: (state, action) => {
@@ -53,6 +53,9 @@ const userSlice = createSlice({
         setDonatedList: (state, action) => {
             state.donatedList = action.payload
         },
+        setInstitutionsList: (state, action) => {
+            state.institutionsList = action.payload
+        },
         setDarkTheme: (state, action) => {
             state.darkTheme = action.payload
         },
@@ -82,6 +85,7 @@ export const {  setUser,
                 setPerformedList, 
                 setTransferedList,
                 setDonatedList,
+                setInstitutionsList,
                 setRefreshToken,
                 setZonaPoint,
                 setDarkTheme,
