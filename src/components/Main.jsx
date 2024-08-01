@@ -18,6 +18,8 @@ import Toast from 'react-native-toast-message';
 import EditData from "../pages/EditData.jsx";
 import Settings from "../pages/Settings.jsx"
 import ChangePassword from "../pages/ChangePassword.jsx";
+import Donate from "../pages/Donate.jsx";
+import InstitutionView from "./principal_page/InstitutionView.jsx";
 
 const Stack = createNativeStackNavigator();
 
@@ -119,6 +121,16 @@ const Main = () => {
                     <Stack.Screen
                         name = "ChangePassword"
                         component={ChangePassword}
+                        options={{headerShown: false}}
+                    />
+                    <Stack.Screen
+                        name = "Donate"
+                        component={Donate}
+                        options={{headerShown: false}}
+                    />
+                    <Stack.Screen
+                        name = "Institution"
+                        component={InstitutionView}
                         options={{headerShown: false}}
                     />
                 </Stack.Navigator>
