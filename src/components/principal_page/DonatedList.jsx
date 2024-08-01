@@ -30,7 +30,6 @@ const DonatedList = ({navigation}) => {
 
           </View>
          })} 
-         <StyledText fontSize='small'>No hay donaciones</StyledText>
 
       </View>
     )
