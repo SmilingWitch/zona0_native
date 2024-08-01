@@ -39,13 +39,7 @@ const Operations = ({navigation}) => {
                 navigation = {navigation} 
                 icon_name = "codepen"  
                 operation_name="Donate"
-                url_name="Dashboard"
-                />
-            <Operation 
-                navigation = {navigation} 
-                icon_name = "playcircleo"  
-                operation_name="Play"
-                url_name="Dashboard"
+                url_name="Donate"
                 />
         </View>
     )
