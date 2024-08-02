@@ -30,7 +30,6 @@ const PrincipalHeader = ({navigation}) => {
                   <Image source={{uri: user.image}} style = {styles.img_user}></Image>
               </TouchableOpacity>
                }
-              <Icon name = 'bell' style = {styles.icon}></Icon>
               <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
                     <Icon1 name = "setting" style = {styles.icon}></Icon1>
                 </TouchableOpacity>
