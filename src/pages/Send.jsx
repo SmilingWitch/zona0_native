@@ -24,7 +24,7 @@ const Send = ({navigation}) => {
                 btn_text="Verificar"
                 placeholder="Codigo"
                 name = "code"
-                url = "/transfer/create-receive/"
+                url = "/transfer/create-sendTransfer/"
                 validationScheme={sendValidationSchema}
                 initialValues={initialValues}
                 navigation = {navigation}
