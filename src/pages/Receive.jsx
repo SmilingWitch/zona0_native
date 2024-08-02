@@ -18,12 +18,12 @@ const Receive = ({navigation}) => {
 
     return(
         <View style = {styles.container}>
-            <BackHeader name = "Recibir SOP" navigation = {navigation}/>
+            <BackHeader name = "Receive SOP" navigation = {navigation}/>
             <OperationCont 
-                header = "Entre el monto" 
-                content="Introduzca la cantidad de OSP que desea recibir para generar un codigo de pago"
-                btn_text="Generar codigo"
-                placeholder="Monto a recibir"
+                header = "Enter the amount" 
+                content="Enter the amount of OSP you wish to receive to generate a payment code."
+                btn_text="Generate code"
+                placeholder="Amount"
                 name = "amount"
                 url = "/transfer/create-receive/"
                 validationScheme = {receiveValidationSchema}
