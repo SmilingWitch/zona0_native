@@ -58,7 +58,6 @@ const InstitutionView = ({navigation, route}) => {
               } else {
                 showToast('success', 'Success', "Donation successfully sent");
                 setVisible(false)
-                dispatch(setDonationEffected(true))
                 fetchDataOpp()
               }
             })
