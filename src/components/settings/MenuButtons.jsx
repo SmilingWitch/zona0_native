@@ -35,7 +35,6 @@ const MenuButtons = ({navigation}) => {
     return(
         <View style = {styles.container}>
             <Button2 text = "Edit Data" name = 'user' fnc = {() => navigation.navigate("EditData")} navigation = {navigation}/>
-            <Button2 text = "Manage Card" name = 'user'/>
             <Button2 text = "Change Password" name = 'user' fnc = {() => navigation.navigate("ChangePassword")} navigation = {navigation}/>
             <Button2 text = "Logout" fnc = {() => setVisible(true)} /*loading={loading}*/ name = 'user'/>
 
