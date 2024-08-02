@@ -27,10 +27,10 @@ const BankingOpperation = ({navigation}) => {
     return(
         <View style = {styles.container}>
             <OperationCont 
-                header = "Entre el monto" 
-                content=" Deposita tus fondos y obten un interes fijo del 3% cada 30 dias para hacer crecer tus ahorros."
-                btn_text="Depositar"
-                placeholder="Monto a recibir"
+                header = "Enter the amount" 
+                content="Deposit your funds and get a fixed interest rate of 3% every 30 days to grow your savings."
+                btn_text="deposit"
+                placeholder="Amount"
                 name = "amount"
                 url = "/banking/account/"
                 validationScheme = {bankingrValidationSchema}
@@ -39,7 +39,7 @@ const BankingOpperation = ({navigation}) => {
                 operation="banking"
                 />
                 <StyledText fontSize='small' color='resalt' style = {styles.text}>
-                    Los OSP depositados quedaran congelados un total de 60 dias. Luego de eso podra retirarlos
+                    The deposited OSP will be frozen for a total of 60 days. After that you will be able to withdraw them
                 </StyledText>
         </View>
     )
