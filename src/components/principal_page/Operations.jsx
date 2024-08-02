@@ -31,13 +31,13 @@ const Operations = ({navigation}) => {
                 />
             <Operation 
                 navigation = {navigation} 
-                icon_name = "hearto"  
+                icon_name =  "codepen" 
                 operation_name="Redeem"
                 url_name="Redeem"
                 />
             <Operation 
                 navigation = {navigation} 
-                icon_name = "codepen"  
+                icon_name =  "hearto" 
                 operation_name="Donate"
                 url_name="Donate"
                 />
