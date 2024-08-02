@@ -22,8 +22,8 @@ import darkTheme from "../../darkTheme"
 
  const TransferedComponents = () => {
     const routesComponent2 = {
-        transferred: TransferedList ,
-        donated: DonatedList
+        transfers: TransferedList ,
+        donations: DonatedList
       }
       const theme1 = useSelector(state => state.darkTheme)
         const styles = getStyles(theme1 ? theme : darkTheme );
@@ -38,7 +38,7 @@ const LastOperations = ({navigation}) => {
 
     const routesComponent = {
         receipts: () => <ReceivesComponent navigation = {navigation}/>,
-        transfers: TransferedComponents
+        transfer: TransferedComponents
       }
     const theme1 = useSelector(state => state.darkTheme)
     const styles = getStyles(theme1 ? theme : darkTheme );
