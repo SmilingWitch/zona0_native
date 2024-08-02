@@ -73,7 +73,7 @@ const updateData = async (values,id ) => {
     .catch(error => {
         console.log(error)
         setLoading(false)});
-        showToast('error', 'Failed', "An error has occurred")
+       
 }
 
 
