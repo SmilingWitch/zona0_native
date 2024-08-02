@@ -10,11 +10,12 @@ import Button from "../common/Button";
 import { registerValidationSchema } from "../../validationSchemas/register";
 import darkTheme from "../../darkTheme";
 import { generateRandomPhoneNumber } from "../../api/generateRandomPhoneNumber";
+import { showToast } from "../../api/showToast";
 
 
 
 const phoneNumber = generateRandomPhoneNumber("5", 7)
-const ciNumber = generateRandomPhoneNumber("9", 11)
+const ciNumber = generateRandomPhoneNumber("9", 10)
 const initialValues = {
     name : '',
     last_name: '',
@@ -30,7 +31,7 @@ const RegisterFormClient = ({navigation}) => {
 
 
     const [data, setData ] = useState(null)
-    const [error, setError ] = useState(null)
+    const [error, setError ] = useState("")
     const [loading, setLoading ] = useState(false)
 
     const theme1 = useSelector(state => state.darkTheme)
@@ -40,10 +41,19 @@ const RegisterFormClient = ({navigation}) => {
         setLoading(true)
         fetchData('/register/client/', values)
         .then(data => {
-            result(data)
-            error_result(null)
-            setLoading(false)
-            navigation.navigate('VerifyCode')
+
+            if(data.error){
+                console.log(data.error)
+                setError(data.error)
+
+            }else{
+                result(data)
+                
+                navigation.navigate('VerifyCode')
+            }
+            setLoading(false)   
+
+            
         })
         .catch(error => {
             error_result("Unable to log in with provided credentials.")
@@ -65,11 +75,13 @@ const RegisterFormClient = ({navigation}) => {
                                 placeholder="Name" 
                                 name = "name"
                             />
+                            {error.name && <StyledText error fontSize="small" style = {styles.error}>{error.name}</StyledText>}
                             <FormikInputValue
                                 placeholder="Last Name" 
                                 name = "last_name"
                                 secureTextEntry
                             />
+                            {error.last_name && <StyledText error fontSize="small" style = {styles.error}>{error.last_name}</StyledText>}
                         </View>
                     <View style = {styles.input_bx}>
                         <StyledText fontSize='h3' fontWeight="bold">User Information</StyledText>
@@ -77,15 +89,18 @@ const RegisterFormClient = ({navigation}) => {
                                 placeholder="Username" 
                                 name = "username"
                             />
-                            <FormikInputValue
-                                placeholder="Email" 
-                                name = "email"
-                            />
-                            <FormikInputValue
-                                placeholder="Password" 
-                                name = "password"
-                                icon
-                            />
+                        {error.username && <StyledText error fontSize="small" style = {styles.error}>{error.username}</StyledText>}
+                        <FormikInputValue
+                            placeholder="Email" 
+                            name = "email"
+                        />
+                        {error.email && <StyledText error fontSize="small" style = {styles.error}>{error.email}</StyledText>}
+                        <FormikInputValue
+                            placeholder="Password" 
+                            name = "password"
+                            icon
+                        />
+                        {error.password && <StyledText error fontSize="small" style = {styles.error}>{error.password}</StyledText>}
 
                     </View>
 
@@ -131,8 +146,8 @@ const getStyles = (theme) => StyleSheet.create({
   },
 
   error:{
-    /*marginBottom: 30,*/
-    marginTop: 10
+    alignSelf: 'flex-start',
+    bottom: 10
   }
 
    });
