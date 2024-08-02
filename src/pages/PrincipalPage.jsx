@@ -14,7 +14,6 @@ import { setBankedList, setDonatedList, setEffectedOperation, setpendingList, se
 import { useCallback, useEffect, useState } from "react"
 import darkTheme from "../darkTheme"
 import { useFocusEffect } from "@react-navigation/native"
-import DialogComponent from "../components/common/Dialog"
 
 
 const PrincipalPage = ({navigation, route}) => {
