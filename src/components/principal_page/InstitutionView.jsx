@@ -54,7 +54,9 @@ const InstitutionView = ({navigation, route}) => {
         .then(data => {
             setLoading(false)
             if (data.error) {
-                showToast('error', 'Failed', data.error.error);
+                console.log(data.error)
+                showToast('error', 'Failed', data.error.amount);
+                setVisible(false)
               } else {
                 showToast('success', 'Success', "Donation successfully sent");
                 setVisible(false)
