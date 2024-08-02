@@ -71,8 +71,12 @@ const OperationCont = ({header,
         .then(data => {
             setLoading(false)
             console.log(data)
-            if (data.error) {
+            if (data.error.error) {
                 showToast('error', 'Failed', data.error.error);
+              }else if(data.error.amount){
+                showToast('error', 'Failed', data.error.amount);
+              }else if(data.error.message){
+                showToast('error', 'Failed', data.error.message);
               } else {
                 handleNavigation(operation, data, navigation);
                 dispatch(setEffectedOperation(true))
