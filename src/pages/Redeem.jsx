@@ -17,12 +17,12 @@ const Redeem = ({navigation}) => {
 
     return(
         <View style = {styles.container}>
-            <BackHeader name = "Canjear codigo" navigation = {navigation}/>
+            <BackHeader name = "Redeem code" navigation = {navigation}/>
             <OperationCont 
-                header = "Entre el codigo" 
-                content="Aqui podras canjear codigos que estan disponibles para obtener OSP de manera gratuita"
-                btn_text="Verificar"
-                placeholder="Codigo"
+                header = "Enter the code" 
+                content="Here you can redeem codes that are available for free OSP"
+                btn_text="Check"
+                placeholder="Code"
                 initialValues= {initialValues}
                 name= "code"
                 validationScheme= {redeemValidationSchema}
