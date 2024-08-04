@@ -17,12 +17,12 @@ const Send = ({navigation}) => {
 
     return(
         <View style = {styles.container}>
-            <BackHeader navigation = {navigation} name = "Enviar OSP"/>
+            <BackHeader navigation = {navigation} name = "Send OSP"/>
             <OperationCont 
-                header = "Entre el codigo"
-                content="Introduzca el codigo para proceder a pagar el monto establecido"
-                btn_text="Verificar"
-                placeholder="Codigo"
+                header = "Enter the code"
+                content="Enter the code to proceed with the payment of the established amount."
+                btn_text="Send"
+                placeholder="Code"
                 name = "code"
                 url = "/transfer/create-sendTransfer/"
                 validationScheme={sendValidationSchema}
