@@ -12,16 +12,16 @@ const VerifyCode = ({navigation}) => {
     }
 
 
-    const theme1 = useSelector(state => state.darkTheme)
-    const styles = getStyles(theme1 ? theme : darkTheme)
+    const isDarkTheme = useSelector(state => state.darkTheme)
+    const styles = getStyles(isDarkTheme ? theme : darkTheme)
 
     return( 
     <View style = {styles.container}>
         <OperationCont
-                header = "Enytre el codigo"
-                content= "Enviamos un codigo de verificacion temporal a su correo. Copie el codigo aqui para verificar su registro"
-                btn_text="verificar"
-                placeholder="Codigo"
+                header = "Enter the code"
+                content= "We send a temporary verification code to your email. Copy the code here to verify your registration."
+                btn_text="check"
+                placeholder="Code"
                 initialValues={initialValues}
                 name = "token"
                 validationScheme={verifyTokenValidationSchema}

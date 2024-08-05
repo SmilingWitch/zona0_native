@@ -11,9 +11,9 @@ import { setDarkTheme } from "../store/reducer"
 const Settings = ({navigation}) => {
 
     const user = useSelector(state => state.user)
-    const theme1 = useSelector(state => state.darkTheme)
+    const isDarkTheme = useSelector(state => state.darkTheme)
     const dispatch = useDispatch()
-    const styles = getStyles(theme1 ? theme : darkTheme );
+    const styles = getStyles(isDarkTheme ? theme : darkTheme );
    
     {user === null || user.image === null ?
         <Image source={require('../../assets/images/default_user.png')} style = {styles.image}></Image>
@@ -42,7 +42,7 @@ const Settings = ({navigation}) => {
                         </View>
                     </View>
                     <View style = {styles.icon_bx}>
-                        {theme1 ?
+                        {isDarkTheme ?
                             <TouchableOpacity onPress={() => dispatch(setDarkTheme(false))}>
                                 <Icon name = "sunny" style = {styles.icon}></Icon>
                             </TouchableOpacity> :
