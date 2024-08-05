@@ -1,17 +1,14 @@
 import { View, StyleSheet } from "react-native";
+import { Formik } from "formik";
+import { useSelector } from "react-redux";
+import { registerValidationSchema } from "../../validationSchemas/register";
+import { generateRandomPhoneNumber } from "../../api/functions/generateRandomPhoneNumber";
 import theme from "../../theme";
 import StyledText from "../common/StyledText"
-import { Formik } from "formik";
 import FormikInputValue from "../common/FormikInputValue";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchData } from "../../api/authentication/fetchData";
 import Button from "../common/Button";
-import { registerValidationSchema } from "../../validationSchemas/register";
 import darkTheme from "../../darkTheme";
-import { generateRandomPhoneNumber } from "../../api/generateRandomPhoneNumber";
-import { showToast } from "../../api/showToast";
-
+import useRegister from "../../api/hooks/useRegister";
 
 
 const phoneNumber = generateRandomPhoneNumber("5", 7)
@@ -30,54 +27,27 @@ const initialValues = {
 const RegisterFormClient = ({navigation}) => {
 
 
-    const [data, setData ] = useState(null)
-    const [error, setError ] = useState("")
-    const [loading, setLoading ] = useState(false)
-
-    const theme1 = useSelector(state => state.darkTheme)
-    const styles = getStyles(theme1 ? theme : darkTheme )
-
-    const register = async (values, result,error_result, navigation ) => {
-        setLoading(true)
-        fetchData('/register/client/', values)
-        .then(data => {
-
-            if(data.error){
-                console.log(data.error)
-                setError(data.error)
-
-            }else{
-                result(data)
-                
-                navigation.navigate('VerifyCode')
-            }
-            setLoading(false)   
-
-            
-        })
-        .catch(error => {
-            error_result("Unable to log in with provided credentials.")
-            console.log(error)
-            setLoading(false)});
-    }
+    const { loading, error, handleRegister } = useRegister();
+    const isDarkTheme = useSelector(state => state.darkTheme)
+    const styles = getStyles(isDarkTheme ? theme : darkTheme )
 
 
     return(
         <View style={styles.container}>
-            <Formik initialValues={initialValues} 
-            onSubmit={values => register(values, setData, setError, navigation  )} 
+            <Formik initialValues={initialValues}
+            onSubmit={values => handleRegister(values, navigation)}
             validationSchema ={registerValidationSchema}>
             {({handleSubmit}) => (
                 <View style = {styles.form}>
                         <View style = {styles.input_bx}>
                             <StyledText fontSize='h3' fontWeight="bold">Personal Information</StyledText>
                             <FormikInputValue
-                                placeholder="Name" 
+                                placeholder="Name"
                                 name = "name"
                             />
                             {error.name && <StyledText error fontSize="small" style = {styles.error}>{error.name}</StyledText>}
                             <FormikInputValue
-                                placeholder="Last Name" 
+                                placeholder="Last Name"
                                 name = "last_name"
                                 secureTextEntry
                             />
@@ -86,27 +56,23 @@ const RegisterFormClient = ({navigation}) => {
                     <View style = {styles.input_bx}>
                         <StyledText fontSize='h3' fontWeight="bold">User Information</StyledText>
                         <FormikInputValue
-                                placeholder="Username" 
+                                placeholder="Username"
                                 name = "username"
                             />
                         {error.username && <StyledText error fontSize="small" style = {styles.error}>{error.username}</StyledText>}
                         <FormikInputValue
-                            placeholder="Email" 
+                            placeholder="Email"
                             name = "email"
                         />
                         {error.email && <StyledText error fontSize="small" style = {styles.error}>{error.email}</StyledText>}
                         <FormikInputValue
-                            placeholder="Password" 
+                            placeholder="Password"
                             name = "password"
                             icon
                         />
                         {error.password && <StyledText error fontSize="small" style = {styles.error}>{error.password}</StyledText>}
 
                     </View>
-
-                    {/*<View style = {styles.error}>
-                        <StyledText fontSize="small" error>{error}</StyledText>
-                    </View>*/}
                     <Button fnc ={handleSubmit} text = "Register" loading = {loading}></Button>
                 </View>
                 )}
@@ -130,7 +96,7 @@ const getStyles = (theme) => StyleSheet.create({
         borderRadius: 20,
         gap: 30
     },
-    
+
   btn: {
     backgroundColor: theme.colors.secundary,
     width: '100%',
