@@ -7,8 +7,8 @@ import darkTheme from "../../darkTheme"
 
 const Operation = ({icon_name, url_name, operation_name, navigation}) => {
     
-    const theme1 = useSelector(state => state.darkTheme)
-    const styles = getStyles(theme1 ? theme : darkTheme );
+    const isDarkTheme = useSelector(state => state.darkTheme)
+    const styles = getStyles(isDarkTheme ? theme : darkTheme );
 
     return(
         <View style = {styles.container}>

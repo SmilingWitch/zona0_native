@@ -25,8 +25,8 @@ import darkTheme from "../../darkTheme"
         transfers: TransferedList ,
         donations: DonatedList
       }
-      const theme1 = useSelector(state => state.darkTheme)
-        const styles = getStyles(theme1 ? theme : darkTheme );
+      const isDarkTheme = useSelector(state => state.darkTheme)
+        const styles = getStyles(isDarkTheme ? theme : darkTheme );
     return (
         <View style = {styles.container}>
             <TabViewComponent routesComponent ={routesComponent2}/>
@@ -40,8 +40,8 @@ const LastOperations = ({navigation}) => {
         receipts: () => <ReceivesComponent navigation = {navigation}/>,
         transfer: TransferedComponents
       }
-    const theme1 = useSelector(state => state.darkTheme)
-    const styles = getStyles(theme1 ? theme : darkTheme );
+    const isDarkTheme = useSelector(state => state.darkTheme)
+    const styles = getStyles(isDarkTheme ? theme : darkTheme );
 
     return(
         <View style = {styles.container}>

@@ -8,13 +8,13 @@ import Button from "../common/Button"
 import { useState } from "react"
 import { changePassValidationSchema } from "../../validationSchemas/changePassword"
 import { fetchData } from "../../api/authentication/fetchData"
-import { showToast } from "../../api/showToast"
+import { showToast } from "../../api/functions/showToast"
 
 
 const ChangePasswordForm = () => {
 
-    const theme1 = useSelector(state => state.darkTheme)
-    const styles = getStyles(theme1 ? theme : darkTheme )
+    const isDarkTheme = useSelector(state => state.darkTheme)
+    const styles = getStyles(isDarkTheme ? theme : darkTheme )
     const user = useSelector(state => state.user)
     const [loading, setLoading] = useState(false)
     const accessToken = useSelector(state => state.accessToken)
@@ -38,11 +38,11 @@ const changePassword = async (values ) => {
             }else{
                 showToast('error', 'Failed', "An error has occurred")
             }
-            
+
         }else{
             showToast('success', 'Password Changed', "New password has been saved.")
         }
-        
+
     })
     .catch(error => {
         console.log(error)
@@ -55,19 +55,19 @@ const changePassword = async (values ) => {
 
     return(
         <View style = {styles.container}>
-            <Formik initialValues={initialValues} 
-            onSubmit={values => changePassword(values)} 
+            <Formik initialValues={initialValues}
+            onSubmit={values => changePassword(values)}
             validationSchema ={changePassValidationSchema}>
             {({handleSubmit}) => (
                 <View style = {styles.form}>
                     <View style = {styles.input_bx}>
                         <FormikInputValue
-                            placeholder="New Password" 
+                            placeholder="New Password"
                             name = "new_password1"
                             icon
                         />
                         <FormikInputValue
-                            placeholder="Confirm Password" 
+                            placeholder="Confirm Password"
                             name = "new_password2"
                             icon
                         />
@@ -94,7 +94,7 @@ const getStyles = (theme) => StyleSheet.create({
         borderRadius: 20,
         gap: 30
     },
-    
+
   btn: {
     backgroundColor: theme.colors.secundary,
     width: '100%',

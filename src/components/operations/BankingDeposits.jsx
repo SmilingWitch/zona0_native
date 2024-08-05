@@ -11,8 +11,8 @@ import { useState } from "react"
 
 const BankingDeposits = () => {
 
-    const theme1 = useSelector(state => state.darkTheme)
-    const styles = getStyles(theme1 ? theme : darkTheme )
+    const isDarkTheme = useSelector(state => state.darkTheme)
+    const styles = getStyles(isDarkTheme ? theme : darkTheme )
     const bankedList = useSelector(state => state.bankedList)
     const dispatch = useDispatch()
     const accessToken = useSelector(state => state.accessToken)

@@ -9,8 +9,8 @@ import Icon from '@expo/vector-icons/FontAwesome'
 
 const StyledTextInput = ({style = {}, error,color, fontSize, fontWeight,icon, ...props}) => {
 
-    const theme1 = useSelector(state => state.darkTheme)
-    const styles = getStyles(theme1 ? theme : darkTheme )
+    const isDarkTheme = useSelector(state => state.darkTheme)
+    const styles = getStyles(isDarkTheme ? theme : darkTheme )
     const [focus, setFocus] = useState(false)
     const [visible, setVisible] = useState(false)
     const animatedValues = {
@@ -52,23 +52,21 @@ const StyledTextInput = ({style = {}, error,color, fontSize, fontWeight,icon, ..
         }).start()
     }
 
-    console.log(!visible)
-
     return(
         <View style = {styles.input_bx}>
-            <TextInput 
-                  style = {inputStyles } 
-                  {...props} 
-                  editable 
+            <TextInput
+                  style = {inputStyles }
+                  {...props}
+                  editable
                   inputMode="text"
                   textAlignVertical="top"
                   placeholderTextColor={styles.placeholder.color}
                   selectionColor={theme.colors.grey}
-                  autoCapitalize="none" 
+                  autoCapitalize="none"
                   secureTextEntry= {icon && !visible}
                   onFocus={() => setFocus(true)}
                   onBlur={() => setFocus(false)}
-                  
+
                   />
             {icon && (visible === false ?
                 <TouchableOpacity onPress={() => setVisible(true)}>
@@ -78,13 +76,13 @@ const StyledTextInput = ({style = {}, error,color, fontSize, fontWeight,icon, ..
                 <TouchableOpacity onPress={() => setVisible(false)}>
                     <Icon style = {styles.icon} name = "eye"/>
                 </TouchableOpacity>)
-                
+
             }
             <Animated.View style = {[styles.title_box, animatedStyle]} pointerEvents="none">
                 <StyledText style = {[styles.placeholder_text , focus || props.value !== '' ? styles.focus_placeholder : styles.placeholer_text ]}>{props.placeholder}</StyledText>
             </Animated.View>
-            
-        </View> 
+
+        </View>
     )
 }
 
@@ -111,7 +109,7 @@ const getStyles = (theme) => StyleSheet.create({
     },
     icon: {
         color: theme.colors.textPrimary,
-        fontSize: theme.fontSize.regular,        
+        fontSize: theme.fontSize.regular,
     },
     placeholder_text: {
         color: 'rgba(58, 109,200, 0.3)'
@@ -124,7 +122,7 @@ const getStyles = (theme) => StyleSheet.create({
         fontSize: theme.fontSize.regular,
         color: theme.colors.textPrimary,
         paddingTop: 5,
-        width: '90%'    
+        width: '90%'
     },
      placeholder: {
         color: theme.colors.textPrimary,
@@ -148,7 +146,7 @@ const getStyles = (theme) => StyleSheet.create({
      },
      colorPrimary: {
         color: theme.colors.textPrimary,
-        
+
     },
     colorSecundary: {
         color: theme.colors.primary

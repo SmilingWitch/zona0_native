@@ -14,8 +14,8 @@ import { bankingrValidationSchema } from "../../validationSchemas/banking"
 
 const BankingOpperation = ({navigation}) => {
 
-    const theme1 = useSelector(state => state.darkTheme)
-    const styles = getStyles(theme1 ? theme : darkTheme )
+    const isDarkTheme = useSelector(state => state.darkTheme)
+    const styles = getStyles(isDarkTheme ? theme : darkTheme )
     const user = useSelector(state => state.user)
 
     const initialValues = {

@@ -10,8 +10,8 @@ import { useSelector } from "react-redux"
 
 const TabViewComponent = ({routesComponent, styled}) => {
 
-  const theme1 = useSelector(state => state.darkTheme)
-    const styles = getStyles(theme1 ? theme : darkTheme )
+  const isDarkTheme = useSelector(state => state.darkTheme)
+    const styles = getStyles(isDarkTheme ? theme : darkTheme )
 
   const styledTab = [
     styled && styles.tapbar,

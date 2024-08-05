@@ -9,8 +9,8 @@ import darkTheme from "../../darkTheme"
 
 const Button2 = ({text, fnc,loading,name, ...props}) => {
 
-    const theme1 = useSelector(state => state.darkTheme)
-    const styles = getStyles(theme1 ? theme : darkTheme );
+    const isDarkTheme = useSelector(state => state.darkTheme)
+    const styles = getStyles(isDarkTheme ? theme : darkTheme );
 
     return(
         loading ? 
@@ -19,10 +19,7 @@ const Button2 = ({text, fnc,loading,name, ...props}) => {
         </View>
         :
         <TouchableOpacity style = {styles.container } onPress={fnc}>
-            <View style = {styles.details}>
-
-                {/*<Icon  name = {name} style = {styles.image} ></Icon>*/}
-                
+            <View style = {styles.details}>                
                 <StyledText fontSize='small' fontWeight='bold' style = {styles.text}>{text}</StyledText>
             </View>
            

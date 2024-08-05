@@ -8,7 +8,7 @@ import Button from "../common/Button"
 import {useState } from "react"
 import DialogDonate from "../operations/DialogDonate"
 import { fetchData } from "../../api/authentication/fetchData"
-import { showToast } from "../../api/showToast"
+import { showToast } from "../../api/functions/showToast"
 import {setDonationEffected, setInstitutionsList } from "../../store/reducer"
 import { operations } from "../../api/authentication/operations"
 
@@ -16,23 +16,23 @@ import { operations } from "../../api/authentication/operations"
 const InstitutionView = ({navigation, route}) => {
 
     const {item} = route.params
-    const theme1 = useSelector(state => state.darkTheme)
-    const styles = getStyles(theme1 ? theme : darkTheme )
+    const isDarkTheme = useSelector(state => state.darkTheme)
+    const styles = getStyles(isDarkTheme ? theme : darkTheme )
     const [visible, setVisible] = useState(false)
     const [donatedAmount, setDonatedAmount] = useState(item.institution_osp)
     const [loading, setLoading] = useState(false)
     const accessToken = useSelector(state => state.accessToken)
     const user = useSelector(state => state.user)
     const dispatch = useDispatch()
-    
+
     const initialValues = {
         amount:'',
         user: user.pk,
         institution: item.id
    }
-   
-  
-   
+
+
+
    const fetchDataOpp = async () => {
         try {
            const result =  await operations(accessToken, dispatch, "/institutions/list-institution/", setInstitutionsList);
@@ -42,11 +42,11 @@ const InstitutionView = ({navigation, route}) => {
             console.error(error);
         }
     };
-    
+
    const operationFetch = async (value) => {
         setLoading(true)
 
-        fetchData("/institutions/donations/", 
+        fetchData("/institutions/donations/",
             {amount:value.amount,
             user: user.pk,
             institution: item.id}, accessToken )
@@ -98,9 +98,9 @@ const InstitutionView = ({navigation, route}) => {
                 initialValues = {initialValues}
                 loading={loading}
             />
-            
+
         </ScrollView>
-        
+
     )
 }
 
@@ -129,7 +129,7 @@ const getStyles = (theme) => StyleSheet.create({
     amount: {
         alignSelf: 'center'
     }
-    
+
 })
 
 export default InstitutionView

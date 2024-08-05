@@ -5,11 +5,11 @@ import theme from "../../theme"
 import {StyleSheet} from 'react-native'
 const StatusBarComponent = () => {
 
-    const theme1 = useSelector(state => state.darkTheme)
-    const styles = getStyles(theme1 ? theme : darkTheme )
+    const isDarkTheme = useSelector(state => state.darkTheme)
+    const styles = getStyles(isDarkTheme ? theme : darkTheme )
 
     return <StatusBar 
-            style = {theme1 ? "dark" : "light" }
+            style = {isDarkTheme ? "dark" : "light" }
             backgroundColor={styles.backgroundColor}/>
 }
 

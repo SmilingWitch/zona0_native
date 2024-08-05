@@ -9,8 +9,8 @@ const DonatedList = ({navigation}) => {
 
     const donatedList = useSelector(state => state.donatedList)
     const isValidArray = Array.isArray(donatedList) && donatedList.length > 0
-    const theme1 = useSelector(state => state.darkTheme)
-    const styles = getStyles(theme1 ? theme : darkTheme );
+    const isDarkTheme = useSelector(state => state.darkTheme)
+    const styles = getStyles(isDarkTheme ? theme : darkTheme );
 
     return(
         !isValidArray ? 

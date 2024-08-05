@@ -9,7 +9,7 @@ import { useState } from "react"
 import Icon from '@expo/vector-icons/FontAwesome'
 import * as Clipboard from 'expo-clipboard';
 import { fetchData } from "../../api/authentication/fetchData"
-import { showToast } from "../../api/showToast"
+import { showToast } from "../../api/functions/showToast"
 import { setpendingList } from "../../store/reducer"
 import DialogComponent from "../common/Dialog"
 
@@ -26,9 +26,9 @@ import DialogComponent from "../common/Dialog"
     const accessToken = useSelector(state => state.accessToken)
     const [visible, setVisible] = useState(false)
     const deleteReceive = "delete"
-    const theme1 = useSelector(state => state.darkTheme)
-    const styles = getStyles(theme1 ? theme : darkTheme )
-    const dispatch = useDispatch() 
+    const isDarkTheme = useSelector(state => state.darkTheme)
+    const styles = getStyles(isDarkTheme ? theme : darkTheme )
+    const dispatch = useDispatch()
 
 
     const copyToClipboard = async () => {
@@ -43,29 +43,29 @@ import DialogComponent from "../common/Dialog"
             navigation.navigate("Dashboard")
             showToast('success', 'Deleted Payment Receive', "The payment receipt has been deleted correctly.")
          })
-        
+
     }
 
     const cancelReceipt = async () => {
         setLoading(true)
         fetchData(`/transfer/list-delete-unpaid-receive/${id}`, null ,{"access_token" : accessToken}, "delete")
         .then(data => {
-            
+
             console.log(data);
             if(data.error){
                 showToast('error', 'Failed', "An error has occurred.")
-                
+
                 setLoading(false)
             }else{
-                updateData() 
+                updateData()
             }
-            
+
         })
         .catch(error => {
             console.log(error)
             showToast('error', 'Failed', "An error has occurred.")
             setLoading(false)});
-    
+
     }
 
     return(
@@ -75,7 +75,7 @@ import DialogComponent from "../common/Dialog"
             <View style = {styles.bx_cont}>
 
             <View style = {styles.qr_bx}>
-            
+
                 </View>
                 <View style = {styles.bx}>
 
@@ -102,32 +102,32 @@ import DialogComponent from "../common/Dialog"
                             <StyledText fontSize='small' fontWeight="bold" >Date</StyledText>
                             <StyledText fontSize='small'>{date} OSP</StyledText>
                         </View>
-                        {operation === 'pending' && 
-                            <Button 
+                        {operation === 'pending' &&
+                            <Button
                             text = "cancel payment receipt"
                             fnc={() => setVisible(true)}
                             />}
-                        
+
                     </View>
-                   
+
                 </View>
-                <DialogComponent 
-                    title = "Delete Receipt" 
+                <DialogComponent
+                    title = "Delete Receipt"
                     description="Are you sure you want to delete the receipt?"
                     fnc = {cancelReceipt}
                     loading={loading}
                     visible={visible}
                     setVisible={setVisible}
                     />
-                    
+
 
             </View>
-                
+
             </ScrollView>
-            
-            
+
+
         </View>
-        
+
     )
  }
 
@@ -147,7 +147,7 @@ import DialogComponent from "../common/Dialog"
         alignItems: 'center'
     },
     bx: {
-        
+
     },
     details_container: {
         width: '100%',
@@ -175,7 +175,7 @@ import DialogComponent from "../common/Dialog"
     },
     icon: {
         color: theme.colors.textPrimary,
-        fontSize: theme.fontSize.regular,        
+        fontSize: theme.fontSize.regular,
       },
  })
 

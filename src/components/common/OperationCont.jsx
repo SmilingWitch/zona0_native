@@ -7,7 +7,7 @@ import FormikInputValue from "./FormikInputValue"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchData } from "../../api/authentication/fetchData"
-import { showToast } from "../../api/showToast"
+import { showToast } from "../../api/functions/showToast"
 import darkTheme from "../../darkTheme"
 import { setEffectedOperation } from "../../store/reducer"
 
@@ -41,12 +41,12 @@ const handleNavigation = (operation, data, navigation) => {
 
 
 
-const OperationCont = ({header, 
+const OperationCont = ({header,
                         content,
                         btn_text,
-                        placeholder, 
+                        placeholder,
                         initialValues,
-                        name, 
+                        name,
                         validationScheme,
                         url,
                         operation,
@@ -57,16 +57,16 @@ const OperationCont = ({header,
     const [loading, setLoading ] = useState(false)
     const accessToken = useSelector(state => state.accessToken)
     const dispatch = useDispatch()
-    const theme1 = useSelector(state => state.darkTheme)
-    const styles = getStyles(theme1 ? theme : darkTheme ) 
+    const isDarkTheme = useSelector(state => state.darkTheme)
+    const styles = getStyles(isDarkTheme ? theme : darkTheme )
 
     const operationFetch = async (value, url) => {
-        
+
         const url_token = url !== null ? url : `/accounts/email/verify/${value.token}/`
         setLoading(true)
         const token = operation === 'verify_token' ? null : {"access_token": accessToken}
         const values = operation === 'verify_token' ? null : value
-        
+
         fetchData(url_token, values, token)
         .then(data => {
             setLoading(false)
@@ -92,14 +92,14 @@ const OperationCont = ({header,
             <View style = {styles.bx}>
                 <StyledText  fontWeight="bold">{header}</StyledText>
                 <StyledText fontSize="small">{content}</StyledText>
-                <Formik initialValues={initialValues} 
-                    onSubmit={value => operationFetch(value ,url)} 
+                <Formik initialValues={initialValues}
+                    onSubmit={value => operationFetch(value ,url)}
                     validationSchema ={validationScheme}>
                     {({handleSubmit}) => (
                         <View style = {styles.form}>
                             <View style = {styles.input_bx}>
                                 <FormikInputValue
-                                    placeholder={placeholder} 
+                                    placeholder={placeholder}
                                     name = {name}
                                 />
                             </View>
@@ -109,7 +109,7 @@ const OperationCont = ({header,
                             <View style = {styles.btn_bx}>
                                 <Button fnc ={handleSubmit} text = {btn_text} loading = {loading}></Button>
                             </View>
-                            
+
                         </View>
                         )}
                 </Formik>
