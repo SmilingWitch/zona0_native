@@ -8,12 +8,13 @@ import TotalBalance from "../components/principal_page/TotalBalance"
 import Operations from "../components/principal_page/Operations"
 import Icon from '@expo/vector-icons/EvilIcons'
 import LastOperations from "../components/principal_page/LastOperations"
-import { operations } from "../api/authentication/operations"
+import { operations } from "../api/general/operations"
 import { useDispatch, useSelector } from "react-redux"
 import { setBankedList, setDonatedList, setEffectedOperation, setpendingList, setPerformedList, setTransferedList, setZonaPoint } from "../store/reducer";
 import { useCallback, useEffect, useState } from "react"
 import darkTheme from "../darkTheme"
 import { useFocusEffect } from "@react-navigation/native"
+import { refreshData } from "../api/functions/refreshOperationsData"
 
 
 const PrincipalPage = ({navigation, route}) => {
@@ -26,22 +27,22 @@ const PrincipalPage = ({navigation, route}) => {
     const styles = getStyles(isDarkTheme ? theme : darkTheme );
     const effectedOperation = useSelector(state => state.effectedOperation)
 
-    const refreshData = async () => {
+    /*const refreshData = async () => {
       try {
         setLoading(true)
         await Promise.all([
-            operations(accessToken, dispatch, "/transfer/list-unpaid-receive/", setpendingList), 
-            operations(accessToken, dispatch, "/transfer/list-paid-receive/", setPerformedList), 
-            operations(accessToken, dispatch, "/institutions/donations/", setDonatedList), 
+            operations(accessToken, dispatch, "/transfer/list-unpaid-receive/", setpendingList),
+            operations(accessToken, dispatch, "/transfer/list-paid-receive/", setPerformedList),
+            operations(accessToken, dispatch, "/institutions/donations/", setDonatedList),
             operations(accessToken, dispatch, "/transfer/list-sendTransfer/", setTransferedList),
-            operations(accessToken, dispatch, "/accounts/osp_points/", setZonaPoint, "total_balance") 
+            operations(accessToken, dispatch, "/accounts/osp_points/", setZonaPoint, "total_balance")
         ]);
             setLoading(false)
         }catch (error) {
         console.error(error)
         setLoading(false)
       }
-    };
+    };*/
 
 
     useFocusEffect(
@@ -52,10 +53,10 @@ const PrincipalPage = ({navigation, route}) => {
             // Retorna true para prevenir el comportamiento predeterminado de retroceso
             return true;
           };
-    
+
           // Agregar el listener para el evento de retroceso del hardware
           BackHandler.addEventListener('hardwareBackPress', onBackPress);
-    
+
           return () => {
             // Remover el listener cuando el componente se desenfoca
             BackHandler.removeEventListener('hardwareBackPress', onBackPress);
@@ -66,30 +67,12 @@ const PrincipalPage = ({navigation, route}) => {
     useFocusEffect(
         useCallback(() => {
             if(effectedOperation){
-                const fetchData = async () => {
-                    setLoading(true);
-                    try {
-                        await Promise.all([
-                            operations(accessToken, dispatch, "/transfer/list-unpaid-receive/", setpendingList), 
-                            operations(accessToken, dispatch, "/transfer/list-paid-receive/", setPerformedList), 
-                            operations(accessToken, dispatch, "/institutions/donations/", setDonatedList), 
-                            operations(accessToken, dispatch, "/transfer/list-sendTransfer/", setTransferedList),
-                            operations(accessToken, dispatch, "/banking/account/", setBankedList)
-                        ]);
-                        dispatch(setEffectedOperation(false))
-                    } catch (error) {
-                        console.error(error);
-                        dispatch(setEffectedOperation(false))
-                    } finally {
-                        setLoading(false);
-                    }
-                };
-                fetchData();
+                refreshData(setLoading, accessToken, dispatch)
             }
 
 
-            
-        }, [])
+
+        }, [effectedOperation])
     );
 
 
@@ -112,11 +95,11 @@ const PrincipalPage = ({navigation, route}) => {
                 <View style = {styles.item}>
                 <View style = {styles.header}>
                     <StyledText fontSize="h3">Last Operations</StyledText>
-                    {loading ? 
+                    {loading ?
                     <View>
-                        <ActivityIndicator size="small" color={styles.loaderColor} /> 
+                        <ActivityIndicator size="small" color={styles.loaderColor} />
                     </View>
-                    : <TouchableOpacity onPress={() => refreshData() }>
+                    : <TouchableOpacity onPress={() => refreshData( setLoading, accessToken, dispatch) }>
                         <Icon name = "undo" style = {styles.icon}></Icon>
                     </TouchableOpacity>}
                 </View>
@@ -124,10 +107,10 @@ const PrincipalPage = ({navigation, route}) => {
                 </View>
 
             </View>
-            
-            
+
+
         </ScrollView>
-        
+
     )
 }
 
