@@ -4,7 +4,7 @@ import StyledTextInput from "./StyleTextInput"
 import StyledText from "./StyledText"
 
 const FormikInputValue = ({name, ...props}) => {
-    
+
     const [field, meta, helpers] = useField(name)
 
 
@@ -13,7 +13,7 @@ const FormikInputValue = ({name, ...props}) => {
             <StyledTextInput
                 error = {meta.touched && meta.error ? meta.error : ''}
                 value={field.value}
-                onChangeText={value => helpers.setValue(value)} 
+                onChangeText={value => helpers.setValue(value)}
                 onBlur={() => helpers.setTouched(true)}
                 {...props}/>
 
@@ -21,11 +21,10 @@ const FormikInputValue = ({name, ...props}) => {
                 {meta.touched && meta.error ? (
                     <StyledText style={styles.error} fontSize='small'>{meta.error}</StyledText>
                 ) : null}
-
             </View>
 
         </View>
-        
+
     )
 }
 

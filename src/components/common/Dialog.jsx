@@ -1,16 +1,23 @@
 import { View, StyleSheet, ActivityIndicator } from "react-native"
+import { useSelector } from "react-redux";
 import Dialog from "react-native-dialog";
 import theme from "../../theme";
 import StyledText from "./StyledText";
-import { useSelector } from "react-redux";
 import darkTheme from "../../darkTheme";
 
-const DialogComponent = ({title, description, fnc, visible, setVisible, loading, alert}) => {
+const DialogComponent = ({
+    title,
+    description,
+    fnc,
+    visible,
+    setVisible,
+    loading,
+    alert}) => {
 
     const handleCancel = () => {
         setVisible(false);
       };
-    
+
     const isDarkTheme = useSelector(state => state.darkTheme)
     const styles = getStyles(isDarkTheme ? theme : darkTheme )
 
@@ -22,20 +29,20 @@ const DialogComponent = ({title, description, fnc, visible, setVisible, loading,
                 <Dialog.Description style = {styles.text}>
                     {description}
                 </Dialog.Description>
-                {loading ? 
+                {loading ?
                 <View style = {styles.button_cont}>
                     <ActivityIndicator size="small" color={styles.loader} />
                     <StyledText>Please, wait...</StyledText>
                 </View>:
-                !alert ? 
+                !alert ?
                 <View style = {styles.button_cont}>
                     <Dialog.Button label="Cancel" onPress={handleCancel} style = {styles.button_cancel}/>
                     <Dialog.Button label="Accept" onPress={fnc} style = {styles.button_function}/>
                 </View>:
                 <Dialog.Button label="Ok" onPress={handleCancel} style = {styles.button_cancel}/>
-                
+
                 }
-                
+
             </Dialog.Container>
         </View>
     )
@@ -46,7 +53,7 @@ const getStyles = (theme) => StyleSheet.create({
         borderRadius: 20,
         backgroundColor: theme.colors.dialogColor
     },
-    loader: 
+    loader:
         theme.colors.secundary,
     text: {
         fontSize: theme.fontSize.regular,

@@ -15,9 +15,9 @@ const PendingList = ({navigation}) => {
             </View>
              :
              <View style = {styles.container}>
-                <ReceiptsLastOperationItemList data = {pendingList} navigation = {navigation} operation='pending'/> 
+                <ReceiptsLastOperationItemList data = {pendingList} navigation = {navigation} operation='pending'/>
              </View>
-            
+
     )
 }
 
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     container: {
         height: 600,
     }
-    
+
 })
 
 export default PendingList

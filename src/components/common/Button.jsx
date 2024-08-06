@@ -1,8 +1,8 @@
 import { TouchableOpacity, StyleSheet, ActivityIndicator } from "react-native"
-import StyledText from "./StyledText"
-import theme from "../../theme"
 import { View } from "react-native"
 import { useSelector } from "react-redux"
+import StyledText from "./StyledText"
+import theme from "../../theme"
 import darkTheme from "../../darkTheme"
 
 
@@ -12,15 +12,15 @@ const Button = ({text, fnc,loading, ...props}) => {
     const styles = getStyles(isDarkTheme ? theme : darkTheme )
 
     return(
-        loading ? 
+        loading ?
         <View style = {styles.container}>
-            <ActivityIndicator size="small" color="#ffff" /> 
+            <ActivityIndicator size="small" color="#ffff" />
         </View>
         :
         <TouchableOpacity style = {styles.container} onPress={fnc}>
             <StyledText color = "secundary" fontSize='small'>{text.toUpperCase()}</StyledText>
-        </TouchableOpacity> 
-        
+        </TouchableOpacity>
+
     )
 }
 

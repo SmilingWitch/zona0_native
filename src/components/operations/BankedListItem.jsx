@@ -13,13 +13,13 @@ const BankedListItem = ({data}) => {
     const styles = getStyles(isDarkTheme ? theme : darkTheme )
     const [calc, SetCalc] = useState()
 
-    useEffect(() => { 
+    useEffect(() => {
         if (data.date_banked >= 30 && data.date_banked %  30 ===  0){
-            SetCalc(((data.amount * (data.date_banked/30) * (3/100)) + res.amount))
+            SetCalc(((data.amount * (data.date_banked/30) * (3/100)) + data.amount))
         } else{
             SetCalc(data.amount)
         }
-        
+
       }, []);
 
     return (
@@ -44,12 +44,12 @@ const BankedListItem = ({data}) => {
                     <StyledText fontSize='small' fontWeight='bold'>Blocking time</StyledText>
                     <StyledText fontSize='small'>{data.date_banked} dia(s)</StyledText>
                 </View>
-                
+
             </View>
             <View>
             {data.date_banked > 60 ? <Button text = "Withdraw"/> : ""}
-                
-                
+
+
             </View>
         </View>
     )

@@ -1,6 +1,6 @@
-import { useDispatch, useSelector } from "react-redux"
-import StyledText from "../common/StyledText"
+import { useSelector } from "react-redux"
 import { View, StyleSheet } from "react-native"
+import StyledText from "../common/StyledText"
 import theme from "../../theme"
 import darkTheme from "../../darkTheme"
 
@@ -8,14 +8,15 @@ import darkTheme from "../../darkTheme"
 const DonatedList = ({navigation}) => {
 
     const donatedList = useSelector(state => state.donatedList)
-    const isValidArray = Array.isArray(donatedList) && donatedList.length > 0
     const isDarkTheme = useSelector(state => state.darkTheme)
-    const styles = getStyles(isDarkTheme ? theme : darkTheme );
+    const styles = getStyles(isDarkTheme ? theme : darkTheme )
+
+    const isValidArray = Array.isArray(donatedList) && donatedList.length > 0
 
     return(
-        !isValidArray ? 
+        !isValidArray ?
         <View style = {styles.empty_container}>
-            <StyledText fontSize='small'>No hay donaciones</StyledText>
+            <StyledText fontSize='small'>No donations have been made yet</StyledText>
         </View>
          :
          <View style = {styles.container}>
@@ -29,7 +30,7 @@ const DonatedList = ({navigation}) => {
           </View>
 
           </View>
-         })} 
+         })}
 
       </View>
     )
@@ -65,7 +66,7 @@ const getStyles = (theme) => StyleSheet.create({
         alignItems: 'center',
         borderRadius: 20
     }
-    
+
 })
 
 export default DonatedList

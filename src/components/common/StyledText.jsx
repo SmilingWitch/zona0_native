@@ -25,11 +25,8 @@ const StyledText = ({children, color, fontSize, fontWeight,style,error,...props}
         style
     ]
 
-    
-
-
    return (
-            <Text style = {textStyles} {...props}> 
+            <Text style = {textStyles} {...props}>
                 {children}
             </Text>)
 }
@@ -38,7 +35,7 @@ const StyledText = ({children, color, fontSize, fontWeight,style,error,...props}
 const getStyles = (theme) => StyleSheet.create({
     colorPrimary: {
         color: theme.colors.textPrimary,
-        
+
     },
     colorSecundary: {
         color: theme.colors.primary

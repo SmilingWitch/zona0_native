@@ -1,46 +1,53 @@
 import { View, StyleSheet } from "react-native"
+import { useSelector } from "react-redux"
 import theme from "../../theme"
 import Operation from "./Operation"
-import { useSelector } from "react-redux"
 import darkTheme from "../../darkTheme"
 
 
 const Operations = ({navigation}) => {
     const isDarkTheme = useSelector(state => state.darkTheme)
     const styles = getStyles(isDarkTheme ? theme : darkTheme );
+    const details = [
+        {
+            icon_name : "download",
+            operation_name :  "Receive SOP",
+            url_name : "Receibe"
+        },
+        {
+            icon_name : "upload",
+            operation_name :  "Send SOP",
+            url_name : "Send"
+        },
+        {
+            icon_name : "bank",
+            operation_name :  "Banking",
+            url_name : "Banking"
+        },
+        {
+            icon_name : "codepen",
+            operation_name :  "Redeem",
+            url_name : "Redeem"
+        },
+        {
+            icon_name : "hearto",
+            operation_name :  "Donate",
+            url_name : "Donate"
+        },
+    ]
 
     return(
         <View style = {styles.container}>
-            <Operation 
-                navigation = {navigation} 
-                icon_name = "download" 
-                operation_name="Receive SOP"
-                url_name="Receibe"
+            {details.map((item) => {
+                return <Operation
+                            key = {item.icon_name}
+                            navigation = {navigation}
+                            icon_name = {item.icon_name}
+                            operation_name = {item.operation_name}
+                            url_name = {item.url_name}
                 />
-            <Operation 
-                navigation = {navigation} 
-                icon_name = "upload"  
-                operation_name="Send SOP"
-                url_name="Send"
-                />
-            <Operation 
-                navigation = {navigation} 
-                icon_name = "bank"  
-                operation_name="Banking"
-                url_name="Banking"
-                />
-            <Operation 
-                navigation = {navigation} 
-                icon_name =  "codepen" 
-                operation_name="Redeem"
-                url_name="Redeem"
-                />
-            <Operation 
-                navigation = {navigation} 
-                icon_name =  "hearto" 
-                operation_name="Donate"
-                url_name="Donate"
-                />
+            })}
+
         </View>
     )
 }

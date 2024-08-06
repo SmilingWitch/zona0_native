@@ -1,58 +1,51 @@
 import { TouchableOpacity, View, StyleSheet, ActivityIndicator } from "react-native"
 import StyledText from "../common/StyledText"
-import Icon from '@expo/vector-icons/EvilIcons'
-import theme from "../../theme"
 import { useDispatch, useSelector } from "react-redux"
+import Icon from '@expo/vector-icons/EvilIcons'
+import { useState } from "react"
+import theme from "../../theme"
 import darkTheme from "../../darkTheme"
 import BankedListItem from "./BankedListItem"
 import { setBankedList } from "../../store/reducer"
-import { operations } from "../../api/authentication/operations";
-import { useState } from "react"
+import { operations } from "../../api/general/operations";
+
 
 const BankingDeposits = () => {
 
     const isDarkTheme = useSelector(state => state.darkTheme)
     const styles = getStyles(isDarkTheme ? theme : darkTheme )
     const bankedList = useSelector(state => state.bankedList)
-    const dispatch = useDispatch()
     const accessToken = useSelector(state => state.accessToken)
-    const isValidArray = Array.isArray(bankedList) && bankedList.length > 0
+    const dispatch = useDispatch()
     const [loading, setLoading] = useState(false)
+
+    const isValidArray = Array.isArray(bankedList) && bankedList.length > 0
 
     const fetchData = async () => {
         setLoading(true)
-        try {
-          await operations(accessToken, dispatch, "/banking/account/", setBankedList) ;   
-          setLoading(false)
-        } catch (error) {
-          console.error(error);
-          setLoading(false)
-        }
+        await operations(accessToken, dispatch, "/banking/account/", setBankedList) ;
+        setLoading(false)
       };
 
-    console.log(bankedList)
 
     return(
         <View style = {styles.container}>
             <View style = {styles.header}>
                 <StyledText fontSize="h3">Deposits</StyledText>
-                {loading ? 
-                    <ActivityIndicator size="small" color={styles.loaderColor} /> 
+                {loading ?
+                    <ActivityIndicator size="small" color={styles.loaderColor} />
                     : <TouchableOpacity onPress={fetchData}>
                     <Icon name = "undo" style = {styles.icon}></Icon>
                 </TouchableOpacity>}
             </View>
             <View style = {styles.deposits}>
-                {isValidArray ? 
+                {isValidArray ?
                     bankedList.slice().reverse().map((item) => {
                         return <BankedListItem key = {item.id} data = {item}></BankedListItem>
                     })
                     : <StyledText fontSize='small'>No hay depositos aun</StyledText>
                 }
-                
             </View>
-
-
         </View>
     )
 }

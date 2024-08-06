@@ -1,10 +1,11 @@
 import { TextInput, StyleSheet, View, Animated, TouchableOpacity } from "react-native"
-import theme from "../../theme"
 import { useSelector } from "react-redux"
-import darkTheme from "../../darkTheme"
-import StyledText from "./StyledText"
 import { useEffect, useRef, useState } from "react"
 import Icon from '@expo/vector-icons/FontAwesome'
+import theme from "../../theme"
+import darkTheme from "../../darkTheme"
+import StyledText from "./StyledText"
+
 
 
 const StyledTextInput = ({style = {}, error,color, fontSize, fontWeight,icon, ...props}) => {
@@ -13,9 +14,7 @@ const StyledTextInput = ({style = {}, error,color, fontSize, fontWeight,icon, ..
     const styles = getStyles(isDarkTheme ? theme : darkTheme )
     const [focus, setFocus] = useState(false)
     const [visible, setVisible] = useState(false)
-    const animatedValues = {
-        animation: useRef(new Animated.Value(0)).current
-    }
+    const animatedValues = { animation: useRef(new Animated.Value(0)).current }
     const {animation} = animatedValues
 
     const inputStyles = [
@@ -94,12 +93,11 @@ const getStyles = (theme) => StyleSheet.create({
         fontSize: theme.fontSize.regular,
         color: theme.colors.textPrimary,
         width: `${100}%`,
-        backgroundColor: /*theme.colors.primary*/ 'transparent',
+        backgroundColor:  'transparent',
         borderColor: theme.colors.secundary,
         borderWidth: 1,
         borderRadius: 20,
         padding: 12,
-        /*backgroundColor: theme.colors.white,*/
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between'

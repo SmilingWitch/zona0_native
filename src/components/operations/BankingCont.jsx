@@ -1,7 +1,6 @@
-import { ScrollView, StyleSheet, View } from "react-native"
+import { ScrollView, StyleSheet } from "react-native"
 import BankingDeposits from "./BankingDeposits"
 import BankingOpperation from "./BankingOpperation"
-import theme from "../../theme"
 
 
 const BankingCont = () => {
@@ -10,7 +9,7 @@ const BankingCont = () => {
            <BankingOpperation/>
             <BankingDeposits/>
         </ScrollView>
-        
+
     )
 }
 

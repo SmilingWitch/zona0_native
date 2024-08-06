@@ -7,8 +7,9 @@ import FormikInputValue from "../common/FormikInputValue"
 import Button from "../common/Button"
 import { useState } from "react"
 import { changePassValidationSchema } from "../../validationSchemas/changePassword"
-import { fetchData } from "../../api/authentication/fetchData"
+import { fetchData } from "../../api/general/fetchData"
 import { showToast } from "../../api/functions/showToast"
+import { changePassword } from "../../api/functions/changePassword"
 
 
 const ChangePasswordForm = () => {
@@ -26,37 +27,10 @@ const initialValues = {
 }
 
 
-const changePassword = async (values ) => {
-    setLoading(true)
-    fetchData('/accounts/password/change/', values,{"access_token" : accessToken})
-    .then(data => {
-        setLoading(false)
-        console.log(data);
-         if(data.error){
-            if(data.error.new_password1 || data.error.new_password2){
-                showToast('error', 'Failed', "The two password fields didn’t match.")
-            }else{
-                showToast('error', 'Failed', "An error has occurred")
-            }
-
-        }else{
-            showToast('success', 'Password Changed', "New password has been saved.")
-        }
-
-    })
-    .catch(error => {
-        console.log(error)
-        showToast('error', 'Failed', "An error has occurred")
-        setLoading(false)});
-
-}
-
-
-
     return(
         <View style = {styles.container}>
             <Formik initialValues={initialValues}
-            onSubmit={values => changePassword(values)}
+            onSubmit={values => changePassword(values, setLoading, accessToken)}
             validationSchema ={changePassValidationSchema}>
             {({handleSubmit}) => (
                 <View style = {styles.form}>

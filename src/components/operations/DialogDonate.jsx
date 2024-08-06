@@ -15,7 +15,7 @@ const DialogDonate = ({title, visible, setVisible, fnc, loading, initialValues})
     const handleCancel = () => {
         setVisible(false);
       };
-    
+
     const isDarkTheme = useSelector(state => state.darkTheme)
     const styles = getStyles(isDarkTheme ? theme : darkTheme )
 
@@ -24,21 +24,21 @@ const DialogDonate = ({title, visible, setVisible, fnc, loading, initialValues})
             <Dialog.Container visible={visible} contentStyle = {styles.container} >
                 <Dialog.Title style = {styles.text}>{title}</Dialog.Title>
                 <Dialog.Description style = {styles.text}>
-                    <Formik initialValues={initialValues} 
-                        onSubmit={value => fnc(value)} 
+                    <Formik initialValues={initialValues}
+                        onSubmit={value => fnc(value)}
                         validationSchema ={donateValidationSchema}>
                         {({handleSubmit}) => (
                             <View style = {styles.form}>
                                 <View style = {styles.input_bx}>
                                     <FormikInputValue
-                                        placeholder="amount to donate" 
+                                        placeholder="amount to donate"
                                         name = "amount"
                                     />
                                 </View>
                                 <View style = {styles.error}>
                                     <StyledText fontSize="small" ></StyledText>
                                 </View>
-                                {loading ? 
+                                {loading ?
                                 <View style = {styles.button_cont}>
                                     <ActivityIndicator size="small" color={styles.loader} />
                                     <StyledText>Please, wait...</StyledText>
@@ -66,13 +66,13 @@ const getStyles = (theme) => StyleSheet.create({
         backgroundColor: theme.colors.container,
         alignItems: 'center'
     },
-    loader: 
+    loader:
         theme.colors.secundary,
     text: {
         fontSize: theme.fontSize.regular,
         color: theme.colors.textPrimary,
         alignItems: 'center'
-        
+
     },
     button_function: {
         borderRadius: 20,
@@ -92,11 +92,11 @@ const getStyles = (theme) => StyleSheet.create({
         justifyContent: 'flex-end',
         gap: 20
     },
-    form: { 
+    form: {
         alignSelf: 'center'
     },
     error: {
-        
+
     }
 
 

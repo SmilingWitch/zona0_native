@@ -1,8 +1,8 @@
 
 import { useSelector } from "react-redux"
+import { View,  StyleSheet, Image } from "react-native"
 import StyledText from "../common/StyledText"
 import Button from "../common/Button"
-import { View,  StyleSheet, Image } from "react-native"
 import theme from "../../theme"
 import darkTheme from "../../darkTheme"
 
@@ -21,7 +21,7 @@ const Institution = ({item, navigation}) => {
                 <Button text = "Visit" fnc = {() => navigation.navigate('Institution', {item : item })}></Button>
             </View>
         </View>
-        
+
     )
 }
 

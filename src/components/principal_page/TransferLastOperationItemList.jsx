@@ -1,11 +1,11 @@
-import { View, StyleSheet, TouchableOpacity } from "react-native"
+import { View, StyleSheet } from "react-native"
+import { useSelector } from "react-redux"
 import StyledText from "../common/StyledText"
 import theme from "../../theme"
-import { useSelector } from "react-redux"
 import darkTheme from "../../darkTheme"
 
 
-const TransferLastOperationItemList = ({data, navigation}) => {
+const TransferLastOperationItemList = ({data}) => {
 
     const isValidArray = Array.isArray(data) && data.length > 0
     const isDarkTheme = useSelector(state => state.darkTheme)
@@ -13,9 +13,9 @@ const TransferLastOperationItemList = ({data, navigation}) => {
 
     return(
         <View style = {styles.container}>
-        {!isValidArray ? 
+        {!isValidArray ?
             <View style = {styles.empty_container}>
-                <StyledText fontSize="small">No existen recibos de pago efectuados</StyledText>
+                <StyledText fontSize="small">No transfers have been made</StyledText>
             </View> :
             data.slice(-10).map((item) => {
             return <View key = {item.id} style = {styles.item}>
@@ -25,7 +25,7 @@ const TransferLastOperationItemList = ({data, navigation}) => {
                     <StyledText fontSize='small'>{item.date}</StyledText>
                     <StyledText fontSize='small'>{item.time}</StyledText>
                 </View>
-                
+
             </View>
             <View style = {styles.amount_bx}>
                 <StyledText fontSize='small'>{item['receive amount']} OSP</StyledText>
@@ -33,8 +33,8 @@ const TransferLastOperationItemList = ({data, navigation}) => {
 
             </View>
            })}
-        
-            
+
+
 
         </View>
     )

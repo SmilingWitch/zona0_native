@@ -1,31 +1,27 @@
 import { View, StyleSheet, ScrollView, TouchableOpacity} from "react-native"
+import { useState } from "react"
+import * as Clipboard from 'expo-clipboard';
+import Icon from '@expo/vector-icons/FontAwesome'
+import { useDispatch, useSelector } from "react-redux"
 import StyledText from "../common/StyledText"
 import theme from "../../theme"
 import BackHeader from "../common/BackHeader"
 import Button from "../common/Button"
-import { useDispatch, useSelector } from "react-redux"
 import darkTheme from "../../darkTheme"
-import { useState } from "react"
-import Icon from '@expo/vector-icons/FontAwesome'
-import * as Clipboard from 'expo-clipboard';
-import { fetchData } from "../../api/authentication/fetchData"
-import { showToast } from "../../api/functions/showToast"
-import { setpendingList } from "../../store/reducer"
 import DialogComponent from "../common/Dialog"
+import { cancelReceipt } from "../../api/functions/cancelReceipt"
 
  const ReceiveDetails = ({navigation, route}) => {
 
-    const {amount} = route.params
-    const {code} = route.params
-    const {date} = route.params
-    const {operation} = route.params
-    const {state} = route.params
-    const {id} = route.params
-    const {user} = route.params
+    const { amount,
+            code,
+            date,
+            operation,
+            state,
+            id } = route.params
     const [loading, setLoading] = useState(false);
     const accessToken = useSelector(state => state.accessToken)
     const [visible, setVisible] = useState(false)
-    const deleteReceive = "delete"
     const isDarkTheme = useSelector(state => state.darkTheme)
     const styles = getStyles(isDarkTheme ? theme : darkTheme )
     const dispatch = useDispatch()
@@ -34,39 +30,6 @@ import DialogComponent from "../common/Dialog"
     const copyToClipboard = async () => {
       await Clipboard.setStringAsync(code);
     };
-
-    const updateData = async () => {
-         await fetchData("/transfer/list-unpaid-receive/", null, { "access_token": accessToken })
-         .then(data => {
-            dispatch(setpendingList(data))
-            setLoading(false)
-            navigation.navigate("Dashboard")
-            showToast('success', 'Deleted Payment Receive', "The payment receipt has been deleted correctly.")
-         })
-
-    }
-
-    const cancelReceipt = async () => {
-        setLoading(true)
-        fetchData(`/transfer/list-delete-unpaid-receive/${id}`, null ,{"access_token" : accessToken}, "delete")
-        .then(data => {
-
-            console.log(data);
-            if(data.error){
-                showToast('error', 'Failed', "An error has occurred.")
-
-                setLoading(false)
-            }else{
-                updateData()
-            }
-
-        })
-        .catch(error => {
-            console.log(error)
-            showToast('error', 'Failed', "An error has occurred.")
-            setLoading(false)});
-
-    }
 
     return(
         <View style = {styles.container}>
@@ -107,25 +70,18 @@ import DialogComponent from "../common/Dialog"
                             text = "cancel payment receipt"
                             fnc={() => setVisible(true)}
                             />}
-
                     </View>
-
                 </View>
                 <DialogComponent
                     title = "Delete Receipt"
                     description="Are you sure you want to delete the receipt?"
-                    fnc = {cancelReceipt}
+                    fnc = {() => cancelReceipt(setLoading, id, accessToken, dispatch, navigation)}
                     loading={loading}
                     visible={visible}
                     setVisible={setVisible}
                     />
-
-
             </View>
-
             </ScrollView>
-
-
         </View>
 
     )

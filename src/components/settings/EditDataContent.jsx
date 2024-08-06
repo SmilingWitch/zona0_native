@@ -7,12 +7,14 @@ import { Formik } from "formik";
 import FormikInputValue from "../common/FormikInputValue";
 import Button from "../common/Button";
 import { useState } from "react";
-import { fetchData } from "../../api/authentication/fetchData";
+import { fetchData } from "../../api/general/fetchData";
 import { editDataValidationSchema } from "../../validationSchemas/editData";
 import { updateUserInfo } from "../../store/reducer";
 import { showToast } from "../../api/functions/showToast";
 import * as ImagePicker from 'expo-image-picker';
 import DialogComponent from "../common/Dialog";
+import { updateData } from "../../api/functions/updateUserData";
+import { updateImage } from "../../api/functions/updateUserImage";
 
 
 const EditDataContent = () => {
@@ -26,13 +28,13 @@ const EditDataContent = () => {
     const [imageInfo, setImageInfo] = useState(null)
     const [visible, setVisible] = useState(false)
     const initialValues = {
-    name : user.name,
-    last_name: user.last_name,
-    username: user.username,
-    movil: user.movil,
-    ci: user.ci,
-    image: user.image
-    }
+            name : user.name,
+            last_name: user.last_name,
+            username: user.username,
+            movil: user.movil,
+            ci: user.ci,
+            image: user.image
+        }
     const [imageUri, setImageUri] = useState(user.image !== null ? user.image : null);
 
 
@@ -56,11 +58,12 @@ const EditDataContent = () => {
         if (!result.canceled) {
             setImageUri(result.assets[0].uri);
             setImageInfo(result)
+            updateImage(setLoading, imageInfo, accessToken, imageUri)
 
         }
       };
 
-const updateData = async (values,id ) => {
+/*const updateData = async (values,id ) => {
     setLoading(true)
     fetchData(`/users/client-update/${id}/`,
         {
@@ -94,10 +97,10 @@ const updateData = async (values,id ) => {
         console.log(error)
         setLoading(false)});
 
-}
+}*/
 
 
-const updateImage = async (image) => {
+/*const updateImage = async (image) => {
     setLoading(true)
 
 
@@ -135,13 +138,21 @@ const updateImage = async (image) => {
         console.log(error)
         setLoading(false)});
 
-}
+}*/
 
 
     return(
         <View style = {styles.container}>
             <Formik initialValues={initialValues}
-            onSubmit={values => updateData(values, user.pk )}
+            onSubmit={values => updateData( values,
+                                            user.pk,
+                                            setLoading,
+                                            user,
+                                            accessToken,
+                                            dispatch,
+                                            imageUri,
+                                            imageInfo
+                                            )}
             validationSchema ={editDataValidationSchema}>
             {({handleSubmit}) => (
                 <View style = {styles.form}>

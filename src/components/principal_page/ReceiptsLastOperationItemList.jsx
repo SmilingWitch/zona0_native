@@ -17,13 +17,13 @@ const ReceiptsLastOperationItemList = ({data, navigation, operation}) => {
         <View style = {styles.container}>
         {!isValidArray ?
             <View style = {styles.empty_container}>
-                <StyledText fontSize="small">No existen recibos de pago efectuados</StyledText>
+                <StyledText fontSize="small">There are no outstanding receipts yet</StyledText>
             </View>
         :
         data.slice(-10).map((item) => {
-         return <TouchableOpacity    key = {item.id} 
-                                     style = {styles.item} 
-                                     onPress={ () => navigation.navigate("ReceiveDetails", 
+         return <TouchableOpacity    key = {item.id}
+                                     style = {styles.item}
+                                     onPress={ () => navigation.navigate("ReceiveDetails",
                                      {amount: item.amount,
                                      state: item.state,
                                      code: item.code,
@@ -31,7 +31,7 @@ const ReceiptsLastOperationItemList = ({data, navigation, operation}) => {
                                      image: item.image,
                                      id: item.id,
                                      user: item.user ,
-                                     operation: operation            
+                                     operation: operation
                                      })}>
          <View style = {styles.details_bx}>
              <StyledText fontSize='small' fontWeight='bold'>{item.code}</StyledText>
@@ -39,13 +39,13 @@ const ReceiptsLastOperationItemList = ({data, navigation, operation}) => {
                  <StyledText fontSize='small'>{item.date}</StyledText>
                  <StyledText fontSize='small'>{item.time}</StyledText>
              </View>
-             
+
          </View>
          <View style = {styles.amount_bx}>
              <StyledText fontSize='small'>{item.amount} OSP</StyledText>
          </View>
          </TouchableOpacity>
-        })} 
+        })}
 
         </View>
     )

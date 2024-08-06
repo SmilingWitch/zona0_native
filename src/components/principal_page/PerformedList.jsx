@@ -13,19 +13,19 @@ const PerformedList = ({navigation}) => {
 
     return(
         <>
-        {performedList.message || !performedList ? 
+        {performedList.message || !performedList ?
         <View style = {styles.empty_container}>
-            <StyledText fontSize='small'>No existen recibos pagados</StyledText>
+            <StyledText fontSize='small'>There are no paid receipts</StyledText>
         </View>
          :
          <ReceiptsLastOperationItemList data = {performedList} navigation = {navigation} operation='performed'/>
         }
-        </>  
+        </>
     )
 }
 
 const getStyles = (theme) => StyleSheet.create({
-    empty_container: {  
+    empty_container: {
         alignSelf: 'center',
         marginTop: 20
 

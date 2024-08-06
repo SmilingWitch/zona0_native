@@ -1,16 +1,14 @@
 import { View, StyleSheet, Image, ScrollView } from "react-native"
-import StyledText from "../common/StyledText"
 import { useDispatch, useSelector } from "react-redux"
+import {useState } from "react"
+import StyledText from "../common/StyledText"
 import theme from "../../theme"
 import darkTheme from "../../darkTheme"
 import BackHeader from "../common/BackHeader"
 import Button from "../common/Button"
-import {useState } from "react"
 import DialogDonate from "../operations/DialogDonate"
-import { fetchData } from "../../api/authentication/fetchData"
-import { showToast } from "../../api/functions/showToast"
-import {setDonationEffected, setInstitutionsList } from "../../store/reducer"
-import { operations } from "../../api/authentication/operations"
+import {setInstitutionsList } from "../../store/reducer"
+import { donations } from "../../api/functions/donations"
 
 
 const InstitutionView = ({navigation, route}) => {
@@ -30,46 +28,6 @@ const InstitutionView = ({navigation, route}) => {
         user: user.pk,
         institution: item.id
    }
-
-
-
-   const fetchDataOpp = async () => {
-        try {
-           const result =  await operations(accessToken, dispatch, "/institutions/list-institution/", setInstitutionsList);
-           const foundItem = result.find(i=> i.id === item.id);
-           setDonatedAmount(foundItem.institution_osp)
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-   const operationFetch = async (value) => {
-        setLoading(true)
-
-        fetchData("/institutions/donations/",
-            {amount:value.amount,
-            user: user.pk,
-            institution: item.id}, accessToken )
-
-        .then(data => {
-            setLoading(false)
-            if (data.error) {
-                console.log(data.error)
-                showToast('error', 'Failed', data.error.amount);
-                setVisible(false)
-              } else {
-                showToast('success', 'Success', "Donation successfully sent");
-                setVisible(false)
-                fetchDataOpp()
-              }
-            })
-        .catch(error => {
-            showToast('error', 'Failed', "An error has occurred");
-            setLoading(false)})
-    }
-
-
-
 
     return(
         <ScrollView style = {styles.container}>
@@ -93,7 +51,15 @@ const InstitutionView = ({navigation, route}) => {
                 visible={visible}
                 setVisible={setVisible}
                 input
-                fnc = {value =>operationFetch(value)}
+                fnc = {value =>donations(value,
+                                        setLoading,
+                                        item,
+                                        user,
+                                        accessToken,
+                                        setVisible,
+                                        dispatch,
+                                        setInstitutionsList,
+                                        setDonatedAmount )}
                 id = {item.id}
                 initialValues = {initialValues}
                 loading={loading}

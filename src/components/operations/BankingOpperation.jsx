@@ -1,15 +1,10 @@
-import { View, StyleSheet, TouchableOpacity } from "react-native"
-import StyledText from "../common/StyledText"
-import StyledTextInput from "../common/StyleTextInput"
-import Button from "../common/Button"
-import theme from "../../theme"
-import Icon from '@expo/vector-icons/EvilIcons'
+import { View, StyleSheet} from "react-native"
 import { useSelector } from "react-redux"
+import StyledText from "../common/StyledText"
+import theme from "../../theme"
 import darkTheme from "../../darkTheme"
 import OperationCont from "../common/OperationCont"
 import { bankingrValidationSchema } from "../../validationSchemas/banking"
-
-
 
 
 const BankingOpperation = ({navigation}) => {
@@ -26,8 +21,8 @@ const BankingOpperation = ({navigation}) => {
 
     return(
         <View style = {styles.container}>
-            <OperationCont 
-                header = "Enter the amount" 
+            <OperationCont
+                header = "Enter the amount"
                 content="Deposit your funds and get a fixed interest rate of 3% every 30 days to grow your savings."
                 btn_text="deposit"
                 placeholder="Amount"
@@ -49,7 +44,7 @@ const getStyles = (theme) => StyleSheet.create({
     text: {
         padding: theme.padding
     },
-    
+
 })
 
 export default BankingOpperation

@@ -3,7 +3,7 @@ import Button2 from "../common/Button2"
 import { useState } from "react"
 import DialogComponent from "../common/Dialog"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchData } from "../../api/authentication/fetchData"
+import { fetchData } from "../../api/general/fetchData"
 import { logout } from "../../store/reducer"
 
 
@@ -13,7 +13,7 @@ const MenuButtons = ({navigation}) => {
     const refreshToken = useSelector(state => state.refreshToken)
     const dispatch = useDispatch()
     const [loading, setLoaging] = useState(false)
-    
+
     const logout_session = () => {
         setLoaging(true)
         fetchData("/accounts/logout/", {"refresh": refreshToken }, logout)
@@ -24,7 +24,7 @@ const MenuButtons = ({navigation}) => {
                     setVisible(false)
                     navigation.navigate("Login")
                     })
-                
+
                 .catch(error => {
                     console.log("MESSAGE",error)
                     setLoaging(false)
@@ -38,9 +38,9 @@ const MenuButtons = ({navigation}) => {
             <Button2 text = "Change Password" name = 'user' fnc = {() => navigation.navigate("ChangePassword")} navigation = {navigation}/>
             <Button2 text = "Logout" fnc = {() => setVisible(true)} /*loading={loading}*/ name = 'user'/>
 
-            <DialogComponent 
-                title="Logout" 
-                description="Are you sure you want to close the session?" 
+            <DialogComponent
+                title="Logout"
+                description="Are you sure you want to close the session?"
                 visible = {visible}
                 setVisible={setVisible}
                 fnc ={logout_session}
