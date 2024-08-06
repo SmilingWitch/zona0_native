@@ -21,14 +21,14 @@ dependencies:
     specifier: ^2.2.6
     version: 2.2.6(react-redux@9.1.2)(react@18.2.0)
   expo:
-    specifier: ~51.0.23
-    version: 51.0.23(@babel/core@7.24.7)(@babel/preset-env@7.24.7)
+    specifier: ~51.0.24
+    version: 51.0.24(@babel/core@7.24.7)(@babel/preset-env@7.24.7)
   expo-clipboard:
     specifier: ^6.0.3
-    version: 6.0.3(expo@51.0.23)
+    version: 6.0.3(expo@51.0.24)
   expo-image-picker:
     specifier: ^15.0.7
-    version: 15.0.7(expo@51.0.23)
+    version: 15.0.7(expo@51.0.24)
   expo-status-bar:
     specifier: ~1.12.1
     version: 1.12.1
@@ -4072,79 +4072,79 @@ packages:
       strip-final-newline: 2.0.0
     dev: false
 
-  /expo-asset@10.0.10(expo@51.0.23):
+  /expo-asset@10.0.10(expo@51.0.24):
     resolution: {integrity: sha512-0qoTIihB79k+wGus9wy0JMKq7DdenziVx3iUkGvMAy2azscSgWH6bd2gJ9CGnhC6JRd3qTMFBL0ou/fx7WZl7A==}
     peerDependencies:
       expo: '*'
     dependencies:
-      expo: 51.0.23(@babel/core@7.24.7)(@babel/preset-env@7.24.7)
-      expo-constants: 16.0.2(expo@51.0.23)
+      expo: 51.0.24(@babel/core@7.24.7)(@babel/preset-env@7.24.7)
+      expo-constants: 16.0.2(expo@51.0.24)
       invariant: 2.2.4
       md5-file: 3.2.3
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  /expo-clipboard@6.0.3(expo@51.0.23):
+  /expo-clipboard@6.0.3(expo@51.0.24):
     resolution: {integrity: sha512-RIKDsuHkYfaspifbFpVC8sBVFKR05L7Pj7mU2/XkbrW9m01OBNvdpGraXEMsTFCx97xMGsZpEw9pPquL4j4xVg==}
     peerDependencies:
       expo: '*'
     dependencies:
-      expo: 51.0.23(@babel/core@7.24.7)(@babel/preset-env@7.24.7)
+      expo: 51.0.24(@babel/core@7.24.7)(@babel/preset-env@7.24.7)
     dev: false
 
-  /expo-constants@16.0.2(expo@51.0.23):
+  /expo-constants@16.0.2(expo@51.0.24):
     resolution: {integrity: sha512-9tNY3OVO0jfiMzl7ngb6IOyR5VFzNoN5OOazUWoeGfmMqVB5kltTemRvKraK9JRbBKIw+SOYLEmF0sEqgFZ6OQ==}
     peerDependencies:
       expo: '*'
     dependencies:
       '@expo/config': 9.0.3
       '@expo/env': 0.3.0
-      expo: 51.0.23(@babel/core@7.24.7)(@babel/preset-env@7.24.7)
+      expo: 51.0.24(@babel/core@7.24.7)(@babel/preset-env@7.24.7)
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  /expo-file-system@17.0.1(expo@51.0.23):
+  /expo-file-system@17.0.1(expo@51.0.24):
     resolution: {integrity: sha512-dYpnZJqTGj6HCYJyXAgpFkQWsiCH3HY1ek2cFZVHFoEc5tLz9gmdEgTF6nFHurvmvfmXqxi7a5CXyVm0aFYJBw==}
     peerDependencies:
       expo: '*'
     dependencies:
-      expo: 51.0.23(@babel/core@7.24.7)(@babel/preset-env@7.24.7)
+      expo: 51.0.24(@babel/core@7.24.7)(@babel/preset-env@7.24.7)
     dev: false
 
-  /expo-font@12.0.9(expo@51.0.23):
+  /expo-font@12.0.9(expo@51.0.24):
     resolution: {integrity: sha512-seTCyf0tbgkAnp3ZI9ZfK9QVtURQUgFnuj+GuJ5TSnN0XsOtVe1s2RxTvmMgkfuvfkzcjJ69gyRpsZS1cC8hjw==}
     peerDependencies:
       expo: '*'
     dependencies:
-      expo: 51.0.23(@babel/core@7.24.7)(@babel/preset-env@7.24.7)
+      expo: 51.0.24(@babel/core@7.24.7)(@babel/preset-env@7.24.7)
       fontfaceobserver: 2.3.0
     dev: false
 
-  /expo-image-loader@4.7.0(expo@51.0.23):
+  /expo-image-loader@4.7.0(expo@51.0.24):
     resolution: {integrity: sha512-cx+MxxsAMGl9AiWnQUzrkJMJH4eNOGlu7XkLGnAXSJrRoIiciGaKqzeaD326IyCTV+Z1fXvIliSgNW+DscvD8g==}
     peerDependencies:
       expo: '*'
     dependencies:
-      expo: 51.0.23(@babel/core@7.24.7)(@babel/preset-env@7.24.7)
+      expo: 51.0.24(@babel/core@7.24.7)(@babel/preset-env@7.24.7)
     dev: false
 
-  /expo-image-picker@15.0.7(expo@51.0.23):
+  /expo-image-picker@15.0.7(expo@51.0.24):
     resolution: {integrity: sha512-u8qiPZNfDb+ap6PJ8pq2iTO7JKX+ikAUQ0K0c7gXGliKLxoXgDdDmXxz9/6QdICTshJBJlBvI0MwY5NWu7A/uw==}
     peerDependencies:
       expo: '*'
     dependencies:
-      expo: 51.0.23(@babel/core@7.24.7)(@babel/preset-env@7.24.7)
-      expo-image-loader: 4.7.0(expo@51.0.23)
+      expo: 51.0.24(@babel/core@7.24.7)(@babel/preset-env@7.24.7)
+      expo-image-loader: 4.7.0(expo@51.0.24)
     dev: false
 
-  /expo-keep-awake@13.0.2(expo@51.0.23):
+  /expo-keep-awake@13.0.2(expo@51.0.24):
     resolution: {integrity: sha512-kKiwkVg/bY0AJ5q1Pxnm/GvpeB6hbNJhcFsoOWDh2NlpibhCLaHL826KHUM+WsnJRbVRxJ+K9vbPRHEMvFpVyw==}
     peerDependencies:
       expo: '*'
     dependencies:
-      expo: 51.0.23(@babel/core@7.24.7)(@babel/preset-env@7.24.7)
+      expo: 51.0.24(@babel/core@7.24.7)(@babel/preset-env@7.24.7)
     dev: false
 
   /expo-modules-autolinking@1.11.1:
@@ -4168,8 +4168,8 @@ packages:
     resolution: {integrity: sha512-/t3xdbS8KB0prj5KG5w7z+wZPFlPtkgs95BsmrP/E7Q0xHXTcDcQ6Cu2FkFuRM+PKTb17cJDnLkawyS5vDLxMA==}
     dev: false
 
-  /expo@51.0.23(@babel/core@7.24.7)(@babel/preset-env@7.24.7):
-    resolution: {integrity: sha512-tZv7hiDIlKMlQxzC/IxfiLEpp0xcm6VISuoeFobkvoelEWsj6bpjlsF0HP4k6pr3ELL++r7wE1VGYa/AceC6+w==}
+  /expo@51.0.24(@babel/core@7.24.7)(@babel/preset-env@7.24.7):
+    resolution: {integrity: sha512-HoOuNIWXzS6Gxifcb0N+qRt5K6iR9YitQaWIVNB8elyupvQdyI566IMgMBiO45NgpO5es0sfFNNBasxBHLkbUw==}
     hasBin: true
     dependencies:
       '@babel/runtime': 7.24.7
@@ -4179,10 +4179,10 @@ packages:
       '@expo/metro-config': 0.18.10
       '@expo/vector-icons': 14.0.2
       babel-preset-expo: 11.0.12(@babel/core@7.24.7)(@babel/preset-env@7.24.7)
-      expo-asset: 10.0.10(expo@51.0.23)
-      expo-file-system: 17.0.1(expo@51.0.23)
-      expo-font: 12.0.9(expo@51.0.23)
-      expo-keep-awake: 13.0.2(expo@51.0.23)
+      expo-asset: 10.0.10(expo@51.0.24)
+      expo-file-system: 17.0.1(expo@51.0.24)
+      expo-font: 12.0.9(expo@51.0.24)
+      expo-keep-awake: 13.0.2(expo@51.0.24)
       expo-modules-autolinking: 1.11.1
       expo-modules-core: 1.12.20
       fbemitter: 3.0.0
