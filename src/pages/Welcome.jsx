@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { fetchData } from "../api/authentication/fetchData";
+import { fetchData } from "../api/general/fetchData";
 import StyledText from "../components/common/StyledText"
 import { setDonatedList, setpendingList, setPerformedList, setTransferedList,setBankedList, setInstitutionsList } from "../store/reducer";
 import { useCallback, useEffect, useState } from "react";
 import { View, StyleSheet, BackHandler } from "react-native";
 import theme from "../theme";
-import { operations } from "../api/authentication/operations";
+import { operations } from "../api/general/operations";
 import { useFocusEffect } from "@react-navigation/native";
 
 
@@ -22,10 +22,10 @@ const Welcome = ({navigation}) => {
             // Si retorna true, previene el comportamiento predeterminado de retroceso
             return true;
           };
-    
+
           // Agregar el listener para el evento de retroceso del hardware
           BackHandler.addEventListener('hardwareBackPress', onBackPress);
-    
+
           return () => {
             // Remover el listener cuando el componente se desenfoca
             BackHandler.removeEventListener('hardwareBackPress', onBackPress);
@@ -38,9 +38,9 @@ const Welcome = ({navigation}) => {
         const fetchData = async () => {
           try {
             await Promise.all([
-                operations(accessToken, dispatch, "/transfer/list-unpaid-receive/", setpendingList), 
-                operations(accessToken, dispatch, "/transfer/list-paid-receive/", setPerformedList), 
-                operations(accessToken, dispatch, "/institutions/donations/", setDonatedList), 
+                operations(accessToken, dispatch, "/transfer/list-unpaid-receive/", setpendingList),
+                operations(accessToken, dispatch, "/transfer/list-paid-receive/", setPerformedList),
+                operations(accessToken, dispatch, "/institutions/donations/", setDonatedList),
                 operations(accessToken, dispatch, "/transfer/list-sendTransfer/", setTransferedList),
                 operations(accessToken, dispatch, "/institutions/list-institution/", setInstitutionsList),
                 operations(accessToken, dispatch, "/banking/account/", setBankedList)  ]);
@@ -51,12 +51,12 @@ const Welcome = ({navigation}) => {
         };
         fetchData();
     }, [dispatch, accessToken]);
-    
-    
+
+
     return(
         <View style = {styles.container}>
             <StyledText color='secundary' fontSize='h1' fontWeight='bold'>Zona 0</StyledText>
-        </View>  
+        </View>
     )
 }
 
