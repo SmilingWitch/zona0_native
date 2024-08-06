@@ -37,6 +37,11 @@ const userSlice = createSlice({
             state.user = null;
             state.accessToken = null;
             state.refreshToken = null;
+            state.pendingList = [],
+            state.bankedList = [],
+            state.performedList = [],
+            state.transferedList = [],
+            state.donatedList = []
         },
         setpendingList: (state, action) => {
             state.pendingList = action.payload
@@ -74,15 +79,15 @@ const userSlice = createSlice({
         setEffectedOperation: (state, action) => {
             state.effectedOperation = action.payload
         }
-            
+
     },
 });
 
-export const {  setUser, 
-                setAccessToken, 
-                logout, 
-                setpendingList, 
-                setPerformedList, 
+export const {  setUser,
+                setAccessToken,
+                logout,
+                setpendingList,
+                setPerformedList,
                 setTransferedList,
                 setDonatedList,
                 setInstitutionsList,
