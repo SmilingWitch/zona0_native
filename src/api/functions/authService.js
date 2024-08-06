@@ -1,4 +1,4 @@
-import { fetchData } from "../../api/authentication/fetchData";
+import { fetchData } from "../../api/general/fetchData";
 import { setUser, setAccessToken, setRefreshToken, setZonaPoint } from '../../store/reducer';
 
 export const login = async (values, setError, dispatch, navigation) => {

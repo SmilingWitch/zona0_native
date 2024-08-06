@@ -1,4 +1,4 @@
-import { fetchData } from "../../api/authentication/fetchData";
+import { fetchData } from "../../api/general/fetchData";
 
 export const register = async (values,setError, navigation) => {
     fetchData('/register/client/', values)
