@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "zona0_wallet",
-    "slug": "zona0_wallet",
+    "name": "Zona 0",
+    "slug": "Zona 0",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/logo.jpg",
@@ -11,6 +11,14 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "plugins": [
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps._some_id_here_"
+        }
+      ]
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -19,7 +27,7 @@
         "foregroundImage": "./assets/logo.jpg",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.smiling_witch.zona0_wallet"
+      "package": "com.smiling_witch.Zona 0"
     },
     "web": {
       "favicon": "./assets/favicon.png"
